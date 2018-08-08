@@ -32,7 +32,6 @@
             <dd><a href="../1.0">1.0</a></dd>
             <dd><a href="../1.2">1.2</a></dd>
             <dd><a href="../2.0">2.0</a></dd>
-            <dd><a href="../latest">latest</a></dd>
             <hr/>
         </dl>
     </div>
@@ -57,8 +56,26 @@
 <!-- <script type="text/javascript" src="_static/underscore.js"></script> -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore.js"></script>
 
-<script type="text/javascript"
-        src="https://raw.githubusercontent.com/sphinx-doc/sphinx/master/sphinx/themes/basic/static/doctools.js"></script>
-
+<!--<script type="text/javascript"-->
+        <!--src="https://raw.githubusercontent.com/sphinx-doc/sphinx/master/sphinx/themes/basic/static/doctools.js"></script>-->
+<script>
+    var current_path = document.location.pathname
+    cp_arr = current_path.split('/')
+    // remove current dir from array
+    cp_arr.splice(cp_arr.length-2, 1)
+    cp_arr.join('/')
+    var parent_path
+</script>
 </body>
 </html>
+
+$.ajax({
+  url: "../",
+  success: function(data){
+     $(data).find("td > a").each(
+        function(){
+        // will loop through
+        alert("Found a file: " + $(this).attr("href"));
+     });
+  }
+});
