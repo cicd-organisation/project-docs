@@ -55,7 +55,7 @@
 <!--<script type="text/javascript"-->
         <!--src="https://raw.githubusercontent.com/sphinx-doc/sphinx/master/sphinx/themes/basic/static/doctools.js"></script>-->
 <script>
-    $.getScript('versions/v.js').done(
+    $.getScript('../v.js').done(
         function () {
             v.forEach(function (item, index) {
                 $('#other-versions').append('<dd><a href="../' + item + '">' + item + "<a/></dd>")
