@@ -1,0 +1,571 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>sceptre.environment &mdash; Sceptre 2.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Sceptre
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../docs/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../docs/get_started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../docs/terminology.html">Terminology</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../docs/cli.html">Command Line Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../docs/environment_config.html">Environment Config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../docs/stack_config.html">Stack Config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../docs/templates.html">Templates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../docs/hooks.html">Hooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../docs/resolvers.html">Resolvers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../docs/architecture.html">Architecting Sceptre</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Support</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../docs/faq.html">FAQ</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api/modules.html">sceptre</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Sceptre</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../sceptre.html">sceptre</a> &raquo;</li>
+        
+      <li>sceptre.environment</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for sceptre.environment</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">sceptre.environment</span>
+
+<span class="sd">This module implements the Environment class, which stores data and logic to</span>
+<span class="sd">represent a logical grouping of stacks as an environment.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">threading</span>
+
+<span class="kn">import</span> <span class="nn">botocore</span>
+
+<span class="kn">from</span> <span class="nn">concurrent.futures</span> <span class="k">import</span> <span class="n">ThreadPoolExecutor</span><span class="p">,</span> <span class="n">wait</span>
+
+<span class="kn">from</span> <span class="nn">.exceptions</span> <span class="k">import</span> <span class="n">StackDoesNotExistError</span>
+
+<span class="kn">from</span> <span class="nn">.helpers</span> <span class="k">import</span> <span class="n">recurse_into_sub_environments</span><span class="p">,</span> <span class="n">_detect_cycles</span>
+<span class="kn">from</span> <span class="nn">.stack_status</span> <span class="k">import</span> <span class="n">StackStatus</span>
+
+
+<div class="viewcode-block" id="Environment"><a class="viewcode-back" href="../../api/sceptre.html#sceptre.environment.Environment">[docs]</a><span class="k">class</span> <span class="nc">Environment</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Environment stores information about the current environment.</span>
+
+<span class="sd">    It implements methods for carrying out environment-level operations.</span>
+
+<span class="sd">    Two types of Environments exist, non-leaf and leaf. Non-leaf environments</span>
+<span class="sd">    contain sub-environments, while leaf environments contain stacks. If a</span>
+<span class="sd">    command is executed by a leaf environment, it should execute that command</span>
+<span class="sd">    on the stacks it contains. If a command is executed by a non-leaf</span>
+<span class="sd">    environment, it should invoke that command on each of its sub-environments.</span>
+<span class="sd">    This is done using the</span>
+<span class="sd">    ``sceptre.helpers.recurse_into_sub_environments`` decorator.</span>
+
+<span class="sd">    :param environment_path: The name of the environment.</span>
+<span class="sd">    :type environment_path: str</span>
+<span class="sd">    :param options: A dict of key-value pairs to update self.config with.</span>
+<span class="sd">    :type debug: dict</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="n">path</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">stacks</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sub_environments</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_options</span> <span class="o">=</span> <span class="p">{}</span> <span class="k">if</span> <span class="n">options</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">options</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="s2">&quot;sceptre.environment.Environment(&quot;</span>
+            <span class="s2">&quot;path=</span><span class="se">\&#39;</span><span class="si">{path}</span><span class="se">\&#39;</span><span class="s2">, options=</span><span class="se">\&#39;</span><span class="si">{options}</span><span class="se">\&#39;</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">{})</span>
+        <span class="p">)</span>
+
+<div class="viewcode-block" id="Environment.launch"><a class="viewcode-back" href="../../api/sceptre.html#sceptre.environment.Environment.launch">[docs]</a>    <span class="k">def</span> <span class="nf">launch</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Creates or updates all stacks in the environment.</span>
+
+<span class="sd">        :returns: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Launching environment &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+        <span class="n">threading_events</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_threading_events</span><span class="p">()</span>
+        <span class="n">stack_statuses</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_initial_statuses</span><span class="p">()</span>
+        <span class="n">launch_dependencies</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_launch_dependencies</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_for_circular_dependencies</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_build</span><span class="p">(</span>
+            <span class="s2">&quot;launch&quot;</span><span class="p">,</span> <span class="n">threading_events</span><span class="p">,</span> <span class="n">stack_statuses</span><span class="p">,</span> <span class="n">launch_dependencies</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">stack_statuses</span></div>
+
+<div class="viewcode-block" id="Environment.delete"><a class="viewcode-back" href="../../api/sceptre.html#sceptre.environment.Environment.delete">[docs]</a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Deletes all stacks in the environment.</span>
+
+<span class="sd">        :returns: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Deleting environment &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+        <span class="n">threading_events</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_threading_events</span><span class="p">()</span>
+        <span class="n">stack_statuses</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_initial_statuses</span><span class="p">()</span>
+        <span class="n">delete_dependencies</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_delete_dependencies</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_for_circular_dependencies</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_build</span><span class="p">(</span>
+            <span class="s2">&quot;delete&quot;</span><span class="p">,</span> <span class="n">threading_events</span><span class="p">,</span> <span class="n">stack_statuses</span><span class="p">,</span> <span class="n">delete_dependencies</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">stack_statuses</span></div>
+
+<div class="viewcode-block" id="Environment.describe"><a class="viewcode-back" href="../../api/sceptre.html#sceptre.environment.Environment.describe">[docs]</a>    <span class="nd">@recurse_into_sub_environments</span>
+    <span class="k">def</span> <span class="nf">describe</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns each stack&#39;s status.</span>
+
+<span class="sd">        :returns: The stack status of each stack, keyed by the stack&#39;s name.</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">stack</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">stacks</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">status</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="n">get_status</span><span class="p">()</span>
+            <span class="k">except</span> <span class="n">StackDoesNotExistError</span><span class="p">:</span>
+                <span class="n">status</span> <span class="o">=</span> <span class="s2">&quot;PENDING&quot;</span>
+            <span class="n">response</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">stack</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="n">status</span><span class="p">})</span>
+        <span class="k">return</span> <span class="n">response</span></div>
+
+<div class="viewcode-block" id="Environment.describe_resources"><a class="viewcode-back" href="../../api/sceptre.html#sceptre.environment.Environment.describe_resources">[docs]</a>    <span class="nd">@recurse_into_sub_environments</span>
+    <span class="k">def</span> <span class="nf">describe_resources</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Describes the resources of each stack in the environment.</span>
+
+<span class="sd">        :returns: A description of each stack&#39;s resources, keyed by the stack&#39;s</span>
+<span class="sd">            name.</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">stack</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">stacks</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">resources</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="n">describe_resources</span><span class="p">()</span>
+                <span class="n">response</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">stack</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="n">resources</span><span class="p">})</span>
+            <span class="k">except</span><span class="p">(</span><span class="n">botocore</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">ClientError</span><span class="p">)</span> <span class="k">as</span> <span class="n">exp</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">exp</span><span class="o">.</span><span class="n">response</span><span class="p">[</span><span class="s2">&quot;Error&quot;</span><span class="p">][</span><span class="s2">&quot;Message&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;does not exist&quot;</span><span class="p">):</span>
+                    <span class="k">pass</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">raise</span>
+        <span class="k">return</span> <span class="n">response</span></div>
+
+    <span class="nd">@recurse_into_sub_environments</span>
+    <span class="k">def</span> <span class="nf">_build</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">command</span><span class="p">,</span> <span class="n">threading_events</span><span class="p">,</span> <span class="n">stack_statuses</span><span class="p">,</span> <span class="n">dependencies</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Launches or deletes all stacks in the environment.</span>
+
+<span class="sd">        Whether the stack is launched or delete depends on the value of</span>
+<span class="sd">        &lt;command&gt;. It does this by calling stack.&lt;command&gt;() for</span>
+<span class="sd">        each stack in the environment. Stack.&lt;command&gt;() is blocking, because</span>
+<span class="sd">        it waits for the stack to be built, so each command is run on a</span>
+<span class="sd">        separate thread. As some stacks need to be built before others,</span>
+<span class="sd">        depending on their depedencies, threading.Events() are used to notify</span>
+<span class="sd">        the other stacks when a particular stack is done building.</span>
+
+<span class="sd">        :param command: The stack command to run. Can be (launch | delete).</span>
+<span class="sd">        :type command: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">stacks</span><span class="p">:</span>
+            <span class="k">with</span> <span class="n">ThreadPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stacks</span><span class="p">))</span> <span class="k">as</span> <span class="n">executor</span><span class="p">:</span>
+                <span class="n">futures</span> <span class="o">=</span> <span class="p">[</span>
+                    <span class="n">executor</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_manage_stack_build</span><span class="p">,</span> <span class="n">stack</span><span class="p">,</span>
+                        <span class="n">command</span><span class="p">,</span> <span class="n">threading_events</span><span class="p">,</span> <span class="n">stack_statuses</span><span class="p">,</span> <span class="n">dependencies</span>
+                    <span class="p">)</span>
+                    <span class="k">for</span> <span class="n">stack</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">stacks</span>
+                <span class="p">]</span>
+                <span class="n">wait</span><span class="p">(</span><span class="n">futures</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+                <span class="s2">&quot;No stacks found for environment: &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span>
+            <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_manage_stack_build</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span> <span class="n">stack</span><span class="p">,</span> <span class="n">command</span><span class="p">,</span> <span class="n">threading_events</span><span class="p">,</span>
+            <span class="n">stack_statuses</span><span class="p">,</span> <span class="n">dependencies</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Manages the launch or deletion of a stack.</span>
+
+<span class="sd">        Waits for any stacks that ``stack`` depends on to complete, runs</span>
+<span class="sd">        ``stack.command()``, and then marks ``stack`` as complete. If a</span>
+<span class="sd">        dependency stack has failed, ``stack`` is marked as failed.</span>
+
+<span class="sd">        :param stack: The stack to build.</span>
+<span class="sd">        :type: sceptre.Stack</span>
+<span class="sd">        :param threading_events: A dict of threading.Events, keyed by stack \</span>
+<span class="sd">        names, which is used to notify other stacks when a particular stack \</span>
+<span class="sd">        has been built.</span>
+<span class="sd">        :type events: dict</span>
+<span class="sd">        :param command: The stack command to run. Can be either &quot;launch&quot; or \</span>
+<span class="sd">        &quot;delete&quot;.</span>
+<span class="sd">        :type command: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">dependency</span> <span class="ow">in</span> <span class="n">dependencies</span><span class="p">[</span><span class="n">stack</span><span class="o">.</span><span class="n">name</span><span class="p">]:</span>
+            <span class="n">threading_events</span><span class="p">[</span><span class="n">dependency</span><span class="p">]</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">stack_statuses</span><span class="p">[</span><span class="n">dependency</span><span class="p">]</span> <span class="o">!=</span> <span class="n">StackStatus</span><span class="o">.</span><span class="n">COMPLETE</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+                    <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">, which </span><span class="si">%s</span><span class="s2"> depends is not complete. Marking &quot;</span>
+                    <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> as failed.&quot;</span><span class="p">,</span> <span class="n">dependency</span><span class="p">,</span> <span class="n">stack</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">dependency</span>
+                <span class="p">)</span>
+                <span class="n">stack_statuses</span><span class="p">[</span><span class="n">stack</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">StackStatus</span><span class="o">.</span><span class="n">FAILED</span>
+
+        <span class="k">if</span> <span class="n">stack_statuses</span><span class="p">[</span><span class="n">stack</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">!=</span> <span class="n">StackStatus</span><span class="o">.</span><span class="n">FAILED</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">status</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">stack</span><span class="p">,</span> <span class="n">command</span><span class="p">)()</span>
+                <span class="n">stack_statuses</span><span class="p">[</span><span class="n">stack</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">status</span>
+            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                <span class="n">stack_statuses</span><span class="p">[</span><span class="n">stack</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">StackStatus</span><span class="o">.</span><span class="n">FAILED</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span>
+                    <span class="s2">&quot;Stack </span><span class="si">%s</span><span class="s2"> failed to </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">stack</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">command</span>
+                <span class="p">)</span>
+
+        <span class="n">threading_events</span><span class="p">[</span><span class="n">stack</span><span class="o">.</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
+
+    <span class="nd">@recurse_into_sub_environments</span>
+    <span class="k">def</span> <span class="nf">_get_threading_events</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns a threading.Event() for each stack in every sub-environment.</span>
+
+<span class="sd">        :returns: A threading.Event object for each stack, keyed by the</span>
+<span class="sd">            stack&#39;s name.</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="n">stack</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="n">threading</span><span class="o">.</span><span class="n">Event</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">stack</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">stacks</span>
+        <span class="p">}</span>
+
+    <span class="nd">@recurse_into_sub_environments</span>
+    <span class="k">def</span> <span class="nf">_get_initial_statuses</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns a &quot;pending&quot; sceptre.stack_status.StackStatus for each stack</span>
+<span class="sd">        in every sub-environment.</span>
+
+<span class="sd">        :returns: A &quot;pending&quot; stack status for each stack, keyed by the</span>
+<span class="sd">            stack&#39;s name.</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="n">stack</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="n">StackStatus</span><span class="o">.</span><span class="n">PENDING</span>
+            <span class="k">for</span> <span class="n">stack</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">stacks</span>
+        <span class="p">}</span>
+
+    <span class="nd">@recurse_into_sub_environments</span>
+    <span class="k">def</span> <span class="nf">_get_launch_dependencies</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">top_level_environment_path</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns a dict of each stack&#39;s launch dependencies.</span>
+
+<span class="sd">        :returns: A list of the stacks that a particular stack depends on</span>
+<span class="sd">            while launching, keyed by that stack&#39;s name.</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">all_dependencies</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">stack</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="n">stack</span><span class="o">.</span><span class="n">dependencies</span>
+            <span class="k">for</span> <span class="n">stack</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">stacks</span>
+        <span class="p">}</span>
+
+        <span class="c1"># Filter out dependencies which aren&#39;t under the top level environmnent</span>
+        <span class="n">launch_dependencies</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">stack_name</span><span class="p">:</span> <span class="p">[</span>
+                <span class="n">dependency</span>
+                <span class="k">for</span> <span class="n">dependency</span> <span class="ow">in</span> <span class="n">dependencies</span>
+                <span class="k">if</span> <span class="n">dependency</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">top_level_environment_path</span><span class="p">)</span>
+            <span class="p">]</span>
+            <span class="k">for</span> <span class="n">stack_name</span><span class="p">,</span> <span class="n">dependencies</span> <span class="ow">in</span> <span class="n">all_dependencies</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">launch_dependencies</span>
+
+    <span class="k">def</span> <span class="nf">_get_delete_dependencies</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns a dict of each stack&#39;s delete dependencies.</span>
+
+<span class="sd">        :returns: A list of the stacks that a particular stack depends on</span>
+<span class="sd">            while deleting, keyed by that stack&#39;s name.</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">launch_dependencies</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_launch_dependencies</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+        <span class="n">delete_dependencies</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">stack_name</span><span class="p">:</span> <span class="p">[]</span> <span class="k">for</span> <span class="n">stack_name</span> <span class="ow">in</span> <span class="n">launch_dependencies</span>
+        <span class="p">}</span>
+        <span class="k">for</span> <span class="n">stack_name</span><span class="p">,</span> <span class="n">dependencies</span> <span class="ow">in</span> <span class="n">launch_dependencies</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">dependency</span> <span class="ow">in</span> <span class="n">dependencies</span><span class="p">:</span>
+                <span class="n">delete_dependencies</span><span class="p">[</span><span class="n">dependency</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stack_name</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">delete_dependencies</span>
+
+    <span class="k">def</span> <span class="nf">_check_for_circular_dependencies</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Checks to make sure that no stacks are dependent on stacks which are</span>
+<span class="sd">        dependent on the first stack.</span>
+
+<span class="sd">        :raises: sceptre.workplan.CircularDependenciesException</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Checking for circular dependencies...&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">stacks</span><span class="p">:</span>
+            <span class="n">encountered_stacks</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="n">available_nodes</span> <span class="o">=</span> <span class="p">{</span><span class="n">stack</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="n">stack</span> <span class="k">for</span> <span class="n">stack</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">stacks</span><span class="p">}</span>
+            <span class="k">for</span> <span class="n">stack</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">stacks</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">encountered_stacks</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">stack</span><span class="p">,</span> <span class="s2">&quot;UNENCOUNTERED&quot;</span><span class="p">)</span> <span class="o">!=</span> <span class="s2">&quot;DONE&quot;</span><span class="p">:</span>
+                    <span class="n">encountered_stacks</span><span class="p">[</span><span class="n">stack</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;ENCOUNTERED&quot;</span>
+                    <span class="n">encountered_stacks</span> <span class="o">=</span> <span class="n">_detect_cycles</span><span class="p">(</span>
+                        <span class="n">stack</span><span class="p">,</span>
+                        <span class="n">encountered_stacks</span><span class="p">,</span>
+                        <span class="n">available_nodes</span><span class="p">,</span>
+                        <span class="p">[</span><span class="n">stack</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
+                    <span class="p">)</span>
+                    <span class="n">encountered_stacks</span><span class="p">[</span><span class="n">stack</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;DONE&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;No circular dependencies found&quot;</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Cloudreach.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+    
+    <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Read the Docs</span>
+      v: 2.0
+      <span class="fa fa-caret-down"></span>
+    </span>
+
+        <div class="rst-other-versions">
+            <dl id="other-versions">
+                <dt>Versions</dt>
+                
+            </dl>
+            
+            
+            
+            
+            
+            
+            <dl>
+                <dt>On Read the Docs</dt>
+                <dd>
+                    <a href="///projects//?fromdocs=">Project Home</a>
+                </dd>
+                <dd>
+                    <a href="///builds//?fromdocs=">Builds</a>
+                </dd>
+            </dl>
+            <hr/>
+            Free document hosting provided by <a href="http://www.readthedocs.org">Read the Docs</a>
+                .
+
+        </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function (event) {
+                $.getScript('https://cicd-organisation.github.io/project-docs/versions/v.js').done(
+                    function () {
+                        v.forEach(function (item, index) {
+                            $('#other-versions').append('<dd><a href="../' + item + '">' + item + "<a/></dd>");
+                        })
+                    });
+            });
+
+        </script>
+    </div>
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'2.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

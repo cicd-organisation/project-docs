@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<!--[if IE 8]>
+<html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Documentation 1.0</title>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+<div class="rst-versions" data-toggle="rst-v" role="note" aria-label="v">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book">My version is</span>
+      <b>v: 1.0</b>
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <br/>
+    <span>
+    	I know my version and I need to find and list my sisters from parent folder <b>v</b> as per example bellow.<br/>
+    	Modify the the the "Other v" <b>dd</b> tags to dynamically contain links for v from the parent folder.
+	</span>
+    <hr/>
+    <div class="rst-other-versions" id="example">
+        <dl>
+            <dt>Other Versions example</dt>
+            <dd><a href="../1.2">1.2</a></dd>
+            <dd><a href="../2.0">2.0</a></dd>
+            <dd><a href="../latest">latest</a></dd>
+            <hr/>
+        </dl>
+    </div>
+    <hr/>
+    <div class="rst-other-versions" id="modified">
+        <dl id="other-versions">
+            <dt>Other Versions</dt>
+        </dl>
+        <hr/>
+    </div>
+    <hr/>
+    <a href="../../index.html">Link to homepage</a>
+</div>
+
+<!-- <script type="text/javascript" src="_static/jquery.js"></script> -->
+<!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>-->
+<script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+<!-- <script type="text/javascript" src="_static/underscore.js"></script> -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore.js"></script>
+
+<script>
+    $.getScript('../v.js').done(
+        function () {
+            v.forEach(function (item, index) {
+                $('#other-versions').append('<dd><a href="../' + item + '">' + item + "<a/></dd>")
+            })
+        })
+</script>
+</body>
+</html>

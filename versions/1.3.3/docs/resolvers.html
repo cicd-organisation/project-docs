@@ -1,0 +1,468 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Resolvers &mdash; Sceptre 1.3.3 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Architecting Sceptre" href="architecture.html" />
+    <link rel="prev" title="Hooks" href="hooks.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Sceptre
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.3.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get_started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="terminology.html">Terminology</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Command Line Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="environment_config.html">Environment Config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stack_config.html">Stack Config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="templates.html">Templates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hooks.html">Hooks</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Resolvers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#available-resolvers">Available Resolvers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#environment-variable">environment_variable</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#file-contents">file_contents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#stack-output">stack_output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#stack-output-external">stack_output_external</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#custom-resolvers">Custom Resolvers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#example">Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#custom-resolver-py">custom_resolver.py</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#setup-py">setup.py</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecting Sceptre</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Support</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/modules.html">sceptre</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sceptre</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Resolvers</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/docs/resolvers.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="resolvers">
+<span id="id1"></span><h1>Resolvers<a class="headerlink" href="#resolvers" title="Permalink to this headline">¶</a></h1>
+<p>Sceptre implements resolvers, which can be used to resolve a value of a
+CloudFormation <code class="docutils literal notranslate"><span class="pre">parameter</span></code> or <code class="docutils literal notranslate"><span class="pre">sceptre_user_data</span></code> value at runtime.
+This is most commonly used to chain the outputs of one stack to the
+inputs of another.</p>
+<p>If required, users can create their own resolvers, as described in the
+section on <a class="reference external" href="#custom-resolvers">Custom Resolvers</a>.</p>
+<p>Syntax:</p>
+<div class="code yaml highlight-default notranslate"><div class="highlight"><pre><span></span>parameters:
+    &lt;parameter_name&gt;: !&lt;resolver_name&gt; &lt;resolver_value&gt;
+sceptre_user_data:
+    &lt;name&gt;: !&lt;resolver_name&gt; &lt;resolver_value&gt;
+</pre></div>
+</div>
+<div class="section" id="available-resolvers">
+<h2>Available Resolvers<a class="headerlink" href="#available-resolvers" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="environment-variable">
+<h3>environment_variable<a class="headerlink" href="#environment-variable" title="Permalink to this headline">¶</a></h3>
+<p>Fetches the value from an environment variable.</p>
+<p>Syntax:</p>
+<div class="code yaml highlight-default notranslate"><div class="highlight"><pre><span></span>parameter|sceptre_user_data:
+    &lt;name&gt;: !environment_variable ENVIRONMENT_VARIABLE_NAME
+</pre></div>
+</div>
+<p>Example:</p>
+<div class="code yaml highlight-default notranslate"><div class="highlight"><pre><span></span>parameters:
+    database_password: !environment_variable DATABASE_PASSWORD
+</pre></div>
+</div>
+</div>
+<div class="section" id="file-contents">
+<h3>file_contents<a class="headerlink" href="#file-contents" title="Permalink to this headline">¶</a></h3>
+<p>Reads in the contents of a file.</p>
+<p>Syntax:</p>
+<div class="code yaml highlight-default notranslate"><div class="highlight"><pre><span></span>parameters|sceptre_user_data:
+    &lt;name&gt;: !file_contents /path/to/file.txt
+</pre></div>
+</div>
+<p>Example:</p>
+<div class="code yaml highlight-default notranslate"><div class="highlight"><pre><span></span>sceptre_user_data:
+    iam_policy: !file_contents /path/to/policy.json
+</pre></div>
+</div>
+</div>
+<div class="section" id="stack-output">
+<h3>stack_output<a class="headerlink" href="#stack-output" title="Permalink to this headline">¶</a></h3>
+<p>Fetches the value of an output from a different stack controlled by
+Sceptre.</p>
+<p>Syntax:</p>
+<div class="code yaml highlight-default notranslate"><div class="highlight"><pre><span></span>parameters | sceptre_user_data:
+    &lt;name&gt;: !stack_output &lt;stack_name&gt;::&lt;output_name&gt;
+</pre></div>
+</div>
+<p>Example:</p>
+<div class="code yaml highlight-default notranslate"><div class="highlight"><pre><span></span>parameters:
+    VpcIdParameter: !stack_output shared/vpc::VpcIdOutput
+</pre></div>
+</div>
+<p>Sceptre infers that the stack to fetch the output value from is a
+dependency, and builds that stack before the current one. This resolver
+will add a dependency for the stack in which needs the output from.</p>
+</div>
+<div class="section" id="stack-output-external">
+<h3>stack_output_external<a class="headerlink" href="#stack-output-external" title="Permalink to this headline">¶</a></h3>
+<p>Fetches the value of an output from a different stack in the same
+account and region.</p>
+<p>If the stack whose output is being fetched is in the same environment,
+the basename of that stack can be used.</p>
+<p>Syntax:</p>
+<div class="code yaml highlight-default notranslate"><div class="highlight"><pre><span></span>parameters/sceptre_user_data:
+    &lt;name&gt;: !stack_output_external &lt;full_stack_name&gt;::&lt;output_name&gt;
+</pre></div>
+</div>
+<p>Example:</p>
+<div class="code yaml highlight-default notranslate"><div class="highlight"><pre><span></span>parameters:
+    VpcIdParameter: !stack_output_external prj-network-vpc::VpcIdOutput
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="custom-resolvers">
+<h2>Custom Resolvers<a class="headerlink" href="#custom-resolvers" title="Permalink to this headline">¶</a></h2>
+<p>Users can define their own resolvers which are used by Sceptre to
+resolve the value of a parameter before it is passed to the
+CloudFormation template.</p>
+<p>A resolver is a Python class which inherits from abstract base class
+<code class="docutils literal notranslate"><span class="pre">Resolver</span></code> found in the <code class="docutils literal notranslate"><span class="pre">sceptre.resolvers</span> <span class="pre">module</span></code>.</p>
+<p>Resolvers are require to implement a <code class="docutils literal notranslate"><span class="pre">resolve()</span></code> function that takes
+no parameters and to call the base class initializer on initialisation.</p>
+<p>Resolvers may have access to <code class="docutils literal notranslate"><span class="pre">argument</span></code>, <code class="docutils literal notranslate"><span class="pre">stack_config</span></code>,
+<code class="docutils literal notranslate"><span class="pre">environment_config</span></code> and <code class="docutils literal notranslate"><span class="pre">connection_manager</span></code> as an attribute of
+<code class="docutils literal notranslate"><span class="pre">self</span></code>. For example <code class="docutils literal notranslate"><span class="pre">self.stack_config</span></code>.</p>
+<p>Sceptre uses the <code class="docutils literal notranslate"><span class="pre">sceptre.resolvers</span></code> entry point to locate resolver
+classes. Your custom resolver can be written anywhere and is installed
+as Python package.</p>
+<div class="section" id="example">
+<h3>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
+<p>The following python module template can be copied and used:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>custom_resolver
+├── custom_resolver.py
+└── setup.py
+</pre></div>
+</div>
+<p>The following python module template can be copied and used:</p>
+<div class="section" id="custom-resolver-py">
+<h4>custom_resolver.py<a class="headerlink" href="#custom-resolver-py" title="Permalink to this headline">¶</a></h4>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sceptre.resolvers</span> <span class="k">import</span> <span class="n">Resolver</span>
+
+<span class="k">class</span> <span class="nc">CustomResolver</span><span class="p">(</span><span class="n">Resolver</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">CustomResolver</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">resolve</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        resolve is the method called by Sceptre. It should carry out the work</span>
+<span class="sd">        intended by this resolver. It should return a string to become the</span>
+<span class="sd">        final value.</span>
+
+<span class="sd">        self.argument is available from the base class and contains the</span>
+<span class="sd">        argument defined in the sceptre config file (see below)</span>
+
+<span class="sd">        The following attributes may be available from the base class:</span>
+<span class="sd">        self.stack_config  (A dict of data from &lt;stack_name&gt;.yaml)</span>
+<span class="sd">        self.environment_config  (A dict of data from config.yaml)</span>
+<span class="sd">        self.connection_manager (A connection_manager)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">argument</span>
+</pre></div>
+</div>
+<p>The resolver name is the lower snake-case version of the class name. The
+argument of the resolver (<code class="docutils literal notranslate"><span class="pre">&lt;value&gt;</span></code>) will be available inside the
+resolver as <code class="docutils literal notranslate"><span class="pre">self.argument</span></code>. The resolver subclass above can be used
+in a stack config file with the following syntax:</p>
+</div>
+<div class="section" id="setup-py">
+<h4>setup.py<a class="headerlink" href="#setup-py" title="Permalink to this headline">¶</a></h4>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">setuptools</span> <span class="k">import</span> <span class="n">setup</span>
+
+<span class="n">setup</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;custom_resolver&#39;</span><span class="p">,</span>
+    <span class="n">entry_points</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;sceptre.resolvers&#39;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s1">&#39;custom_resolver = custom_resolver:CustomResolver&#39;</span><span class="p">,</span>
+        <span class="p">],</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Then install using <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">install</span></code> or <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">.</span></code>
+commands.</p>
+<p>This resolver can be used in a stack config file with the following
+syntax:</p>
+<div class="code yaml highlight-default notranslate"><div class="highlight"><pre><span></span>template_path: &lt;...&gt;
+parameters:
+    param1: !&lt;your_resolver_name&gt; &lt;value&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="architecture.html" class="btn btn-neutral float-right" title="Architecting Sceptre" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="hooks.html" class="btn btn-neutral" title="Hooks" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Cloudreach.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+    
+    <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Read the Docs</span>
+      v: 1.3.3
+      <span class="fa fa-caret-down"></span>
+    </span>
+
+        <div class="rst-other-versions">
+            <dl id="other-versions">
+                <dt>Versions</dt>
+                
+                    <dd><a href="B">A</a></dd>
+                
+                    <dd><a href="D">C</a></dd>
+                
+            </dl>
+            
+            
+            
+            
+            
+            
+            <dl>
+                <dt>On Read the Docs</dt>
+                <dd>
+                    <a href="///projects//?fromdocs=">Project Home</a>
+                </dd>
+                <dd>
+                    <a href="///builds//?fromdocs=">Builds</a>
+                </dd>
+            </dl>
+            <hr/>
+            Free document hosting provided by <a href="http://www.readthedocs.org">Read the Docs</a>
+                .
+
+        </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function (event) {
+                $.getScript('https://cicd-organisation.github.io/project-docs/versions/v.js').done(
+                    function () {
+                        v.forEach(function (item, index) {
+                            $('#other-versions').append('<dd><a href="../' + item + '">' + item + "<a/></dd>");
+                        })
+                    });
+            });
+
+        </script>
+    </div>
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.3.3',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
