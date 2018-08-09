@@ -56,8 +56,12 @@
 <!-- <script type="text/javascript" src="_static/underscore.js"></script> -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore.js"></script>
 
-<script type="text/javascript"
-        src="https://raw.githubusercontent.com/sphinx-doc/sphinx/master/sphinx/themes/basic/static/doctools.js"></script>
-
-</body>
+<script>
+    $.getScript('versions/v.js').done(
+        function () {
+            v.forEach(function (item, index) {
+                $('#other-versions').append('<dd><a href="' + item + '">' + item + "<a/></dd>")
+            })
+        })
+</script>
 </html>

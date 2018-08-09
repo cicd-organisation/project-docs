@@ -33,9 +33,6 @@
     <div class="rst-other-versions" id="modified">
         <dl id="other-versions">
             <dt>Other Versions</dt>
-
-            <dd><a href="A">A</a></dd>
-            <dd><a href="B">B</a></dd>
         </dl>
         <hr/>
     </div>
@@ -48,12 +45,36 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore.js"></script>
 
 <!--<script type="text/javascript"-->
-        <!--src="https://raw.githubusercontent.com/sphinx-doc/sphinx/master/sphinx/themes/basic/static/doctools.js"></script>-->
+<!--src="https://raw.githubusercontent.com/sphinx-doc/sphinx/master/sphinx/themes/basic/static/doctools.js"></script>-->
 
-<!--<script>-->
-    <!--var current_location = $(location)-->
-    <!--current_location.-->
-<!--</script>-->
+<script>
+    $.getScript('versions/v.js').done(
+        function () {
+            v.forEach(function (item, index) {
+                $('#other-versions').append('<dd><a href="' + item + '">' + item + "<a/></dd>")
+            })
+        })
+</script>
 
 </body>
 </html>
+
+<!--var a = $("-->
+<!--<dd>asdf</dd>");-->
+<!--var b = "-->
+<!--<dd>b</dd>";-->
+<!--var c = '-->
+<!--<dd><a href="c">c</a></dd>';-->
+<!--var d = $('-->
+<!--<dd><a href="d">d</a></dd>');-->
+
+<!--versions.forEach(function(item, index){-->
+<!--ov.append('-->
+<!--<dd><a href="'+item+'">'+item+"<a/></dd>")-->
+<!--})-->
+
+<!--$("#other-versions").append(a)-->
+<!--$("#other-versions").append(b)-->
+<!--$("#other-versions").append(c)-->
+<!--$("#other-versions").append(d)-->
+
