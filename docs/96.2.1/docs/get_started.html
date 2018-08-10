@@ -1,0 +1,413 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Get Started &mdash; Sceptre 1.3.3 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Terminology" href="terminology.html" />
+    <link rel="prev" title="Installation" href="install.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Sceptre
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                96.2.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Introduction</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Get Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#install">Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#directory-structure">Directory Structure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#vpc-json">vpc.json</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#config-yaml">config.yaml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#vpc-yaml">vpc.yaml</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#commands">Commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#create-stack">Create stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#meta-commands">Meta commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#update-stack">Update stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#delete-stack">Delete stack</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="terminology.html">Terminology</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Command Line Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="environment_config.html">Environment Config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stack_config.html">Stack Config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="templates.html">Templates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hooks.html">Hooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resolvers.html">Resolvers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecting Sceptre</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Support</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/modules.html">sceptre</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sceptre</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Get Started</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/docs/get_started.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="get-started">
+<h1>Get Started<a class="headerlink" href="#get-started" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="install">
+<h2>Install<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h2>
+<p>This tutorial assumes that you have installed Sceptre. Instructions on
+how to do this are found in the section on <a class="reference internal" href="install.html#installation"><span class="std std-ref">Installation</span></a>.</p>
+</div>
+<div class="section" id="directory-structure">
+<h2>Directory Structure<a class="headerlink" href="#directory-structure" title="Permalink to this headline">¶</a></h2>
+<p>Create the following directory structure in a clean directory named
+<code class="docutils literal notranslate"><span class="pre">sceptre-example</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>.
+├── config
+│   └── dev
+│       ├── config.yaml
+│       └── vpc.yaml
+└── templates
+    └── vpc.json
+</pre></div>
+</div>
+<p>On Unix systems, this can be done with the following commands:</p>
+<div class="code shell highlight-default notranslate"><div class="highlight"><pre><span></span>$ mkdir config config/dev templates
+$ touch config/dev/config.yaml config/dev/vpc.yaml templates/vpc.json
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">vpc.json</span></code> will contain a CloudFormation template, <code class="docutils literal notranslate"><span class="pre">vpc.yaml</span></code> will
+contain config relevant to that template, and <code class="docutils literal notranslate"><span class="pre">config.yaml</span></code> will
+contain environment config.</p>
+<div class="section" id="vpc-json">
+<h3>vpc.json<a class="headerlink" href="#vpc-json" title="Permalink to this headline">¶</a></h3>
+<p>Add the following CloudFormation to <code class="docutils literal notranslate"><span class="pre">vpc.json</span></code>:</p>
+<div class="code json highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;Parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;CidrBlock&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;Type&quot;</span><span class="p">:</span> <span class="s2">&quot;String&quot;</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;Resources&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;VPC&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;Type&quot;</span><span class="p">:</span> <span class="s2">&quot;AWS::EC2::VPC&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;Properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;CidrBlock&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;Ref&quot;</span><span class="p">:</span> <span class="s2">&quot;CidrBlock&quot;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;Outputs&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;VpcId&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;Value&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;Ref&quot;</span><span class="p">:</span> <span class="s2">&quot;VPC&quot;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>For more information on CloudFormation, see the AWS documentation on
+<a class="reference external" href="http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html">CloudFormation</a>.</p>
+</div>
+<div class="section" id="config-yaml">
+<h3>config.yaml<a class="headerlink" href="#config-yaml" title="Permalink to this headline">¶</a></h3>
+<p>Add the following config to <code class="docutils literal notranslate"><span class="pre">config.yaml</span></code>:</p>
+<div class="code yaml highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">project_code</span><span class="p">:</span> <span class="n">sceptre</span><span class="o">-</span><span class="n">example</span>
+<span class="n">region</span><span class="p">:</span> <span class="n">eu</span><span class="o">-</span><span class="n">west</span><span class="o">-</span><span class="mi">1</span>
+</pre></div>
+</div>
+<p>Sceptre prefixes stack names with the <code class="docutils literal notranslate"><span class="pre">project_code</span></code>. Resources will
+be built in the AWS region <code class="docutils literal notranslate"><span class="pre">region</span></code>.</p>
+</div>
+<div class="section" id="vpc-yaml">
+<h3>vpc.yaml<a class="headerlink" href="#vpc-yaml" title="Permalink to this headline">¶</a></h3>
+<p>Add the following config to <code class="docutils literal notranslate"><span class="pre">vpc.yaml</span></code>:</p>
+<div class="code yaml highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">template_path</span><span class="p">:</span> <span class="n">templates</span><span class="o">/</span><span class="n">vpc</span><span class="o">.</span><span class="n">json</span>
+<span class="n">parameters</span><span class="p">:</span>
+    <span class="n">CidrBlock</span><span class="p">:</span> <span class="mf">10.0</span><span class="o">.</span><span class="mf">0.0</span><span class="o">/</span><span class="mi">16</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">template_path</span></code> specifies the relative path to the CloudFormation,
+Python or Jinja2 template to use to launch the stack.</p>
+<p><code class="docutils literal notranslate"><span class="pre">parameters</span></code> lists the parameters which should be supplied by Sceptre
+to the template.</p>
+</div>
+</div>
+<div class="section" id="commands">
+<h2>Commands<a class="headerlink" href="#commands" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="create-stack">
+<h3>Create stack<a class="headerlink" href="#create-stack" title="Permalink to this headline">¶</a></h3>
+<p>We can create the VPC stack with the following command:</p>
+<div class="code shell highlight-default notranslate"><div class="highlight"><pre><span></span>$ sceptre create-stack dev vpc
+</pre></div>
+</div>
+<p>This command must be run from the <code class="docutils literal notranslate"><span class="pre">sceptre-examples</span></code> directory.</p>
+</div>
+<div class="section" id="meta-commands">
+<h3>Meta commands<a class="headerlink" href="#meta-commands" title="Permalink to this headline">¶</a></h3>
+<p>We can find out information about our running stack:</p>
+<div class="code shell highlight-default notranslate"><div class="highlight"><pre><span></span>$ sceptre describe-env-resources dev
+$ sceptre describe-stack-resources dev vpc
+$ sceptre describe-stack-outputs dev vpc
+</pre></div>
+</div>
+</div>
+<div class="section" id="update-stack">
+<h3>Update stack<a class="headerlink" href="#update-stack" title="Permalink to this headline">¶</a></h3>
+<p>If the stack’s config or template is changed in vpc.yaml, the stack can
+be updated with:</p>
+<div class="code shell highlight-default notranslate"><div class="highlight"><pre><span></span>$ sceptre update-stack dev vpc
+</pre></div>
+</div>
+</div>
+<div class="section" id="delete-stack">
+<h3>Delete stack<a class="headerlink" href="#delete-stack" title="Permalink to this headline">¶</a></h3>
+<p>Delete the stack:</p>
+<div class="code shell highlight-default notranslate"><div class="highlight"><pre><span></span>$ sceptre delete-stack dev vpc
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="terminology.html" class="btn btn-neutral float-right" title="Terminology" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="install.html" class="btn btn-neutral" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Cloudreach.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+    <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Read the Docs</span>
+      v: 96.2.1
+      <span class="fa fa-caret-down"></span>
+    </span>
+
+        <div class="rst-other-versions">
+            <dl id="other-versions">
+                <dt>Versions</dt>
+            </dl>
+            <dl>
+                <dt>Other Links</dt>
+                <dd>
+                    <a href="///projects//?fromdocs=">Project Home(TODO)</a>
+                </dd>
+                <dd>
+                    <a href="///builds//?fromdocs=">Builds(TODO)</a>
+                </dd>
+            </dl>
+            <hr/>
+            Free document hosting provided by <a href="http://www.readthedocs.org">Read the Docs</a>
+                .
+
+        </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                $.getScript("../../version-helper.js").done(
+                    function () {
+                        versions.forEach(function (item, index) {
+                            if (item !== "96.2.1") {
+                                $('#other-versions').append('<dd><a href="../' + item + '">' + item + "<a/></dd>");
+                            }
+
+                        })
+                    });
+            });
+        </script>
+    </div>
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.3.3',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
