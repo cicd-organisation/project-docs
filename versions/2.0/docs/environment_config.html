@@ -38,9 +38,7 @@
 
 <body class="wy-body-for-nav">
 
-  
-MYYY ['_static/jquery.js', '_static/underscore.js', '_static/doctools.js', '../metadata.js']
-
+   
   <div class="wy-grid-for-nav">
 
     
@@ -452,11 +450,6 @@ syntax:</p>
 
   </div>
   
-
-
-    
-    ['_static/jquery.js', '_static/underscore.js', '_static/doctools.js', '../metadata.js']
-    ../../metadata.js
     <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Read the Docs</span>
@@ -467,8 +460,8 @@ syntax:</p>
         <div class="rst-other-versions">
             <dl id="other-versions">
                 <dt>Versions</dt>
-                <dd><a href="">dev</a></dd>
-                <dd><a href="">stable</a></dd>
+
+                <dd><a href="../stable">stable</a></dd>
             </dl>
             
             
@@ -477,8 +470,9 @@ syntax:</p>
             
             
             <dl>
-                <dt>On Read the Docs</dt>
+                <dt>Links</dt>
                 <dd>
+
                     <a href="///projects//?fromdocs=">Project Home</a>
                 </dd>
                 <dd>
@@ -492,23 +486,15 @@ syntax:</p>
         </div>
         <script>
             document.addEventListener("DOMContentLoaded", function () {
+                $.getScript("../../metadata.js").done(
+                    function () {
+                        versions.forEach(function (item, index) {
+                            if (item !== "2.0") {
+                                $('#other-versions').append('<dd><a href="../' + item + '">' + item + "<a/></dd>");
+                            }
 
-                versions.forEach(function (item, index) {
-                    if (item !== "2.0") {
-                        $('#other-versions').append('<dd><a href="../' + item + '">' + item + "<a/></dd>");
-                    }
-
-                });
-
-                
-                
-                
-                
-                
-                
-                
-                
-                
+                        })
+                    });
             });
 
         </script>
@@ -531,7 +517,6 @@ syntax:</p>
       <script type="text/javascript" src="../_static/jquery.js"></script>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="../../metadata.js"></script>
 
   
 
