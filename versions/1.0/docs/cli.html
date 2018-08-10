@@ -340,7 +340,7 @@ deletes a change set for stack in PATH.</p>
 <p class="rubric">Options</p>
 <dl class="option">
 <dt id="cmdoption-sceptre-describe-change-set-v">
-<code class="descname">-v</code><code class="descclassname"></code><code class="descclassname">, </code><code class="descname">--verbose</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-sceptre-describe-change-set-v" title="Permalink to this definition">¶</a></dt>
+<code class="descname">-metadata</code><code class="descclassname"></code><code class="descclassname">, </code><code class="descname">--verbose</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-sceptre-describe-change-set-v" title="Permalink to this definition">¶</a></dt>
 <dd><p>Display verbose output.</p>
 </dd></dl>
 
@@ -610,7 +610,7 @@ change-set when the change-set flag is set.</p>
 
 <dl class="option">
 <dt id="cmdoption-sceptre-update-v">
-<code class="descname">-v</code><code class="descclassname"></code><code class="descclassname">, </code><code class="descname">--verbose</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-sceptre-update-v" title="Permalink to this definition">¶</a></dt>
+<code class="descname">-metadata</code><code class="descclassname"></code><code class="descclassname">, </code><code class="descname">--verbose</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-sceptre-update-v" title="Permalink to this definition">¶</a></dt>
 <dd><p>Display verbose output.</p>
 </dd></dl>
 
@@ -686,7 +686,7 @@ change-set when the change-set flag is set.</p>
     <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Read the Docs</span>
-      v: 1.0
+      metadata: 1.0
       <span class="fa fa-caret-down"></span>
     </span>
 
@@ -719,7 +719,7 @@ change-set when the change-set flag is set.</p>
             document.addEventListener("DOMContentLoaded", function (event) {
                 $.getScript('https://cicd-organisation.github.io/project-docs/versions/v.js').done(
                     function () {
-                        v.forEach(function (item, index) {
+                        metadata.forEach(function (item, index) {
                             $('#other-versions').append('<dd><a href="../' + item + '">' + item + "<a/></dd>");
                         })
                     });

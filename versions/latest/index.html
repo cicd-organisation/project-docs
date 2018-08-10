@@ -14,16 +14,16 @@
 
 <body class="wy-body-for-nav">
 
-<div class="rst-versions" data-toggle="rst-v" role="note" aria-label="v">
+<div class="rst-versions" data-toggle="rst-metadata" role="note" aria-label="metadata">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book">My version is</span>
-      <b>v: latest</b>
+      <b>metadata: latest</b>
       <span class="fa fa-caret-down"></span>
     </span>
     <br/>
     <span>
-    	I know my version and I need to find and list my sisters from parent folder <b>v</b> as per example bellow.<br/>
-    	Modify the the the "Other v" <b>dd</b> tags to dynamically contain links for v from the parent folder.
+    	I know my version and I need to find and list my sisters from parent folder <b>metadata</b> as per example bellow.<br/>
+    	Modify the the the "Other metadata" <b>dd</b> tags to dynamically contain links for metadata from the parent folder.
 	</span>
     <hr/>
     <div class="rst-other-versions" id="example">
@@ -57,7 +57,7 @@
 <script>
     $.getScript('../v.js').done(
         function () {
-            v.forEach(function (item, index) {
+            metadata.forEach(function (item, index) {
                 $('#other-versions').append('<dd><a href="../' + item + '">' + item + "<a/></dd>")
             })
         })

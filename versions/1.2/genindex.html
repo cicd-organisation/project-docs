@@ -268,7 +268,7 @@
 </li>
       </ul></li>
       <li>
-    -v, --verbose
+    -metadata, --verbose
 
       <ul>
         <li><a href="docs/cli.html#cmdoption-sceptre-describe-change-set-v">sceptre-describe-change-set command line option</a>
@@ -719,7 +719,7 @@
     sceptre-describe-change-set command line option
 
       <ul>
-        <li><a href="docs/cli.html#cmdoption-sceptre-describe-change-set-v">-v, --verbose</a>
+        <li><a href="docs/cli.html#cmdoption-sceptre-describe-change-set-v">-metadata, --verbose</a>
 </li>
         <li><a href="docs/cli.html#cmdoption-sceptre-describe-change-set-arg-change-set-name">CHANGE_SET_NAME</a>
 </li>
@@ -828,7 +828,7 @@
       <ul>
         <li><a href="docs/cli.html#cmdoption-sceptre-update-c">-c, --change-set</a>
 </li>
-        <li><a href="docs/cli.html#cmdoption-sceptre-update-v">-v, --verbose</a>
+        <li><a href="docs/cli.html#cmdoption-sceptre-update-v">-metadata, --verbose</a>
 </li>
         <li><a href="docs/cli.html#cmdoption-sceptre-update-y">-y, --yes</a>
 </li>
@@ -1036,7 +1036,7 @@
     <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Read the Docs</span>
-      v: 1.2
+      metadata: 1.2
       <span class="fa fa-caret-down"></span>
     </span>
 
@@ -1069,7 +1069,7 @@
             document.addEventListener("DOMContentLoaded", function (event) {
                 $.getScript('https://cicd-organisation.github.io/project-docs/versions/v.js').done(
                     function () {
-                        v.forEach(function (item, index) {
+                        metadata.forEach(function (item, index) {
                             $('#other-versions').append('<dd><a href="../' + item + '">' + item + "<a/></dd>");
                         })
                     });

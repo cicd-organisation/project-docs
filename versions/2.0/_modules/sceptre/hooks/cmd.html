@@ -36,7 +36,9 @@
 
 <body class="wy-body-for-nav">
 
-   
+  
+MYYY ['_static/jquery.js', '_static/underscore.js', '_static/doctools.js', '../metadata.js']
+
   <div class="wy-grid-for-nav">
 
     
@@ -224,7 +226,11 @@
 
   </div>
   
+
+
     
+    ['_static/jquery.js', '_static/underscore.js', '_static/doctools.js', '../metadata.js']
+    ../../../../metadata.js
     <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Read the Docs</span>
@@ -235,7 +241,8 @@
         <div class="rst-other-versions">
             <dl id="other-versions">
                 <dt>Versions</dt>
-                
+                <dd><a href="">dev</a></dd>
+                <dd><a href="">stable</a></dd>
             </dl>
             
             
@@ -258,13 +265,24 @@
 
         </div>
         <script>
-            document.addEventListener("DOMContentLoaded", function (event) {
-                $.getScript('https://cicd-organisation.github.io/project-docs/versions/v.js').done(
-                    function () {
-                        v.forEach(function (item, index) {
-                            $('#other-versions').append('<dd><a href="../' + item + '">' + item + "<a/></dd>");
-                        })
-                    });
+            document.addEventListener("DOMContentLoaded", function () {
+
+                versions.forEach(function (item, index) {
+                    if (item !== "2.0") {
+                        $('#other-versions').append('<dd><a href="../' + item + '">' + item + "<a/></dd>");
+                    }
+
+                });
+
+                
+                
+                
+                
+                
+                
+                
+                
+                
             });
 
         </script>
@@ -287,6 +305,7 @@
       <script type="text/javascript" src="../../../_static/jquery.js"></script>
       <script type="text/javascript" src="../../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../../metadata.js"></script>
 
   
 

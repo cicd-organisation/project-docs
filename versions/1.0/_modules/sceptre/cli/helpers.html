@@ -356,15 +356,15 @@
         <span class="s2">&quot;Scope&quot;</span>
     <span class="p">]</span>
     <span class="n">formatted_response</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="n">k</span><span class="p">:</span> <span class="n">v</span>
-        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+        <span class="n">k</span><span class="p">:</span> <span class="n">metadata</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">metadata</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">desired_response_items</span>
     <span class="p">}</span>
     <span class="n">formatted_response</span><span class="p">[</span><span class="s2">&quot;Changes&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
         <span class="p">{</span>
             <span class="s2">&quot;ResourceChange&quot;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="n">k</span><span class="p">:</span> <span class="n">v</span>
-                <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">change</span><span class="p">[</span><span class="s2">&quot;ResourceChange&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+                <span class="n">k</span><span class="p">:</span> <span class="n">metadata</span>
+                <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">metadata</span> <span class="ow">in</span> <span class="n">change</span><span class="p">[</span><span class="s2">&quot;ResourceChange&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
                 <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">desired_resource_changes</span>
             <span class="p">}</span>
         <span class="p">}</span>
@@ -441,7 +441,7 @@
     <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Read the Docs</span>
-      v: 1.0
+      metadata: 1.0
       <span class="fa fa-caret-down"></span>
     </span>
 
@@ -474,7 +474,7 @@
             document.addEventListener("DOMContentLoaded", function (event) {
                 $.getScript('https://cicd-organisation.github.io/project-docs/versions/v.js').done(
                     function () {
-                        v.forEach(function (item, index) {
+                        metadata.forEach(function (item, index) {
                             $('#other-versions').append('<dd><a href="../' + item + '">' + item + "<a/></dd>");
                         })
                     });

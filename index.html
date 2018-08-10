@@ -14,10 +14,10 @@
 
 <body class="wy-body-for-nav">
 
-<div class="rst-versions" data-toggle="rst-v" role="note" aria-label="v">
+<div class="rst-versions" data-toggle="rst-metadata" role="note" aria-label="metadata">
     <span>
-    	I am a Documentation homepage I can take you to all other v. <br/>
-        Modify the the the "Other v" <b>dd</b> tags to dynamically contain links for v from the <b>v</b> folder.
+    	I am a Documentation homepage I can take you to all other metadata. <br/>
+        Modify the the the "Other metadata" <b>dd</b> tags to dynamically contain links for metadata from the <b>metadata</b> folder.
 	</span>
     <hr/>
     <div class="rst-other-versions" id="example">
@@ -50,7 +50,7 @@
 <script>
     $.getScript('versions/v.js').done(
         function () {
-            v.forEach(function (item, index) {
+            metadata.forEach(function (item, index) {
                 $('#other-versions').append('<dd><a href="versions/' + item + '">' + item + "<a/></dd>")
             })
         })
