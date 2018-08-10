@@ -1,0 +1,507 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>sceptre.helpers &mdash; Sceptre 1.3.3 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Sceptre
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                dev
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../docs/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../docs/get_started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../docs/terminology.html">Terminology</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../docs/cli.html">Command Line Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../docs/environment_config.html">Environment Config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../docs/stack_config.html">Stack Config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../docs/templates.html">Templates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../docs/hooks.html">Hooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../docs/resolvers.html">Resolvers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../docs/architecture.html">Architecting Sceptre</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Support</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../docs/faq.html">FAQ</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api/modules.html">sceptre</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Sceptre</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../sceptre.html">sceptre</a> &raquo;</li>
+        
+      <li>sceptre.helpers</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for sceptre.helpers</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="kn">from</span> <span class="nn">functools</span> <span class="k">import</span> <span class="n">wraps</span>
+<span class="kn">import</span> <span class="nn">glob</span>
+<span class="kn">import</span> <span class="nn">imp</span>
+<span class="kn">import</span> <span class="nn">inspect</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">re</span>
+
+<span class="kn">from</span> <span class="nn">concurrent.futures</span> <span class="k">import</span> <span class="n">ThreadPoolExecutor</span>
+<span class="kn">from</span> <span class="nn">concurrent.futures</span> <span class="k">import</span> <span class="n">as_completed</span>
+
+<span class="kn">from</span> <span class="nn">.exceptions</span> <span class="k">import</span> <span class="n">CircularDependenciesError</span>
+
+
+<div class="viewcode-block" id="camel_to_snake_case"><a class="viewcode-back" href="../../api/sceptre.html#sceptre.helpers.camel_to_snake_case">[docs]</a><span class="k">def</span> <span class="nf">camel_to_snake_case</span><span class="p">(</span><span class="n">string</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Converts a string from camel case to snake case.</span>
+
+<span class="sd">    :param string: The string to be converted from camel to snake case.</span>
+<span class="sd">    :type string: str</span>
+<span class="sd">    :returns: The string, in snake case.</span>
+<span class="sd">    :rtype: str</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">s1</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;(.)([A-Z][a-z]+)&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;\1_\2&#39;</span><span class="p">,</span> <span class="n">string</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;([a-z0-9])([A-Z])&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;\1_\2&#39;</span><span class="p">,</span> <span class="n">s1</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="recurse_into_sub_environments"><a class="viewcode-back" href="../../api/sceptre.html#sceptre.helpers.recurse_into_sub_environments">[docs]</a><span class="k">def</span> <span class="nf">recurse_into_sub_environments</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Two types of Environments exist, non-leaf and leaf. Non-leaf environments</span>
+<span class="sd">    contain sub-environments, while leaf environments contain stacks. If a</span>
+<span class="sd">    command is executed by a leaf environment, it should execute that command</span>
+<span class="sd">    on the stacks it contains. If a command is executed by a non-leaf</span>
+<span class="sd">    environment, it should invoke that command on each of its sub-environments.</span>
+<span class="sd">    recurse is a decorator used by sceptre.environment.Environment to do this.</span>
+<span class="sd">    The function passed, ``func``, must return a dictionary.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nd">@wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">decorated</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">function_name</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="vm">__name__</span>
+        <span class="n">responses</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">num_environments</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sub_environments</span><span class="p">)</span>
+
+        <span class="c1"># As commands carried out by sub-environments may be blocking,</span>
+        <span class="c1"># execute them on separate threads.</span>
+        <span class="k">if</span> <span class="n">num_environments</span><span class="p">:</span>
+            <span class="k">with</span> <span class="n">ThreadPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="n">num_environments</span><span class="p">)</span> <span class="k">as</span> <span class="n">executor</span><span class="p">:</span>
+                <span class="n">futures</span> <span class="o">=</span> <span class="p">[</span>
+                    <span class="n">executor</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span>
+                        <span class="nb">getattr</span><span class="p">(</span><span class="n">environment</span><span class="p">,</span> <span class="n">function_name</span><span class="p">),</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+                    <span class="p">)</span>
+                    <span class="k">for</span> <span class="n">environment</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">sub_environments</span>
+                <span class="p">]</span>
+                <span class="k">for</span> <span class="n">future</span> <span class="ow">in</span> <span class="n">as_completed</span><span class="p">(</span><span class="n">futures</span><span class="p">):</span>
+                    <span class="n">response</span> <span class="o">=</span> <span class="n">future</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+                    <span class="k">if</span> <span class="n">response</span><span class="p">:</span>
+                        <span class="n">responses</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">response</span><span class="p">:</span>
+            <span class="n">responses</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">responses</span>
+
+    <span class="k">return</span> <span class="n">decorated</span></div>
+
+
+<div class="viewcode-block" id="get_name_tuple"><a class="viewcode-back" href="../../api/sceptre.html#sceptre.helpers.get_name_tuple">[docs]</a><span class="k">def</span> <span class="nf">get_name_tuple</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns a tuple of the stack name, split on the slashes.</span>
+
+<span class="sd">    :param name: The Stack&#39;s name.</span>
+<span class="sd">    :type name: str</span>
+<span class="sd">    :returns: A tuple of the stack&#39;s name.</span>
+<span class="sd">    :rtype: tuple</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="resolve_stack_name"><a class="viewcode-back" href="../../api/sceptre.html#sceptre.helpers.resolve_stack_name">[docs]</a><span class="k">def</span> <span class="nf">resolve_stack_name</span><span class="p">(</span><span class="n">source_stack_name</span><span class="p">,</span> <span class="n">destination_stack_path</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns a stack&#39;s full name.</span>
+
+<span class="sd">    A dependancy stack&#39;s name can be provided as either a full stack name, or</span>
+<span class="sd">    as the file base name of a stack from the same environment.</span>
+<span class="sd">    resolve_stack_name calculates the dependency&#39;s stack&#39;s full name from this.</span>
+
+<span class="sd">    :param source_stack_name: The name of the stack with the parameter to be \</span>
+<span class="sd">    resolved.</span>
+<span class="sd">    :type source_stack_name: str</span>
+<span class="sd">    :param destination_stack_path: The full or short name of the depenency \</span>
+<span class="sd">    stack.</span>
+<span class="sd">    :type destination_stack_path: str</span>
+<span class="sd">    :returns: The stack&#39;s full name.</span>
+<span class="sd">    :rtype: str</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="s2">&quot;/&quot;</span> <span class="ow">in</span> <span class="n">destination_stack_path</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">destination_stack_path</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">source_stack_base_name</span> <span class="o">=</span> <span class="n">source_stack_name</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">return</span> <span class="s2">&quot;/&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">source_stack_base_name</span><span class="p">,</span> <span class="n">destination_stack_path</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="get_external_stack_name"><a class="viewcode-back" href="../../api/sceptre.html#sceptre.helpers.get_external_stack_name">[docs]</a><span class="k">def</span> <span class="nf">get_external_stack_name</span><span class="p">(</span><span class="n">project_code</span><span class="p">,</span> <span class="n">stack_name</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns the name given to a stack in CloudFormation.</span>
+
+<span class="sd">    :param project_code: The project code, as defined in config.yaml.</span>
+<span class="sd">    :type project_code: str</span>
+<span class="sd">    :param stack_name: The name of the stack.</span>
+<span class="sd">    :type stack_name: str</span>
+<span class="sd">    :returns: The name given to the stack in CloudFormation.</span>
+<span class="sd">    :rtype: str</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="s2">&quot;-&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span>
+        <span class="n">project_code</span><span class="p">,</span>
+        <span class="n">stack_name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">)</span>
+    <span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="mask_key"><a class="viewcode-back" href="../../api/sceptre.html#sceptre.helpers.mask_key">[docs]</a><span class="k">def</span> <span class="nf">mask_key</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns an masked version of ``key``.</span>
+
+<span class="sd">    Returned version has all but the last four characters are replaced with the</span>
+<span class="sd">    character &quot;*&quot;.</span>
+
+<span class="sd">    :param key: The string to mask.</span>
+<span class="sd">    :type key: str</span>
+<span class="sd">    :returns: An masked version of the key</span>
+<span class="sd">    :rtype: str</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">num_mask_chars</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="o">-</span> <span class="mi">4</span>
+
+    <span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span>
+        <span class="s2">&quot;*&quot;</span> <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">num_mask_chars</span> <span class="k">else</span> <span class="n">c</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+    <span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="get_subclasses"><a class="viewcode-back" href="../../api/sceptre.html#sceptre.helpers.get_subclasses">[docs]</a><span class="k">def</span> <span class="nf">get_subclasses</span><span class="p">(</span><span class="n">class_type</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Creates a dictionary of classes which inherit from ``class_type`` found in</span>
+<span class="sd">    all python files within a given directory, keyed by the class name in snake</span>
+<span class="sd">    case as a string.</span>
+
+<span class="sd">    :param class_type: The base class that all returned classes should inherit</span>
+<span class="sd">        from.</span>
+<span class="sd">    :type class_type: cls</span>
+<span class="sd">    :param directory: The directory to look for classes in.</span>
+<span class="sd">    :type directory: str</span>
+<span class="sd">    :returns: A dict of classes found.</span>
+<span class="sd">    :rtype: dict</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">glob_expression</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="s2">&quot;*.py&quot;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="p">(</span><span class="ne">AttributeError</span><span class="p">,</span> <span class="ne">TypeError</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;&#39;directory&#39; object should be a string&quot;</span><span class="p">)</span>
+
+    <span class="n">module_paths</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">glob_expression</span><span class="p">)</span>
+
+    <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">directory</span><span class="p">)</span>
+
+    <span class="n">modules</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">imp</span><span class="o">.</span><span class="n">load_source</span><span class="p">(</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">module_path</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="n">module_path</span>
+        <span class="p">)</span>
+        <span class="k">for</span> <span class="n">module_path</span> <span class="ow">in</span> <span class="n">module_paths</span>
+        <span class="k">if</span> <span class="s2">&quot;__init__&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">module_path</span>
+    <span class="p">]</span>
+
+    <span class="n">classes</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">for</span> <span class="n">module</span> <span class="ow">in</span> <span class="n">modules</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">module</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">inspect</span><span class="o">.</span><span class="n">isclass</span><span class="p">(</span><span class="n">attr</span><span class="p">)</span> \
+                <span class="ow">and</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">attr</span><span class="p">,</span> <span class="n">class_type</span><span class="p">)</span> \
+                    <span class="ow">and</span> <span class="ow">not</span> <span class="n">inspect</span><span class="o">.</span><span class="n">isabstract</span><span class="p">(</span><span class="n">attr</span><span class="p">):</span>
+                        <span class="n">classes</span><span class="p">[</span><span class="n">camel_to_snake_case</span><span class="p">(</span><span class="n">attr</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)]</span> <span class="o">=</span> <span class="n">attr</span>
+
+    <span class="k">return</span> <span class="n">classes</span></div>
+
+
+<span class="k">def</span> <span class="nf">_detect_cycles</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">encountered_nodes</span><span class="p">,</span> <span class="n">available_nodes</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Use Depth-first search to detect cycles.</span>
+
+<span class="sd">    :returns: A dictionary containing all of the nodes encountered</span>
+<span class="sd">    during the depth first search.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">dependency_name</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">dependencies</span><span class="p">:</span>
+        <span class="n">dependency</span> <span class="o">=</span> <span class="n">available_nodes</span><span class="p">[</span><span class="n">dependency_name</span><span class="p">]</span>
+        <span class="n">status</span> <span class="o">=</span> <span class="n">encountered_nodes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">dependency</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">status</span> <span class="o">==</span> <span class="s2">&quot;ENCOUNTERED&quot;</span><span class="p">:</span>
+            <span class="c1"># Reformat path to only include the cycle</span>
+            <span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dependency_name</span><span class="p">)</span>
+            <span class="n">cycle</span> <span class="o">=</span> <span class="n">path</span><span class="p">[</span><span class="n">path</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">dependency_name</span><span class="p">):]</span>
+            <span class="k">raise</span> <span class="n">CircularDependenciesError</span><span class="p">(</span>
+                <span class="s2">&quot;Found circular dependency involving &quot;</span>
+                <span class="s2">&quot;</span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">cycle</span><span class="p">)</span>
+            <span class="p">)</span>
+        <span class="k">elif</span> <span class="n">status</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">encountered_nodes</span><span class="p">[</span><span class="n">dependency</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;ENCOUNTERED&quot;</span>
+            <span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dependency_name</span><span class="p">)</span>
+            <span class="n">_detect_cycles</span><span class="p">(</span>
+                <span class="n">dependency</span><span class="p">,</span>
+                <span class="n">encountered_nodes</span><span class="p">,</span>
+                <span class="n">available_nodes</span><span class="p">,</span>
+                <span class="n">path</span>
+            <span class="p">)</span>
+            <span class="n">encountered_nodes</span><span class="p">[</span><span class="n">dependency</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;DONE&quot;</span>
+    <span class="k">return</span> <span class="n">encountered_nodes</span>
+
+
+<span class="k">def</span> <span class="nf">_call_func_on_values</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">attr</span><span class="p">,</span> <span class="bp">cls</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Searches through dictionary or list for objects of type `cls` and calls the</span>
+<span class="sd">    supplied function `func`. Supports nested dictionaries and lists.</span>
+<span class="sd">    Does not detect objects used as keys in dictionaries.</span>
+
+<span class="sd">    :param attr: A dictionary or list to search through.</span>
+<span class="sd">    :type attr: dict or list</span>
+<span class="sd">    :return: The dictionary or list structure.</span>
+<span class="sd">    :rtype: dict or list</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">func_on_instance</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="bp">cls</span><span class="p">):</span>
+            <span class="n">func</span><span class="p">(</span><span class="n">attr</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="n">_call_func_on_values</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="bp">cls</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">attr</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">attr</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">func_on_instance</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">attr</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">attr</span><span class="p">):</span>
+            <span class="n">func_on_instance</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">attr</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Cloudreach.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+    <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Read the Docs</span>
+      v: dev
+      <span class="fa fa-caret-down"></span>
+    </span>
+
+        <div class="rst-other-versions">
+            <dl id="other-versions">
+                <dt>Versions</dt>
+            </dl>
+            <dl>
+                <dt>Other Links</dt>
+                <dd>
+                    <a href="///projects//?fromdocs=">Project Home(TODO)</a>
+                </dd>
+                <dd>
+                    <a href="///builds//?fromdocs=">Builds(TODO)</a>
+                </dd>
+            </dl>
+            <hr/>
+            Free document hosting provided by <a href="http://www.readthedocs.org">Read the Docs</a>
+                .
+
+        </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                $.getScript("../../../version-helper.js").done(
+                    function () {
+                        versions.forEach(function (item, index) {
+                            if (item !== "dev") {
+                                $('#other-versions').append('<dd><a href="../' + item + '">' + item + "<a/></dd>");
+                            }
+
+                        })
+                    });
+            });
+        </script>
+    </div>
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.3.3',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
