@@ -1,1 +1,1 @@
-let versions = ['dev',];
+let versions = ['dev', '1.0.1'];
