@@ -1,0 +1,428 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>sceptre.exceptions &mdash; Sceptre 1.3.3 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Sceptre
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../docs/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../docs/get_started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../docs/terminology.html">Terminology</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../docs/cli.html">Command Line Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../docs/environment_config.html">Environment Config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../docs/stack_config.html">Stack Config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../docs/templates.html">Templates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../docs/hooks.html">Hooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../docs/resolvers.html">Resolvers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../docs/architecture.html">Architecting Sceptre</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Support</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../docs/faq.html">FAQ</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api/modules.html">sceptre</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Sceptre</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../sceptre.html">sceptre</a> &raquo;</li>
+        
+      <li>sceptre.exceptions</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for sceptre.exceptions</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+
+
+<div class="viewcode-block" id="SceptreException"><a class="viewcode-back" href="../../api/sceptre.html#sceptre.exceptions.SceptreException">[docs]</a><span class="k">class</span> <span class="nc">SceptreException</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Base class for all Sceptre errors</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="ProjectAlreadyExistsError"><a class="viewcode-back" href="../../api/sceptre.html#sceptre.exceptions.ProjectAlreadyExistsError">[docs]</a><span class="k">class</span> <span class="nc">ProjectAlreadyExistsError</span><span class="p">(</span><span class="n">SceptreException</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Error raised when Sceptre project already exists.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="InvalidSceptreDirectoryError"><a class="viewcode-back" href="../../api/sceptre.html#sceptre.exceptions.InvalidSceptreDirectoryError">[docs]</a><span class="k">class</span> <span class="nc">InvalidSceptreDirectoryError</span><span class="p">(</span><span class="n">SceptreException</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Error raised if a sceptre directory is invalid.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="InvalidEnvironmentPathError"><a class="viewcode-back" href="../../api/sceptre.html#sceptre.exceptions.InvalidEnvironmentPathError">[docs]</a><span class="k">class</span> <span class="nc">InvalidEnvironmentPathError</span><span class="p">(</span><span class="n">SceptreException</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Error raised if the environment path string is invalid</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="ConfigItemNotFoundError"><a class="viewcode-back" href="../../api/sceptre.html#sceptre.exceptions.ConfigItemNotFoundError">[docs]</a><span class="k">class</span> <span class="nc">ConfigItemNotFoundError</span><span class="p">(</span><span class="n">SceptreException</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Error raised if a necessary config item has not been provided</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="UnsupportedTemplateFileTypeError"><a class="viewcode-back" href="../../api/sceptre.html#sceptre.exceptions.UnsupportedTemplateFileTypeError">[docs]</a><span class="k">class</span> <span class="nc">UnsupportedTemplateFileTypeError</span><span class="p">(</span><span class="n">SceptreException</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Error raised if an unsupported template file type is used.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="TemplateSceptreHandlerError"><a class="viewcode-back" href="../../api/sceptre.html#sceptre.exceptions.TemplateSceptreHandlerError">[docs]</a><span class="k">class</span> <span class="nc">TemplateSceptreHandlerError</span><span class="p">(</span><span class="n">SceptreException</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Error raised if sceptre_handler() is not defined correctly in the template.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="DependencyStackNotLaunchedError"><a class="viewcode-back" href="../../api/sceptre.html#sceptre.exceptions.DependencyStackNotLaunchedError">[docs]</a><span class="k">class</span> <span class="nc">DependencyStackNotLaunchedError</span><span class="p">(</span><span class="n">SceptreException</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Error raised when a dependency stack has not been launched</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="DependencyStackMissingOutputError"><a class="viewcode-back" href="../../api/sceptre.html#sceptre.exceptions.DependencyStackMissingOutputError">[docs]</a><span class="k">class</span> <span class="nc">DependencyStackMissingOutputError</span><span class="p">(</span><span class="n">SceptreException</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Error raised if a dependency stack does not have the correct outputs.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="CircularDependenciesError"><a class="viewcode-back" href="../../api/sceptre.html#sceptre.exceptions.CircularDependenciesError">[docs]</a><span class="k">class</span> <span class="nc">CircularDependenciesError</span><span class="p">(</span><span class="n">SceptreException</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Error raised if there are circular dependencies</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="UnknownStackStatusError"><a class="viewcode-back" href="../../api/sceptre.html#sceptre.exceptions.UnknownStackStatusError">[docs]</a><span class="k">class</span> <span class="nc">UnknownStackStatusError</span><span class="p">(</span><span class="n">SceptreException</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Error raised if an unknown stack status is received.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="RetryLimitExceededError"><a class="viewcode-back" href="../../api/sceptre.html#sceptre.exceptions.RetryLimitExceededError">[docs]</a><span class="k">class</span> <span class="nc">RetryLimitExceededError</span><span class="p">(</span><span class="n">SceptreException</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Error raised if the request limit is exceeded.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="UnknownHookTypeError"><a class="viewcode-back" href="../../api/sceptre.html#sceptre.exceptions.UnknownHookTypeError">[docs]</a><span class="k">class</span> <span class="nc">UnknownHookTypeError</span><span class="p">(</span><span class="n">SceptreException</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Error raised if an unrecognised hook type is received.</span>
+<span class="sd">    &quot;&quot;&quot;</span></div>
+
+
+<div class="viewcode-block" id="VersionIncompatibleError"><a class="viewcode-back" href="../../api/sceptre.html#sceptre.exceptions.VersionIncompatibleError">[docs]</a><span class="k">class</span> <span class="nc">VersionIncompatibleError</span><span class="p">(</span><span class="n">SceptreException</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Error raised if configuration incompatible with running version.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="ProtectedStackError"><a class="viewcode-back" href="../../api/sceptre.html#sceptre.exceptions.ProtectedStackError">[docs]</a><span class="k">class</span> <span class="nc">ProtectedStackError</span><span class="p">(</span><span class="n">SceptreException</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Error raised upon execution of an action under active protection</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="UnknownStackChangeSetStatusError"><a class="viewcode-back" href="../../api/sceptre.html#sceptre.exceptions.UnknownStackChangeSetStatusError">[docs]</a><span class="k">class</span> <span class="nc">UnknownStackChangeSetStatusError</span><span class="p">(</span><span class="n">SceptreException</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Error raised if an unknown stack change set status is received.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="InvalidHookArgumentTypeError"><a class="viewcode-back" href="../../api/sceptre.html#sceptre.exceptions.InvalidHookArgumentTypeError">[docs]</a><span class="k">class</span> <span class="nc">InvalidHookArgumentTypeError</span><span class="p">(</span><span class="n">SceptreException</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Error raised if a hook&#39;s argument type is invalid.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="InvalidHookArgumentSyntaxError"><a class="viewcode-back" href="../../api/sceptre.html#sceptre.exceptions.InvalidHookArgumentSyntaxError">[docs]</a><span class="k">class</span> <span class="nc">InvalidHookArgumentSyntaxError</span><span class="p">(</span><span class="n">SceptreException</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Error raised if a hook&#39;s argument syntax is invalid.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="InvalidHookArgumentValueError"><a class="viewcode-back" href="../../api/sceptre.html#sceptre.exceptions.InvalidHookArgumentValueError">[docs]</a><span class="k">class</span> <span class="nc">InvalidHookArgumentValueError</span><span class="p">(</span><span class="n">SceptreException</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Error raised if a hook&#39;s argument value is invalid.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="CannotUpdateFailedStackError"><a class="viewcode-back" href="../../api/sceptre.html#sceptre.exceptions.CannotUpdateFailedStackError">[docs]</a><span class="k">class</span> <span class="nc">CannotUpdateFailedStackError</span><span class="p">(</span><span class="n">SceptreException</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Error raised when a failed stack is updated.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="StackDoesNotExistError"><a class="viewcode-back" href="../../api/sceptre.html#sceptre.exceptions.StackDoesNotExistError">[docs]</a><span class="k">class</span> <span class="nc">StackDoesNotExistError</span><span class="p">(</span><span class="n">SceptreException</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Error raised when a stack does not exist.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="ConfigFileNotFoundError"><a class="viewcode-back" href="../../api/sceptre.html#sceptre.exceptions.ConfigFileNotFoundError">[docs]</a><span class="k">class</span> <span class="nc">ConfigFileNotFoundError</span><span class="p">(</span><span class="n">SceptreException</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Error raised when a config file does not exist.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="EnvironmentNotFoundError"><a class="viewcode-back" href="../../api/sceptre.html#sceptre.exceptions.EnvironmentNotFoundError">[docs]</a><span class="k">class</span> <span class="nc">EnvironmentNotFoundError</span><span class="p">(</span><span class="n">SceptreException</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Error raised when a environment does not exist.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Cloudreach.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+    <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Read the Docs</span>
+      v: 1.0.3
+      <span class="fa fa-caret-down"></span>
+    </span>
+
+        <div class="rst-other-versions">
+            <dl id="other-versions">
+                <dt>Versions</dt>
+            </dl>
+            <dl>
+                <dt>Other Links</dt>
+                <dd>
+                    <a href="///projects//?fromdocs=">Project Home(TODO)</a>
+                </dd>
+                <dd>
+                    <a href="///builds//?fromdocs=">Builds(TODO)</a>
+                </dd>
+            </dl>
+            <hr/>
+            Free document hosting provided by <a href="http://www.readthedocs.org">Read the Docs</a>
+                .
+
+        </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                $.getScript("../../../version-helper.js").done(
+                    function () {
+                        versions.forEach(function (item, index) {
+                            if (item !== "1.0.3") {
+                                $('#other-versions').append('<dd><a href="../' + item + '">' + item + "<a/></dd>");
+                            }
+
+                        })
+                    });
+            });
+        </script>
+    </div>
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.3.3',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
