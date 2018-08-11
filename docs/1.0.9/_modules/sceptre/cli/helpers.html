@@ -1,0 +1,509 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>sceptre.cli.helpers &mdash; Sceptre 1.3.3 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Sceptre
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.9
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/get_started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/terminology.html">Terminology</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/cli.html">Command Line Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/environment_config.html">Environment Config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/stack_config.html">Stack Config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/templates.html">Templates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/hooks.html">Hooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/resolvers.html">Resolvers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/architecture.html">Architecting Sceptre</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Support</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/faq.html">FAQ</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/modules.html">sceptre</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Sceptre</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../../sceptre.html">sceptre</a> &raquo;</li>
+        
+      <li>sceptre.cli.helpers</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for sceptre.cli.helpers</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="k">import</span> <span class="n">wraps</span>
+<span class="kn">from</span> <span class="nn">json</span> <span class="k">import</span> <span class="n">JSONEncoder</span>
+
+<span class="kn">import</span> <span class="nn">click</span>
+<span class="kn">import</span> <span class="nn">yaml</span>
+
+<span class="kn">from</span> <span class="nn">sceptre.config_reader</span> <span class="k">import</span> <span class="n">ConfigReader</span>
+
+<span class="kn">from</span> <span class="nn">boto3.exceptions</span> <span class="k">import</span> <span class="n">Boto3Error</span>
+<span class="kn">from</span> <span class="nn">botocore.exceptions</span> <span class="k">import</span> <span class="n">BotoCoreError</span><span class="p">,</span> <span class="n">ClientError</span>
+<span class="kn">from</span> <span class="nn">jinja2.exceptions</span> <span class="k">import</span> <span class="n">TemplateError</span>
+
+<span class="kn">from</span> <span class="nn">sceptre.exceptions</span> <span class="k">import</span> <span class="n">SceptreException</span>
+<span class="kn">from</span> <span class="nn">sceptre.stack_status_colourer</span> <span class="k">import</span> <span class="n">StackStatusColourer</span>
+
+
+<div class="viewcode-block" id="catch_exceptions"><a class="viewcode-back" href="../../../api/sceptre.cli.html#sceptre.cli.helpers.catch_exceptions">[docs]</a><span class="k">def</span> <span class="nf">catch_exceptions</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Catches and simplifies expected errors thrown by sceptre.</span>
+
+<span class="sd">    catch_exceptions should be used as a decorator.</span>
+
+<span class="sd">    :param func: The function which may throw exceptions which should be</span>
+<span class="sd">        simplified.</span>
+<span class="sd">    :type func: func</span>
+<span class="sd">    :returns: The decorated function.</span>
+<span class="sd">    :rtype: func</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nd">@wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">decorated</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Invokes ``func``, catches expected errors, prints the error message and</span>
+<span class="sd">        exits sceptre with a non-zero exit code.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">except</span> <span class="p">(</span><span class="n">SceptreException</span><span class="p">,</span> <span class="n">BotoCoreError</span><span class="p">,</span> <span class="n">ClientError</span><span class="p">,</span> <span class="n">Boto3Error</span><span class="p">,</span>
+                <span class="n">TemplateError</span><span class="p">)</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+            <span class="n">write</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">decorated</span></div>
+
+
+<div class="viewcode-block" id="confirmation"><a class="viewcode-back" href="../../../api/sceptre.cli.html#sceptre.cli.helpers.confirmation">[docs]</a><span class="k">def</span> <span class="nf">confirmation</span><span class="p">(</span>
+    <span class="n">command</span><span class="p">,</span> <span class="n">ignore</span><span class="p">,</span> <span class="n">environment</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">stack</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">change_set</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">ignore</span><span class="p">:</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Do you want to </span><span class="si">{}</span><span class="s2"> &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">environment</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="n">msg</span> <span class="o">+</span> <span class="s2">&quot;environment &#39;</span><span class="si">{0}</span><span class="s2">&#39;?&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">environment</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">change_set</span> <span class="ow">and</span> <span class="n">stack</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="n">msg</span> <span class="o">+</span> <span class="s2">&quot;change set &#39;</span><span class="si">{0}</span><span class="s2">&#39; for stack &#39;</span><span class="si">{1}</span><span class="s2">&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">change_set</span><span class="p">,</span> <span class="n">stack</span>
+            <span class="p">)</span>
+        <span class="k">elif</span> <span class="n">stack</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="n">msg</span> <span class="o">+</span> <span class="s2">&quot;stack &#39;</span><span class="si">{0}</span><span class="s2">&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">stack</span><span class="p">)</span>
+        <span class="n">click</span><span class="o">.</span><span class="n">confirm</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">abort</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="write"><a class="viewcode-back" href="../../../api/sceptre.cli.html#sceptre.cli.helpers.write">[docs]</a><span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="n">var</span><span class="p">,</span> <span class="n">output_format</span><span class="o">=</span><span class="s2">&quot;str&quot;</span><span class="p">,</span> <span class="n">no_colour</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Writes ``var`` to stdout. If output_format is set to &quot;json&quot; or &quot;yaml&quot;,</span>
+<span class="sd">    write ``var`` as a JSON or YAML string.</span>
+
+<span class="sd">    :param var: The object to print</span>
+<span class="sd">    :type var: obj</span>
+<span class="sd">    :param output_format: The format to print the output as. Allowed values: \</span>
+<span class="sd">    &quot;str&quot;, &quot;json&quot;, &quot;yaml&quot;</span>
+<span class="sd">    :type output_format: str</span>
+<span class="sd">    :param no_colour: Whether to colour stack statuses</span>
+<span class="sd">    :type no_colour: bool</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">output_format</span> <span class="o">==</span> <span class="s2">&quot;json&quot;</span><span class="p">:</span>
+        <span class="n">encoder</span> <span class="o">=</span> <span class="n">CustomJsonEncoder</span><span class="p">()</span>
+        <span class="n">stream</span> <span class="o">=</span> <span class="n">encoder</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">var</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">output_format</span> <span class="o">==</span> <span class="s2">&quot;yaml&quot;</span><span class="p">:</span>
+        <span class="n">stream</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_dump</span><span class="p">(</span><span class="n">var</span><span class="p">,</span> <span class="n">default_flow_style</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">output_format</span> <span class="o">==</span> <span class="s2">&quot;str&quot;</span><span class="p">:</span>
+        <span class="n">stream</span> <span class="o">=</span> <span class="n">var</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">no_colour</span><span class="p">:</span>
+        <span class="n">stack_status_colourer</span> <span class="o">=</span> <span class="n">StackStatusColourer</span><span class="p">()</span>
+        <span class="n">stream</span> <span class="o">=</span> <span class="n">stack_status_colourer</span><span class="o">.</span><span class="n">colour</span><span class="p">(</span><span class="n">stream</span><span class="p">)</span>
+
+    <span class="n">click</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="n">stream</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="get_stack_or_env"><a class="viewcode-back" href="../../../api/sceptre.cli.html#sceptre.cli.helpers.get_stack_or_env">[docs]</a><span class="k">def</span> <span class="nf">get_stack_or_env</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parses the path to generate relevant Environment and Stack object.</span>
+
+<span class="sd">    :param ctx: Cli context.</span>
+<span class="sd">    :type ctx: click.Context</span>
+<span class="sd">    :param path: Path to either stack config or environment folder.</span>
+<span class="sd">    :type path: str</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">stack</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">env</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="n">config_reader</span> <span class="o">=</span> <span class="n">ConfigReader</span><span class="p">(</span>
+        <span class="n">ctx</span><span class="o">.</span><span class="n">obj</span><span class="p">[</span><span class="s2">&quot;sceptre_dir&quot;</span><span class="p">],</span> <span class="n">ctx</span><span class="o">.</span><span class="n">obj</span><span class="p">[</span><span class="s2">&quot;user_variables&quot;</span><span class="p">]</span>
+    <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">path</span><span class="p">)[</span><span class="mi">1</span><span class="p">]:</span>
+        <span class="n">stack</span> <span class="o">=</span> <span class="n">config_reader</span><span class="o">.</span><span class="n">construct_stack</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">env</span> <span class="o">=</span> <span class="n">config_reader</span><span class="o">.</span><span class="n">construct_environment</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="n">stack</span><span class="p">,</span> <span class="n">env</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="setup_logging"><a class="viewcode-back" href="../../../api/sceptre.cli.html#sceptre.cli.helpers.setup_logging">[docs]</a><span class="k">def</span> <span class="nf">setup_logging</span><span class="p">(</span><span class="n">debug</span><span class="p">,</span> <span class="n">no_colour</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Sets up logging.</span>
+
+<span class="sd">    By default, the python logging module is configured to push logs to stdout</span>
+<span class="sd">    as long as their level is at least INFO. The log format is set to</span>
+<span class="sd">    &quot;[%(asctime)s] - %(name)s - %(message)s&quot; and the date format is set to</span>
+<span class="sd">    &quot;%Y-%m-%d %H:%M:%S&quot;.</span>
+
+<span class="sd">    After this function has run, modules should:</span>
+
+<span class="sd">    .. code:: python</span>
+
+<span class="sd">        import logging</span>
+
+<span class="sd">        logging.getLogger(__name__).info(&quot;my log message&quot;)</span>
+
+<span class="sd">    :param debug: A flag indication whether to turn on debug logging.</span>
+<span class="sd">    :type debug: bool</span>
+<span class="sd">    :no_colour: A flag to indicating whether to turn off coloured output.</span>
+<span class="sd">    :type no_colour: bool</span>
+<span class="sd">    :returns: A logger.</span>
+<span class="sd">    :rtype: logging.Logger</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">debug</span><span class="p">:</span>
+        <span class="n">sceptre_logging_level</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;botocore&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">sceptre_logging_level</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">INFO</span>
+        <span class="c1"># Silence botocore logs</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;botocore&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">CRITICAL</span><span class="p">)</span>
+
+    <span class="n">formatter_class</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span> <span class="k">if</span> <span class="n">no_colour</span> <span class="k">else</span> <span class="n">ColouredFormatter</span>
+
+    <span class="n">formatter</span> <span class="o">=</span> <span class="n">formatter_class</span><span class="p">(</span>
+        <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;[</span><span class="si">%(asctime)s</span><span class="s2">] - </span><span class="si">%(name)s</span><span class="s2"> - </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="n">datefmt</span><span class="o">=</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S&quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">log_handler</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">()</span>
+    <span class="n">log_handler</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>
+    <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;sceptre&quot;</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">log_handler</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">sceptre_logging_level</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">logger</span></div>
+
+
+<div class="viewcode-block" id="simplify_change_set_description"><a class="viewcode-back" href="../../../api/sceptre.cli.html#sceptre.cli.helpers.simplify_change_set_description">[docs]</a><span class="k">def</span> <span class="nf">simplify_change_set_description</span><span class="p">(</span><span class="n">response</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Simplies the response from the AWS describe change set API.</span>
+
+<span class="sd">    :param response: The original api response.</span>
+<span class="sd">    :type response: dict</span>
+<span class="sd">    :returns: A more concise description of the change set.</span>
+<span class="sd">    :rtype: dict</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">desired_response_items</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s2">&quot;ChangeSetName&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;CreationTime&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;ExecutionStatus&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;StackName&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Status&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;StatusReason&quot;</span>
+    <span class="p">]</span>
+    <span class="n">desired_resource_changes</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s2">&quot;Action&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;LogicalResourceId&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;PhysicalResourceId&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Replacement&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;ResourceType&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Scope&quot;</span>
+    <span class="p">]</span>
+    <span class="n">formatted_response</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">k</span><span class="p">:</span> <span class="n">v</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">desired_response_items</span>
+    <span class="p">}</span>
+    <span class="n">formatted_response</span><span class="p">[</span><span class="s2">&quot;Changes&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;ResourceChange&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="n">k</span><span class="p">:</span> <span class="n">v</span>
+                <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">change</span><span class="p">[</span><span class="s2">&quot;ResourceChange&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">desired_resource_changes</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">for</span> <span class="n">change</span> <span class="ow">in</span> <span class="n">response</span><span class="p">[</span><span class="s2">&quot;Changes&quot;</span><span class="p">]</span>
+    <span class="p">]</span>
+    <span class="k">return</span> <span class="n">formatted_response</span></div>
+
+
+<div class="viewcode-block" id="ColouredFormatter"><a class="viewcode-back" href="../../../api/sceptre.cli.html#sceptre.cli.helpers.ColouredFormatter">[docs]</a><span class="k">class</span> <span class="nc">ColouredFormatter</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    ColouredFormatter add colours to all stack statuses that appear in log</span>
+<span class="sd">    messages.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">stack_status_colourer</span> <span class="o">=</span> <span class="n">StackStatusColourer</span><span class="p">()</span>
+
+<div class="viewcode-block" id="ColouredFormatter.format"><a class="viewcode-back" href="../../../api/sceptre.cli.html#sceptre.cli.helpers.ColouredFormatter.format">[docs]</a>    <span class="k">def</span> <span class="nf">format</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Colours and returns all stack statuses in ``record``.</span>
+
+<span class="sd">        :param record: The log item to format.</span>
+<span class="sd">        :type record: str</span>
+<span class="sd">        :returns: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">ColouredFormatter</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+        <span class="n">coloured_response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack_status_colourer</span><span class="o">.</span><span class="n">colour</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">coloured_response</span></div></div>
+
+
+<div class="viewcode-block" id="CustomJsonEncoder"><a class="viewcode-back" href="../../../api/sceptre.cli.html#sceptre.cli.helpers.CustomJsonEncoder">[docs]</a><span class="k">class</span> <span class="nc">CustomJsonEncoder</span><span class="p">(</span><span class="n">JSONEncoder</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    CustomJsonEncoder is a JSONEncoder which encodes all items as JSON by</span>
+<span class="sd">    calling their __str__() method.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="CustomJsonEncoder.default"><a class="viewcode-back" href="../../../api/sceptre.cli.html#sceptre.cli.helpers.CustomJsonEncoder.default">[docs]</a>    <span class="k">def</span> <span class="nf">default</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns stringified version of item.</span>
+
+<span class="sd">        :param item: An arbitrary object to stringify.</span>
+<span class="sd">        :type item: obj</span>
+<span class="sd">        :returns: The stringified object.</span>
+<span class="sd">        :rtype: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">item</span><span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Cloudreach.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+    <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Read the Docs</span>
+      v: 1.0.9
+      <span class="fa fa-caret-down"></span>
+    </span>
+
+        <div class="rst-other-versions">
+            <dl id="other-versions">
+                <dt>Versions</dt>
+            </dl>
+            <dl>
+                <dt>Other Links</dt>
+                <dd>
+                    <a href="///projects//?fromdocs=">Project Home(TODO)</a>
+                </dd>
+                <dd>
+                    <a href="///builds//?fromdocs=">Builds(TODO)</a>
+                </dd>
+            </dl>
+            <hr/>
+            Free document hosting provided by <a href="http://www.readthedocs.org">Read the Docs</a>
+                .
+
+        </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                $.getScript("../../../../version-helper.js").done(
+                    function () {
+                        versions.forEach(function (item, index) {
+                            if (item !== "1.0.9") {
+                                $('#other-versions').append('<dd><a href="../' + item + '">' + item + "<a/></dd>");
+                            }
+
+                        })
+                    });
+            });
+        </script>
+    </div>
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'1.3.3',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
