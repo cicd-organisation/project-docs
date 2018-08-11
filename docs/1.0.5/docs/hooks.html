@@ -1,0 +1,453 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Hooks &mdash; Sceptre 1.3.3 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Resolvers" href="resolvers.html" />
+    <link rel="prev" title="Templates" href="templates.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Sceptre
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.5
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get_started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="terminology.html">Terminology</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Command Line Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="environment_config.html">Environment Config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stack_config.html">Stack Config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="templates.html">Templates</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Hooks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#hook-points">Hook points</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#available-hooks">Available Hooks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#cmd">cmd</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#asg-scaling-processes">asg_scaling_processes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#custom-hooks">Custom Hooks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#example">Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#custom-hook-py">custom_hook.py</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#setup-py">setup.py</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="resolvers.html">Resolvers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecting Sceptre</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Support</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/modules.html">sceptre</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sceptre</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Hooks</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/docs/hooks.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="hooks">
+<span id="id1"></span><h1>Hooks<a class="headerlink" href="#hooks" title="Permalink to this headline">¶</a></h1>
+<p>Hooks allows the ability for custom commands to be run when Sceptre
+actions occur.</p>
+<p>A hook is executed at a particular hook point when Sceptre is run.</p>
+<p>If required, users can create their own <code class="docutils literal notranslate"><span class="pre">hooks</span></code>, as described in the
+section <a class="reference external" href="#custom-hooks">Custom Hooks</a>.</p>
+<div class="section" id="hook-points">
+<h2>Hook points<a class="headerlink" href="#hook-points" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">before_create</span></code> or <code class="docutils literal notranslate"><span class="pre">after_create</span></code> - run hook before or after stack
+creation.</p>
+<p><code class="docutils literal notranslate"><span class="pre">before_update</span></code> or <code class="docutils literal notranslate"><span class="pre">after_update</span></code> - run hook before or after stack
+update.</p>
+<p><code class="docutils literal notranslate"><span class="pre">before_delete</span></code> or <code class="docutils literal notranslate"><span class="pre">after_delete</span></code> - run hook before or after stack
+deletion.</p>
+<p>Syntax:</p>
+<p>Hooks are specified in a stack’s config file, using the following
+syntax:</p>
+<div class="code yaml highlight-default notranslate"><div class="highlight"><pre><span></span>hooks:
+    hook_point:
+        - !command_type command 1
+        - !command_type command 2
+</pre></div>
+</div>
+</div>
+<div class="section" id="available-hooks">
+<h2>Available Hooks<a class="headerlink" href="#available-hooks" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="cmd">
+<h3>cmd<a class="headerlink" href="#cmd" title="Permalink to this headline">¶</a></h3>
+<p>Executes the argument string in the shell as a Python subprocess.</p>
+<p>For more information about how this works, see the <a class="reference external" href="https://docs.python.org/2/library/subprocess.html">subprocess
+documentation</a></p>
+<p>Syntax:</p>
+<div class="code yaml highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;hook_point&gt;:
+    - !cmd &lt;shell_command&gt;
+</pre></div>
+</div>
+<p>Example:</p>
+<div class="code yaml highlight-default notranslate"><div class="highlight"><pre><span></span>before_create:
+    - !cmd &quot;echo hello&quot;
+</pre></div>
+</div>
+</div>
+<div class="section" id="asg-scaling-processes">
+<h3>asg_scaling_processes<a class="headerlink" href="#asg-scaling-processes" title="Permalink to this headline">¶</a></h3>
+<p>Suspends or resumes autoscaling scaling processes.</p>
+<p>Syntax:</p>
+<div class="code yaml highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;hook_point&gt;:
+    - !asg_scaling_processes &lt;suspend|resume&gt;::&lt;process-name&gt;
+</pre></div>
+</div>
+<p>Example:</p>
+<div class="code yaml highlight-default notranslate"><div class="highlight"><pre><span></span>before_update:
+    - !asg_scaling_processes suspend::ScheduledActions
+</pre></div>
+</div>
+<p>More information on suspend and resume processes can be found in the AWS
+<a class="reference external" href="http://docs.aws.amazon.com/autoscaling/latest/userguide/as-suspend-resume-processes.html">documentation</a>.</p>
+</div>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>A stack’s <code class="docutils literal notranslate"><span class="pre">config.yml</span></code> where multiple hooks with multiple commands are
+specified:</p>
+<div class="code yaml highlight-default notranslate"><div class="highlight"><pre><span></span>template_path: templates/example.py
+parameters:
+    ExampleParameter: example_value
+hooks:
+    before_create:
+        - !cmd &quot;echo creating...&quot;
+    after_create:
+        - !cmd &quot;echo created&quot;
+        - !cmd &quot;echo done&quot;
+    before_update:
+        - !asg_scaling_processes suspend::ScheduledActions
+    after_update:
+        - !cmd &quot;mkdir example&quot;
+        - !cmd &quot;touch example.txt&quot;
+        - !asg_scaling_processes resume::ScheduledActions
+</pre></div>
+</div>
+</div>
+<div class="section" id="custom-hooks">
+<h2>Custom Hooks<a class="headerlink" href="#custom-hooks" title="Permalink to this headline">¶</a></h2>
+<p>Users can define their own custom hooks, allowing users to extend hooks
+and integrate additional functionality into Sceptre projects.</p>
+<p>A hook is a Python class which inherits from abstract base class
+<code class="docutils literal notranslate"><span class="pre">Hook</span></code> found in the <code class="docutils literal notranslate"><span class="pre">sceptre.hooks</span> <span class="pre">module</span></code>.</p>
+<p>Hooks are require to implement a <code class="docutils literal notranslate"><span class="pre">run()</span></code> function that takes no
+parameters and to call the base class initializer.</p>
+<p>Hooks may have access to <code class="docutils literal notranslate"><span class="pre">argument</span></code>, <code class="docutils literal notranslate"><span class="pre">stack_config</span></code>,
+<code class="docutils literal notranslate"><span class="pre">environment_config</span></code> and <code class="docutils literal notranslate"><span class="pre">connection_manager</span></code> as object attributes.
+For example <code class="docutils literal notranslate"><span class="pre">self.stack_config</span></code>.</p>
+<p>Sceptre uses the <code class="docutils literal notranslate"><span class="pre">sceptre.hooks</span></code> entry point to locate hook classes.
+Your custom hook can be written anywhere and is installed as Python
+package.</p>
+<div class="section" id="example">
+<h3>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
+<p>The following python module template can be copied and used:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>custom_hook
+├── custom_hook.py
+└── setup.py
+</pre></div>
+</div>
+<div class="section" id="custom-hook-py">
+<h4>custom_hook.py<a class="headerlink" href="#custom-hook-py" title="Permalink to this headline">¶</a></h4>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sceptre.hooks</span> <span class="k">import</span> <span class="n">Hook</span>
+
+
+<span class="k">class</span> <span class="nc">CustomHook</span><span class="p">(</span><span class="n">Hook</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">CustomHook</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        run is the method called by Sceptre. It should carry out the work</span>
+<span class="sd">        intended by this hook.</span>
+
+<span class="sd">        self.argument is available from the base class and contains the</span>
+<span class="sd">        argument defined in the Sceptre config file (see below)</span>
+
+<span class="sd">        The following attributes may be available from the base class:</span>
+<span class="sd">        self.stack_config  (A dict of data from &lt;stack_name&gt;.yaml)</span>
+<span class="sd">        self.environment_config  (A dict of data from config.yaml)</span>
+<span class="sd">        self.connection_manager (A connection_manager)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">argument</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="setup-py">
+<h4>setup.py<a class="headerlink" href="#setup-py" title="Permalink to this headline">¶</a></h4>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">setuptools</span> <span class="k">import</span> <span class="n">setup</span>
+
+<span class="n">setup</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;custom_hook&#39;</span><span class="p">,</span>
+    <span class="n">entry_points</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;sceptre.hooks&#39;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s1">&#39;custom_hook = custom_hook:CustomHook&#39;</span><span class="p">,</span>
+        <span class="p">],</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Then install using <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">install</span></code> or <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">.</span></code>
+commands.</p>
+<p>This hook can be used in a stack config file with the following syntax:</p>
+<div class="code yaml highlight-default notranslate"><div class="highlight"><pre><span></span>template_path: &lt;...&gt;
+hooks:
+    before_create:
+        - !custom_hook &lt;argument&gt;  # The argument is accessible via self.argument
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="resolvers.html" class="btn btn-neutral float-right" title="Resolvers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="templates.html" class="btn btn-neutral" title="Templates" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Cloudreach.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+    <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Read the Docs</span>
+      v: 1.0.5
+      <span class="fa fa-caret-down"></span>
+    </span>
+
+        <div class="rst-other-versions">
+            <dl id="other-versions">
+                <dt>Versions</dt>
+            </dl>
+            <dl>
+                <dt>Other Links</dt>
+                <dd>
+                    <a href="///projects//?fromdocs=">Project Home(TODO)</a>
+                </dd>
+                <dd>
+                    <a href="///builds//?fromdocs=">Builds(TODO)</a>
+                </dd>
+            </dl>
+            <hr/>
+            Free document hosting provided by <a href="http://www.readthedocs.org">Read the Docs</a>
+                .
+
+        </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                $.getScript("../../version-helper.js").done(
+                    function () {
+                        versions.forEach(function (item, index) {
+                            if (item !== "1.0.5") {
+                                $('#other-versions').append('<dd><a href="../' + item + '">' + item + "<a/></dd>");
+                            }
+
+                        })
+                    });
+            });
+        </script>
+    </div>
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.3.3',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
