@@ -16,20 +16,8 @@
 
 <div class="rst-versions" data-toggle="rst-metadata" role="note" aria-label="metadata">
     <span>
-    	I am a Documentation homepage I can take you to all other metadata. <br/>
-        Modify the the the "Other metadata" <b>dd</b> tags to dynamically contain links for metadata from the <b>metadata</b> folder.
+    	Dummy home page
 	</span>
-    <hr/>
-    <div class="rst-other-versions" id="example">
-        <dl>
-            <dt>Other Versions example</dt>
-            <dd><a href="versions/1.0">1.0</a></dd>
-            <dd><a href="versions/1.2">1.2</a></dd>
-            <dd><a href="versions/2.0">2.0</a></dd>
-            <dd><a href="versions/latest">latest</a></dd>
-        </dl>
-    </div>
-    <hr/>
     <div class="rst-other-versions" id="modified">
         <dl id="other-versions">
             <dt>Other Versions</dt>
@@ -48,12 +36,14 @@
 <!--src="https://raw.githubusercontent.com/sphinx-doc/sphinx/master/sphinx/themes/basic/static/doctools.js"></script>-->
 
 <script>
-    $.getScript('versions/v.js').done(
-        function () {
-            metadata.forEach(function (item, index) {
-                $('#other-versions').append('<dd><a href="versions/' + item + '">' + item + "<a/></dd>")
-            })
-        })
+    document.addEventListener("DOMContentLoaded", function () {
+        $.getScript("docs/version-helper.js").done(
+            function () {
+                versions.forEach(function (item, index) {
+                    $('#other-versions').append('<dd><a href="../' + item + '">' + item + "<a/></dd>");
+                })
+            });
+    });
 </script>
 
 </body>
