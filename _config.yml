@@ -1,1 +1,1 @@
-keep_files: [docs]
+include: [README.md]
