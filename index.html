@@ -41,7 +41,7 @@
         $.getScript("docs/version-helper.js").done(
             function () {
                 versions.forEach(function (item, index) {
-                    $('#other-versions').append('<dd><a href="../' + item + '">' + item + "<a/></dd>");
+                    $('#other-versions').append('<dd><a href="docs/' + item + '">' + item + "<a/></dd>");
                 })
             });
     });
