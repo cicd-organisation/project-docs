@@ -1,2 +1,2 @@
-include: [README.md]
+include: [_config.yml, README.md]
 keep_files: [README.md]
