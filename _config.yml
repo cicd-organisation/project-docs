@@ -1,2 +1,3 @@
-include: [_config.yml, README.md]
-keep_files: [README.md]
+include:
+  - "docs/_*"
+
