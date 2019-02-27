@@ -1,0 +1,499 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>sceptre.config package &mdash; Sceptre 2.0.3 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../',
+              VERSION:'2.0.3',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="sceptre.hooks package" href="sceptre.hooks.html" />
+    <link rel="prev" title="sceptre.cli package" href="sceptre.cli.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Sceptre
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                98.2.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../docs/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/get_started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/terminology.html">Terminology</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../docs/cli.html">Command Line Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/stack_group_config.html">StackGroup Config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/stack_config.html">Stack Config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/templates.html">Templates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/hooks.html">Hooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/resolvers.html">Resolvers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/architecture.html">Architecting Sceptre</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Support</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../docs/faq.html">FAQ</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">sceptre</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="sceptre.html">sceptre package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="sceptre.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="sceptre.cli.html">sceptre.cli package</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">sceptre.config package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sceptre.hooks.html">sceptre.hooks package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sceptre.plan.html">sceptre.plan package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sceptre.resolvers.html">sceptre.resolvers package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sceptre.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sceptre.html#module-sceptre.connection_manager">sceptre.connection_manager module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sceptre.html#module-sceptre.context">sceptre.context module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sceptre.html#module-sceptre.exceptions">sceptre.exceptions module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sceptre.html#module-sceptre.helpers">sceptre.helpers module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sceptre.html#module-sceptre.stack">sceptre.stack module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sceptre.html#module-sceptre.stack_status">sceptre.stack_status module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sceptre.html#module-sceptre.stack_status_colourer">sceptre.stack_status_colourer module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sceptre.html#module-sceptre.template">sceptre.template module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sceptre</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="modules.html">sceptre</a> &raquo;</li>
+        
+          <li><a href="sceptre.html">sceptre package</a> &raquo;</li>
+        
+      <li>sceptre.config package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/apidoc/sceptre.config.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-sceptre.config">
+<span id="sceptre-config-package"></span><h1>sceptre.config package<a class="headerlink" href="#module-sceptre.config" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="sceptre.config.NullHandler">
+<em class="property">class </em><code class="descclassname">sceptre.config.</code><code class="descname">NullHandler</code><span class="sig-paren">(</span><em>level=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/config.html#NullHandler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.config.NullHandler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/logging.html#logging.Handler" title="(in Python v3.7)"><code class="xref py py-class docutils literal"><span class="pre">logging.Handler</span></code></a></p>
+<dl class="method">
+<dt id="sceptre.config.NullHandler.emit">
+<code class="descname">emit</code><span class="sig-paren">(</span><em>record</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/config.html#NullHandler.emit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.config.NullHandler.emit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-sceptre.config.graph">
+<span id="sceptre-config-graph-module"></span><h2>sceptre.config.graph module<a class="headerlink" href="#module-sceptre.config.graph" title="Permalink to this headline">¶</a></h2>
+<p>sceptre.config.graph</p>
+<p>This module implements a StackGraph, which is represented as a directed
+acyclic graph of a Stack’s dependencies.</p>
+<dl class="class">
+<dt id="sceptre.config.graph.StackGraph">
+<em class="property">class </em><code class="descclassname">sceptre.config.graph.</code><code class="descname">StackGraph</code><span class="sig-paren">(</span><em>stacks</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/config/graph.html#StackGraph"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.config.graph.StackGraph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
+<p>A Directed Acyclic Graph representing the relationship between a Stack
+and its dependencies. Responsible for initalising the graph based on a set
+of Stacks.</p>
+<dl class="method">
+<dt id="sceptre.config.graph.StackGraph.count_dependencies">
+<code class="descname">count_dependencies</code><span class="sig-paren">(</span><em>stack</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/config/graph.html#StackGraph.count_dependencies"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.config.graph.StackGraph.count_dependencies" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the number of incoming edges a given Stack has in the
+StackGraph. The number of incoming edge also represents the number
+of Stacks that depend on the given Stack.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sceptre.config.graph.StackGraph.filtered">
+<code class="descname">filtered</code><span class="sig-paren">(</span><em>source_stacks</em>, <em>reverse=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/config/graph.html#StackGraph.filtered"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.config.graph.StackGraph.filtered" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sceptre.config.graph.StackGraph.remove_stack">
+<code class="descname">remove_stack</code><span class="sig-paren">(</span><em>stack</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/config/graph.html#StackGraph.remove_stack"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.config.graph.StackGraph.remove_stack" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes a Stack from the StackGraph. This operation will also remove
+all adjecent edges that represent a ‘depends on’ relationship with
+other Stacks.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-sceptre.config.reader">
+<span id="sceptre-config-reader-module"></span><h2>sceptre.config.reader module<a class="headerlink" href="#module-sceptre.config.reader" title="Permalink to this headline">¶</a></h2>
+<p>sceptre.config</p>
+<p>This module implements a ConfigReader class, which is responsible for reading
+and constructing Stacks.</p>
+<dl class="attribute">
+<dt id="sceptre.config.reader.ConfigAttributes">
+<code class="descclassname">sceptre.config.reader.</code><code class="descname">ConfigAttributes</code><a class="headerlink" href="#sceptre.config.reader.ConfigAttributes" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">Attributes</span></code></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="sceptre.config.reader.ConfigReader">
+<em class="property">class </em><code class="descclassname">sceptre.config.reader.</code><code class="descname">ConfigReader</code><span class="sig-paren">(</span><em>context</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/config/reader.html#ConfigReader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.config.reader.ConfigReader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
+<p>Parses YAML configuration files and produces Stack objects.</p>
+<p>Responsible for loading Resolvers and Hook classes and adding them as
+constructors to the PyYAML parser.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>context</strong> – A SceptreContext.</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="sceptre.config.reader.ConfigReader.construct_stacks">
+<code class="descname">construct_stacks</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/config/reader.html#ConfigReader.construct_stacks"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.config.reader.ConfigReader.construct_stacks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Traverses the files under the command path.
+For each file encountered, a Stack is constructed
+using the correct config. Depependencies are traversed
+and a final set of Stacks is returned.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A set of Stacks.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set" title="(in Python v3.7)">set</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sceptre.config.reader.ConfigReader.read">
+<code class="descname">read</code><span class="sig-paren">(</span><em>rel_path</em>, <em>base_config=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/config/reader.html#ConfigReader.read"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.config.reader.ConfigReader.read" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads in configuration from one or more YAML files
+within the Sceptre project folder.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>rel_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Relative path to config to read.</li>
+<li><strong>base_config</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – Base config to provide defaults.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Config read from config files.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-sceptre.config.strategies">
+<span id="sceptre-config-strategies-module"></span><h2>sceptre.config.strategies module<a class="headerlink" href="#module-sceptre.config.strategies" title="Permalink to this headline">¶</a></h2>
+<p>sceptre.config.strategies</p>
+<p>This module contains the implementations of the strategies used to merge config
+attributes.</p>
+<dl class="function">
+<dt id="sceptre.config.strategies.child_wins">
+<code class="descclassname">sceptre.config.strategies.</code><code class="descname">child_wins</code><span class="sig-paren">(</span><em>a</em>, <em>b</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/config/strategies.html#child_wins"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.config.strategies.child_wins" title="Permalink to this definition">¶</a></dt>
+<dd><p>Always returns the second parameter.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>a</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><em>object</em></a>) – An object.</li>
+<li><strong>b</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><em>object</em></a>) – An object.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">b</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="sceptre.config.strategies.dict_merge">
+<code class="descclassname">sceptre.config.strategies.</code><code class="descname">dict_merge</code><span class="sig-paren">(</span><em>a</em>, <em>b</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/config/strategies.html#dict_merge"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.config.strategies.dict_merge" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes two dictionaries and merges them.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>a</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – A dictionary.</li>
+<li><strong>b</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – A dictionary.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A merged dict.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="sceptre.config.strategies.list_join">
+<code class="descclassname">sceptre.config.strategies.</code><code class="descname">list_join</code><span class="sig-paren">(</span><em>a</em>, <em>b</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/config/strategies.html#list_join"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.config.strategies.list_join" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes two lists and joins them.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>a</strong> (<a class="reference internal" href="sceptre.cli.html#module-sceptre.cli.list" title="sceptre.cli.list"><em>list</em></a>) – A list.</li>
+<li><strong>b</strong> (<a class="reference internal" href="sceptre.cli.html#module-sceptre.cli.list" title="sceptre.cli.list"><em>list</em></a>) – A list.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A joined list from the two parameters.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="sceptre.cli.html#module-sceptre.cli.list" title="sceptre.cli.list">list</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="sceptre.hooks.html" class="btn btn-neutral float-right" title="sceptre.hooks package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="sceptre.cli.html" class="btn btn-neutral float-left" title="sceptre.cli package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Cloudreach
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+    <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Read the Docs</span>
+      v: 98.2.1
+      <span class="fa fa-caret-down"></span>
+    </span>
+
+        <div class="rst-other-versions">
+            <dl id="other-versions">
+                <dt>Versions</dt>
+            </dl>
+            <dl>
+                <dt>Other Links</dt>
+                <dd>
+                    <a href="///projects//?fromdocs=">Project Home(TODO)</a>
+                </dd>
+                <dd>
+                    <a href="///builds//?fromdocs=">Builds(TODO)</a>
+                </dd>
+            </dl>
+            <hr/>
+            Free document hosting provided by <a href="http://www.readthedocs.org">Read the Docs</a>
+                .
+
+        </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                $.getScript("../../version-helper.js").done(
+                    function () {
+                        versions.forEach(function (item, index) {
+                            if (item !== "98.2.1") {
+                                $('#other-versions').append('<dd><a href="../' + item + '">' + item + "<a/></dd>");
+                            }
+                        })
+                    });
+            });
+        </script>
+    </div>
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

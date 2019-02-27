@@ -1,0 +1,394 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Architecting Sceptre &mdash; Sceptre 2.0.3 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../',
+              VERSION:'2.0.3',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="FAQ" href="faq.html" />
+    <link rel="prev" title="Resolvers" href="resolvers.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Sceptre
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                98.2.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get_started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="terminology.html">Terminology</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Command Line Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stack_group_config.html">StackGroup Config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stack_config.html">Stack Config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="templates.html">Templates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hooks.html">Hooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resolvers.html">Resolvers</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Architecting Sceptre</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#project-layout">Project layout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#directory-layout">Directory layout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#stackgroup-structure">StackGroup structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example-architectures">Example architectures</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Support</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../apidoc/modules.html">sceptre</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sceptre</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Architecting Sceptre</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/docs/architecture.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="architecting-sceptre">
+<h1>Architecting Sceptre<a class="headerlink" href="#architecting-sceptre" title="Permalink to this headline">¶</a></h1>
+<p>Sceptre is written in a way that aims to be unopinionated in how it is used. It
+is designed to work equally well with simple and complex infrastructures.
+Sceptre’s flexible nature, and the variation in how people organise their AWS
+accounts, makes it difficult to give generic advice on how best to use it, as
+it can be use-case specific. However, the following patterns have emerged from
+our use of Sceptre at Cloudreach.</p>
+<div class="section" id="project-layout">
+<h2>Project layout<a class="headerlink" href="#project-layout" title="Permalink to this headline">¶</a></h2>
+<p>Sceptre’s nested StackGroups means that it is possible to store an entire
+company or department’s infrastructure in a single Sceptre project. While this
+is possible, it isn’t recommended. Having a large number of developers interact
+with a single repository can be difficult from a version control point of view,
+and it might be dangerous to let developers touch infrastructure that they are
+not directly involved with.</p>
+<p>We recommend different Sceptre projects for each large ‘section’ of the
+infrastructure being built.</p>
+</div>
+<div class="section" id="directory-layout">
+<h2>Directory layout<a class="headerlink" href="#directory-layout" title="Permalink to this headline">¶</a></h2>
+<p>You need to store your <a class="reference internal" href="templates.html"><span class="doc">Sceptre templates</span></a> in the <code class="docutils literal"><span class="pre">templates</span></code> directory within
+your Sceptre Project.</p>
+<div class="highlight-text"><div class="highlight"><pre><span></span>.
+├── config
+└── templates
+</pre></div>
+</div>
+</div>
+<div class="section" id="stackgroup-structure">
+<h2>StackGroup structure<a class="headerlink" href="#stackgroup-structure" title="Permalink to this headline">¶</a></h2>
+<p>StackGroups can be arbitrarily nested, and StackGroup commands can be applied
+to any level of the StackGroup tree. This can make it difficult to know how to
+divide StackGroups up.</p>
+<p>When considering how to split StackGroups up, it’s useful to remember the
+following properties of StackGroups:</p>
+<ol class="arabic">
+<li><p class="first">Region specific. There is no way for an StackGroup to launch stacks in
+multiple regions; a StackGroup can, however, contain sub-StackGroups in
+different regions. A StackGroup should therefore contain Stacks that belong
+in the same region.</p>
+</li>
+<li><p class="first">Command related. StackGroup level commands (like <code class="docutils literal"><span class="pre">launch</span></code>) are applied to
+every stack in a StackGroup. There is no way to exclude stacks from an
+StackGroup level command. Therefore, StackGroups should contain stacks that
+can be launched and deleted together.</p>
+<p>Some stacks are inherently longer-lived than others. Stacks containing
+VPC-level infrastructure are likely to be longer lived than stacks
+containing an ephemeral testing environment. It therefore makes sense to
+split these up into separate StackGroups.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="example-architectures">
+<h2>Example architectures<a class="headerlink" href="#example-architectures" title="Permalink to this headline">¶</a></h2>
+<p>The following examples demonstrate how we might architect various Sceptre
+projects. Only configuration layout is shown, and the examples are merely meant
+to demonstrate ways of organising different projects.</p>
+<ul>
+<li><p class="first">Application development within an externally defined VPC</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">config</span>
+    <span class="l l-Scalar l-Scalar-Plain">- prod</span>
+        <span class="l l-Scalar l-Scalar-Plain">- application</span>
+            <span class="l l-Scalar l-Scalar-Plain">- asg.yaml</span>
+            <span class="l l-Scalar l-Scalar-Plain">- security-group.yaml</span>
+        <span class="l l-Scalar l-Scalar-Plain">- database</span>
+            <span class="l l-Scalar l-Scalar-Plain">- rds.yaml</span>
+            <span class="l l-Scalar l-Scalar-Plain">- security-group.yaml</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">DevOps team who manage all the infrastructure for their service</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">config</span>
+    <span class="l l-Scalar l-Scalar-Plain">- prod</span>
+        <span class="l l-Scalar l-Scalar-Plain">- network</span>
+            <span class="l l-Scalar l-Scalar-Plain">- vpc.yaml</span>
+            <span class="l l-Scalar l-Scalar-Plain">- subnet.yaml</span>
+        <span class="l l-Scalar l-Scalar-Plain">- frontend</span>
+            <span class="l l-Scalar l-Scalar-Plain">- api-gateway.yaml</span>
+        <span class="l l-Scalar l-Scalar-Plain">- application</span>
+            <span class="l l-Scalar l-Scalar-Plain">- lambda-get-item.yaml</span>
+            <span class="l l-Scalar l-Scalar-Plain">- lambda-put-item.yaml</span>
+        <span class="l l-Scalar l-Scalar-Plain">- database</span>
+            <span class="l l-Scalar l-Scalar-Plain">- dynamodb.yaml</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Centralised, company-wide networking</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">config</span>
+    <span class="l l-Scalar l-Scalar-Plain">- prod</span>
+        <span class="l l-Scalar l-Scalar-Plain">- vpc.yaml</span>
+        <span class="l l-Scalar l-Scalar-Plain">- public-subnet.yaml</span>
+        <span class="l l-Scalar l-Scalar-Plain">- application-subnet.yaml</span>
+        <span class="l l-Scalar l-Scalar-Plain">- database-subnet.yaml</span>
+    <span class="l l-Scalar l-Scalar-Plain">- dev</span>
+        <span class="l l-Scalar l-Scalar-Plain">- vpc.yaml</span>
+        <span class="l l-Scalar l-Scalar-Plain">- public-subnet.yaml</span>
+        <span class="l l-Scalar l-Scalar-Plain">- application-subnet.yaml</span>
+        <span class="l l-Scalar l-Scalar-Plain">- database-subnet.yaml</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">IAM management</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">config</span>
+    <span class="l l-Scalar l-Scalar-Plain">- account-1</span>
+        <span class="l l-Scalar l-Scalar-Plain">- iam-role-admin.yaml</span>
+        <span class="l l-Scalar l-Scalar-Plain">- iam-role-developer.yaml</span>
+    <span class="l l-Scalar l-Scalar-Plain">- account-2</span>
+        <span class="l l-Scalar l-Scalar-Plain">- iam-role-admin.yaml</span>
+        <span class="l l-Scalar l-Scalar-Plain">- iam-role-developer.yaml</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="faq.html" class="btn btn-neutral float-right" title="FAQ" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="resolvers.html" class="btn btn-neutral float-left" title="Resolvers" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Cloudreach
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+    <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Read the Docs</span>
+      v: 98.2.1
+      <span class="fa fa-caret-down"></span>
+    </span>
+
+        <div class="rst-other-versions">
+            <dl id="other-versions">
+                <dt>Versions</dt>
+            </dl>
+            <dl>
+                <dt>Other Links</dt>
+                <dd>
+                    <a href="///projects//?fromdocs=">Project Home(TODO)</a>
+                </dd>
+                <dd>
+                    <a href="///builds//?fromdocs=">Builds(TODO)</a>
+                </dd>
+            </dl>
+            <hr/>
+            Free document hosting provided by <a href="http://www.readthedocs.org">Read the Docs</a>
+                .
+
+        </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                $.getScript("../../version-helper.js").done(
+                    function () {
+                        versions.forEach(function (item, index) {
+                            if (item !== "98.2.1") {
+                                $('#other-versions').append('<dd><a href="../' + item + '">' + item + "<a/></dd>");
+                            }
+                        })
+                    });
+            });
+        </script>
+    </div>
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

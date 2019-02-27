@@ -1,0 +1,448 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Get Started &mdash; Sceptre 2.0.3 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../',
+              VERSION:'2.0.3',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Terminology" href="terminology.html" />
+    <link rel="prev" title="Installation" href="install.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Sceptre
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                98.2.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Introduction</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Get Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#install">Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#directory-structure">Directory Structure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#our-first-template-vpc-json">Our First Template - vpc.json</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#our-first-stackgroup-config-config-yaml">Our First StackGroup config - config.yaml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#our-first-stack-config-vpc-yaml">Our First Stack config - vpc.yaml</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#commands">Commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#create-stack">Create stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#meta-commands">Meta commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#update-stack">Update stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#delete-stack">Delete stack</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="terminology.html">Terminology</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Command Line Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stack_group_config.html">StackGroup Config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stack_config.html">Stack Config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="templates.html">Templates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hooks.html">Hooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resolvers.html">Resolvers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecting Sceptre</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Support</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../apidoc/modules.html">sceptre</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sceptre</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Get Started</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/docs/get_started.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="get-started">
+<h1>Get Started<a class="headerlink" href="#get-started" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="install">
+<h2>Install<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h2>
+<p>This tutorial assumes that you have installed Sceptre. Instructions on how to
+do this can be found in the section on <a class="reference internal" href="install.html"><span class="doc">installing Sceptre</span></a>.</p>
+</div>
+<div class="section" id="directory-structure">
+<h2>Directory Structure<a class="headerlink" href="#directory-structure" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal"><span class="pre">sceptre</span> <span class="pre">new</span></code> provides a quick and easy way to setup a Sceptre project.</p>
+<p>To setup a fresh project run:</p>
+<div class="highlight-text"><div class="highlight"><pre><span></span>$ sceptre new project my-sceptre-project
+
+Please enter a region []:
+Please enter a project_code [my-sceptre-project]:
+</pre></div>
+</div>
+<p>This will produce the following directory structure:</p>
+<div class="highlight-text"><div class="highlight"><pre><span></span>tree
+.
+my-sceptre-project
+    ├── config
+    │   └── config.yaml
+    └── templates
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">config</span></code> directory is where you will keep the configuration for your
+Stacks and the <code class="docutils literal"><span class="pre">templates</span></code> directory is where you will keep your
+CloudFormation templates.</p>
+<p>Lets add our first template and stack config. We are going to create a
+<code class="docutils literal"><span class="pre">StackGroup</span></code> (directory) called <code class="docutils literal"><span class="pre">dev</span></code> and setup a Stack with a single
+<code class="docutils literal"><span class="pre">VPC</span></code> in it.</p>
+<p>On *nix systems:</p>
+<div class="highlight-text"><div class="highlight"><pre><span></span>mkdir config/dev
+touch config/dev/config.yaml config/dev/vpc.yaml templates/vpc.json
+</pre></div>
+</div>
+<p><code class="docutils literal"><span class="pre">vpc.json</span></code> will contain a CloudFormation template, <code class="docutils literal"><span class="pre">vpc.yaml</span></code> will contain
+config relevant to that template, and <code class="docutils literal"><span class="pre">config.yaml</span></code> will contain environment
+config.</p>
+<div class="section" id="our-first-template-vpc-json">
+<h3>Our First Template - vpc.json<a class="headerlink" href="#our-first-template-vpc-json" title="Permalink to this headline">¶</a></h3>
+<p>Add the following CloudFormation to <code class="docutils literal"><span class="pre">templates/vpc.json</span></code>:</p>
+<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;Parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;CidrBlock&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;Type&quot;</span><span class="p">:</span> <span class="s2">&quot;String&quot;</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;Resources&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;VPC&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;Type&quot;</span><span class="p">:</span> <span class="s2">&quot;AWS::EC2::VPC&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;Properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;CidrBlock&quot;</span><span class="p">:</span> <span class="p">{</span>
+          <span class="nt">&quot;Ref&quot;</span><span class="p">:</span> <span class="s2">&quot;CidrBlock&quot;</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;Outputs&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;VpcId&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;Value&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;Ref&quot;</span><span class="p">:</span> <span class="s2">&quot;VPC&quot;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>For more information on CloudFormation, see the AWS documentation on
+<a class="reference external" href="http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html">CloudFormation</a>.</p>
+</div>
+<div class="section" id="our-first-stackgroup-config-config-yaml">
+<h3>Our First StackGroup config - config.yaml<a class="headerlink" href="#our-first-stackgroup-config-config-yaml" title="Permalink to this headline">¶</a></h3>
+<p>Add the following configuration to <code class="docutils literal"><span class="pre">config/dev/config.yaml</span></code>:</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">project_code</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">sceptre-example</span>
+<span class="l l-Scalar l-Scalar-Plain">region</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">eu-west-1</span>
+</pre></div>
+</div>
+<p>Sceptre prefixes stack names with the <code class="docutils literal"><span class="pre">project_code</span></code>. All resources in this
+StackGroup will be built in the AWS region <code class="docutils literal"><span class="pre">region</span></code>.</p>
+</div>
+<div class="section" id="our-first-stack-config-vpc-yaml">
+<h3>Our First Stack config - vpc.yaml<a class="headerlink" href="#our-first-stack-config-vpc-yaml" title="Permalink to this headline">¶</a></h3>
+<p>Add the following configuration to <code class="docutils literal"><span class="pre">config/dev/vpc.yaml</span></code>:</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">template_path</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">vpc.json</span>
+<span class="l l-Scalar l-Scalar-Plain">parameters</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">CidrBlock</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">10.0.0.0/16</span>
+</pre></div>
+</div>
+<p><code class="docutils literal"><span class="pre">template_path</span></code> specifies the relative path to the CloudFormation, Python or
+Jinja2 template to use to launch the Stack. Sceptre will use the <code class="docutils literal"><span class="pre">templates</span></code>
+directory as the root templates directory to base your <code class="docutils literal"><span class="pre">template_path</span></code> from.</p>
+<p><code class="docutils literal"><span class="pre">parameters</span></code> lists the parameters which are supplied to the template
+<code class="docutils literal"><span class="pre">vpc.json</span></code>.</p>
+<p>You should now have a Sceptre project that looks a bit like:</p>
+<div class="highlight-text"><div class="highlight"><pre><span></span>tree
+.
+├── config
+│   ├── config.yaml
+│   └── dev
+│       ├── config.yaml
+│       └── vpc.yaml
+└── templates
+    └── vpc.json
+</pre></div>
+</div>
+<blockquote>
+<div>Note: You do not need to make sure the Template and Stack config names
+match, since you define the <code class="docutils literal"><span class="pre">template_path</span></code> in your Stack config, but it
+can be useful to keep track of what is going on.</div></blockquote>
+<p>You will also notice that we have two <code class="docutils literal"><span class="pre">config.yaml</span></code> files, one in <code class="docutils literal"><span class="pre">config/</span></code>
+and the other in <code class="docutils literal"><span class="pre">config/dev</span></code>. We will explain this later but Sceptre will
+eventually merge these two files when generating the overall config file where
+values from the child configs replace the parent (unless otherwise specified).</p>
+</div>
+</div>
+<div class="section" id="commands">
+<h2>Commands<a class="headerlink" href="#commands" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="create-stack">
+<h3>Create stack<a class="headerlink" href="#create-stack" title="Permalink to this headline">¶</a></h3>
+<p>We can create the VPC Stack with the following command:</p>
+<div class="highlight-text"><div class="highlight"><pre><span></span>$ sceptre create dev/vpc.yaml
+</pre></div>
+</div>
+<p>This command must be run from the <code class="docutils literal"><span class="pre">my-sceptre-project</span></code> directory.</p>
+</div>
+<div class="section" id="meta-commands">
+<h3>Meta commands<a class="headerlink" href="#meta-commands" title="Permalink to this headline">¶</a></h3>
+<p>We can find out information about our running stack:</p>
+<div class="highlight-text"><div class="highlight"><pre><span></span>$ sceptre list resources dev
+$ sceptre list resources dev/vpc.yaml
+$ sceptre --ignore-dependencies list outputs dev/vpc.yaml
+</pre></div>
+</div>
+</div>
+<div class="section" id="update-stack">
+<h3>Update stack<a class="headerlink" href="#update-stack" title="Permalink to this headline">¶</a></h3>
+<p>If the Stack’s config or Template is changed in <code class="docutils literal"><span class="pre">vpc.yaml</span></code>, the Stack can be
+updated with:</p>
+<div class="highlight-text"><div class="highlight"><pre><span></span>$ sceptre update dev/vpc.yaml
+</pre></div>
+</div>
+</div>
+<div class="section" id="delete-stack">
+<h3>Delete stack<a class="headerlink" href="#delete-stack" title="Permalink to this headline">¶</a></h3>
+<p>Delete the stack:</p>
+<div class="highlight-text"><div class="highlight"><pre><span></span>$ sceptre delete dev/vpc.yaml
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this headline">¶</a></h2>
+<p>We have created our first Sceptre project, added a Template and Stack config,
+and used the CLI to create, update and delete the Stack. You can find a full
+reference to the CLI <a class="reference internal" href="cli.html"><span class="doc">in our CLI guide</span></a></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="terminology.html" class="btn btn-neutral float-right" title="Terminology" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="install.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Cloudreach
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+    <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Read the Docs</span>
+      v: 98.2.1
+      <span class="fa fa-caret-down"></span>
+    </span>
+
+        <div class="rst-other-versions">
+            <dl id="other-versions">
+                <dt>Versions</dt>
+            </dl>
+            <dl>
+                <dt>Other Links</dt>
+                <dd>
+                    <a href="///projects//?fromdocs=">Project Home(TODO)</a>
+                </dd>
+                <dd>
+                    <a href="///builds//?fromdocs=">Builds(TODO)</a>
+                </dd>
+            </dl>
+            <hr/>
+            Free document hosting provided by <a href="http://www.readthedocs.org">Read the Docs</a>
+                .
+
+        </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                $.getScript("../../version-helper.js").done(
+                    function () {
+                        versions.forEach(function (item, index) {
+                            if (item !== "98.2.1") {
+                                $('#other-versions').append('<dd><a href="../' + item + '">' + item + "<a/></dd>");
+                            }
+                        })
+                    });
+            });
+        </script>
+    </div>
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,619 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>sceptre.plan.plan &mdash; Sceptre 2.0.3 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../../../',
+              VERSION:'2.0.3',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../../../about.html" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Sceptre
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                98.2.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/get_started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/terminology.html">Terminology</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/cli.html">Command Line Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/stack_group_config.html">StackGroup Config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/stack_config.html">Stack Config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/templates.html">Templates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/hooks.html">Hooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/resolvers.html">Resolvers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/architecture.html">Architecting Sceptre</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Support</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/faq.html">FAQ</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../apidoc/modules.html">sceptre</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Sceptre</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../../sceptre.html">sceptre</a> &raquo;</li>
+        
+          <li><a href="../plan.html">sceptre.plan</a> &raquo;</li>
+        
+      <li>sceptre.plan.plan</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for sceptre.plan.plan</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">sceptre.plan.plan</span>
+
+<span class="sd">This module implements a SceptrePlan, which is responsible for holding all</span>
+<span class="sd">nessessary information for a command to execute.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">os</span> <span class="k">import</span> <span class="n">path</span><span class="p">,</span> <span class="n">walk</span>
+
+<span class="kn">from</span> <span class="nn">sceptre.exceptions</span> <span class="k">import</span> <span class="n">ConfigFileNotFoundError</span>
+<span class="kn">from</span> <span class="nn">sceptre.config.graph</span> <span class="k">import</span> <span class="n">StackGraph</span>
+<span class="kn">from</span> <span class="nn">sceptre.config.reader</span> <span class="k">import</span> <span class="n">ConfigReader</span>
+<span class="kn">from</span> <span class="nn">sceptre.plan.executor</span> <span class="k">import</span> <span class="n">SceptrePlanExecutor</span>
+
+
+<div class="viewcode-block" id="SceptrePlan"><a class="viewcode-back" href="../../../apidoc/sceptre.plan.html#sceptre.plan.plan.SceptrePlan">[docs]</a><span class="k">class</span> <span class="nc">SceptrePlan</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Intialises a SceptrePlan and generates the Stacks, StackGraph and</span>
+<span class="sd">        launch order of required.</span>
+
+<span class="sd">        :param context: A SceptreContext</span>
+<span class="sd">        :type sceptre.context.SceptreContext:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">context</span> <span class="o">=</span> <span class="n">context</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">command</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reverse</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">launch_order</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="n">config_reader</span> <span class="o">=</span> <span class="n">ConfigReader</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
+        <span class="n">all_stacks</span><span class="p">,</span> <span class="n">command_stacks</span> <span class="o">=</span> <span class="n">config_reader</span><span class="o">.</span><span class="n">construct_stacks</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">graph</span> <span class="o">=</span> <span class="n">StackGraph</span><span class="p">(</span><span class="n">all_stacks</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">command_stacks</span> <span class="o">=</span> <span class="n">command_stacks</span>
+
+    <span class="k">def</span> <span class="nf">_execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="n">executor</span> <span class="o">=</span> <span class="n">SceptrePlanExecutor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">command</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">launch_order</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">executor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_generate_launch_order</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">ignore_dependencies</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">command_stacks</span><span class="p">]</span>
+
+        <span class="n">graph</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">filtered</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">command_stacks</span><span class="p">,</span> <span class="n">reverse</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">ignore_dependencies</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">command_stacks</span><span class="p">]</span>
+
+        <span class="n">launch_order</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">while</span> <span class="n">graph</span><span class="o">.</span><span class="n">graph</span><span class="p">:</span>
+            <span class="n">batch</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">stack</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">graph</span><span class="o">.</span><span class="n">count_dependencies</span><span class="p">(</span><span class="n">stack</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">batch</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">stack</span><span class="p">)</span>
+            <span class="n">launch_order</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">batch</span><span class="p">)</span>
+
+            <span class="k">for</span> <span class="n">stack</span> <span class="ow">in</span> <span class="n">batch</span><span class="p">:</span>
+                <span class="n">graph</span><span class="o">.</span><span class="n">remove_stack</span><span class="p">(</span><span class="n">stack</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">launch_order</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ConfigFileNotFoundError</span><span class="p">(</span>
+                    <span class="s2">&quot;No stacks detected from the given path &#39;</span><span class="si">{}</span><span class="s2">&#39;. Valid stack paths are: </span><span class="si">{}</span><span class="s2">&quot;</span>
+                    <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">command_path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_valid_stack_paths</span><span class="p">())</span>
+                    <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">launch_order</span>
+
+<div class="viewcode-block" id="SceptrePlan.resolve"><a class="viewcode-back" href="../../../apidoc/sceptre.plan.html#sceptre.plan.plan.SceptrePlan.resolve">[docs]</a>    <span class="k">def</span> <span class="nf">resolve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">command</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">command</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">command</span> <span class="ow">and</span> <span class="n">reverse</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">reverse</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">command</span> <span class="o">=</span> <span class="n">command</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reverse</span> <span class="o">=</span> <span class="n">reverse</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">launch_order</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_launch_order</span><span class="p">(</span><span class="n">reverse</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SceptrePlan.template"><a class="viewcode-back" href="../../../apidoc/sceptre.plan.html#sceptre.plan.plan.SceptrePlan.template">[docs]</a>    <span class="k">def</span> <span class="nf">template</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the CloudFormation Template used to create the Stack.</span>
+
+<span class="sd">        :returns: A dictionary of Stacks and their templates.</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resolve</span><span class="p">(</span><span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">template</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_execute</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SceptrePlan.create"><a class="viewcode-back" href="../../../apidoc/sceptre.plan.html#sceptre.plan.plan.SceptrePlan.create">[docs]</a>    <span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Creates the Stack.</span>
+
+<span class="sd">        :returns: A dictionary of Stacks and their status.</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resolve</span><span class="p">(</span><span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">create</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_execute</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SceptrePlan.update"><a class="viewcode-back" href="../../../apidoc/sceptre.plan.html#sceptre.plan.plan.SceptrePlan.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Updates the Stack.</span>
+
+<span class="sd">        :returns: A dictionary of Stacks and their status.</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resolve</span><span class="p">(</span><span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_execute</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SceptrePlan.cancel_stack_update"><a class="viewcode-back" href="../../../apidoc/sceptre.plan.html#sceptre.plan.plan.SceptrePlan.cancel_stack_update">[docs]</a>    <span class="k">def</span> <span class="nf">cancel_stack_update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Cancels a Stack update.</span>
+
+<span class="sd">        :returns: A dictionary of Stacks and their cancelled statuses.</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resolve</span><span class="p">(</span><span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cancel_stack_update</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_execute</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SceptrePlan.launch"><a class="viewcode-back" href="../../../apidoc/sceptre.plan.html#sceptre.plan.plan.SceptrePlan.launch">[docs]</a>    <span class="k">def</span> <span class="nf">launch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Launches the Stack.</span>
+
+<span class="sd">        If the Stack status is create_failed or rollback_complete, the</span>
+<span class="sd">        Stack is deleted. Launch then tries to create or update the Stack,</span>
+<span class="sd">        depending if it already exists. If there are no updates to be</span>
+<span class="sd">        performed, launch exits gracefully.</span>
+
+<span class="sd">        :returns: A dictionary of Stacks and their status.</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resolve</span><span class="p">(</span><span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">launch</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_execute</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SceptrePlan.delete"><a class="viewcode-back" href="../../../apidoc/sceptre.plan.html#sceptre.plan.plan.SceptrePlan.delete">[docs]</a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Deletes the Stack.</span>
+
+<span class="sd">        :returns: A dictionary of Stacks and their status.</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resolve</span><span class="p">(</span><span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">delete</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_execute</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SceptrePlan.lock"><a class="viewcode-back" href="../../../apidoc/sceptre.plan.html#sceptre.plan.plan.SceptrePlan.lock">[docs]</a>    <span class="k">def</span> <span class="nf">lock</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Locks the Stack by applying a deny all updates Stack policy.</span>
+
+<span class="sd">        :returns: A dictionary of Stacks</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resolve</span><span class="p">(</span><span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">lock</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_execute</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SceptrePlan.unlock"><a class="viewcode-back" href="../../../apidoc/sceptre.plan.html#sceptre.plan.plan.SceptrePlan.unlock">[docs]</a>    <span class="k">def</span> <span class="nf">unlock</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Unlocks the Stack by applying an allow all updates Stack policy.</span>
+
+<span class="sd">        :returns: A dictionary of Stacks</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resolve</span><span class="p">(</span><span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">unlock</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_execute</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SceptrePlan.describe"><a class="viewcode-back" href="../../../apidoc/sceptre.plan.html#sceptre.plan.plan.SceptrePlan.describe">[docs]</a>    <span class="k">def</span> <span class="nf">describe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the a description of the Stack.</span>
+
+<span class="sd">        :returns: A dictionary of Stacks and their description.</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resolve</span><span class="p">(</span><span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">describe</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_execute</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SceptrePlan.describe_events"><a class="viewcode-back" href="../../../apidoc/sceptre.plan.html#sceptre.plan.plan.SceptrePlan.describe_events">[docs]</a>    <span class="k">def</span> <span class="nf">describe_events</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns a dictionary contianing the Stack events.</span>
+
+<span class="sd">        :returns: A dictionary of Stacks and their CloudFormation events.</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resolve</span><span class="p">(</span><span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">describe_events</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_execute</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SceptrePlan.describe_resources"><a class="viewcode-back" href="../../../apidoc/sceptre.plan.html#sceptre.plan.plan.SceptrePlan.describe_resources">[docs]</a>    <span class="k">def</span> <span class="nf">describe_resources</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the logical and physical resource IDs of the Stack&#39;s resources.</span>
+
+<span class="sd">        :returns: A dictionary of Stacks and their resources.</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resolve</span><span class="p">(</span><span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">describe_resources</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_execute</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SceptrePlan.describe_outputs"><a class="viewcode-back" href="../../../apidoc/sceptre.plan.html#sceptre.plan.plan.SceptrePlan.describe_outputs">[docs]</a>    <span class="k">def</span> <span class="nf">describe_outputs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns a list of Stack outputs.</span>
+
+<span class="sd">        :returns: A dictionary of Stacks and their outputs.</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resolve</span><span class="p">(</span><span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">describe_outputs</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_execute</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SceptrePlan.continue_update_rollback"><a class="viewcode-back" href="../../../apidoc/sceptre.plan.html#sceptre.plan.plan.SceptrePlan.continue_update_rollback">[docs]</a>    <span class="k">def</span> <span class="nf">continue_update_rollback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Rolls back a Stack in the UPDATE_ROLLBACK_FAILED state to</span>
+<span class="sd">        UPDATE_ROLLBACK_COMPLETE.</span>
+
+<span class="sd">        :returns: A dictionary of Stacks</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">       &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resolve</span><span class="p">(</span><span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">continue_update_rollback</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_execute</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SceptrePlan.set_policy"><a class="viewcode-back" href="../../../apidoc/sceptre.plan.html#sceptre.plan.plan.SceptrePlan.set_policy">[docs]</a>    <span class="k">def</span> <span class="nf">set_policy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Applies a Stack policy.</span>
+
+<span class="sd">        :param policy_path: the path of json file containing a aws policy</span>
+<span class="sd">        :type policy_path: str</span>
+<span class="sd">        :returns: A dictionary of Stacks</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resolve</span><span class="p">(</span><span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">set_policy</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_execute</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SceptrePlan.get_policy"><a class="viewcode-back" href="../../../apidoc/sceptre.plan.html#sceptre.plan.plan.SceptrePlan.get_policy">[docs]</a>    <span class="k">def</span> <span class="nf">get_policy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns a Stack&#39;s policy.</span>
+
+<span class="sd">        :returns: A dictionary of Stacks and their Stack policy.</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resolve</span><span class="p">(</span><span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">get_policy</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_execute</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SceptrePlan.create_change_set"><a class="viewcode-back" href="../../../apidoc/sceptre.plan.html#sceptre.plan.plan.SceptrePlan.create_change_set">[docs]</a>    <span class="k">def</span> <span class="nf">create_change_set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Creates a Change Set with the name ``change_set_name``.</span>
+
+<span class="sd">        :param change_set_name: The name of the Change Set.</span>
+<span class="sd">        :type change_set_name: str</span>
+<span class="sd">        :returns: A dictionary of Stacks</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resolve</span><span class="p">(</span><span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">create_change_set</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_execute</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SceptrePlan.delete_change_set"><a class="viewcode-back" href="../../../apidoc/sceptre.plan.html#sceptre.plan.plan.SceptrePlan.delete_change_set">[docs]</a>    <span class="k">def</span> <span class="nf">delete_change_set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Deletes the Change Set ``change_set_name``.</span>
+
+<span class="sd">        :param change_set_name: The name of the Change Set.</span>
+<span class="sd">        :type change_set_name: str</span>
+<span class="sd">        :returns: A dictionary of Stacks</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resolve</span><span class="p">(</span><span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">delete_change_set</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_execute</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SceptrePlan.describe_change_set"><a class="viewcode-back" href="../../../apidoc/sceptre.plan.html#sceptre.plan.plan.SceptrePlan.describe_change_set">[docs]</a>    <span class="k">def</span> <span class="nf">describe_change_set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Describes the Change Set ``change_set_name``.</span>
+
+<span class="sd">        :param change_set_name: The name of the Change Set.</span>
+<span class="sd">        :type change_set_name: str</span>
+<span class="sd">        :returns: A dictionary of Stacks and their Change Set description.</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resolve</span><span class="p">(</span><span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">describe_change_set</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_execute</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SceptrePlan.execute_change_set"><a class="viewcode-back" href="../../../apidoc/sceptre.plan.html#sceptre.plan.plan.SceptrePlan.execute_change_set">[docs]</a>    <span class="k">def</span> <span class="nf">execute_change_set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Executes the Change Set ``change_set_name``.</span>
+
+<span class="sd">        :param change_set_name: The name of the Change Set.</span>
+<span class="sd">        :type change_set_name: str</span>
+<span class="sd">        :returns: A dictionary of Stacks and their status.</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resolve</span><span class="p">(</span><span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">execute_change_set</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_execute</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SceptrePlan.list_change_sets"><a class="viewcode-back" href="../../../apidoc/sceptre.plan.html#sceptre.plan.plan.SceptrePlan.list_change_sets">[docs]</a>    <span class="k">def</span> <span class="nf">list_change_sets</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Lists the Stack&#39;s Change Sets.</span>
+
+<span class="sd">        :returns: TA dictionary of Stacks and their Change Sets.</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resolve</span><span class="p">(</span><span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">list_change_sets</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_execute</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SceptrePlan.get_status"><a class="viewcode-back" href="../../../apidoc/sceptre.plan.html#sceptre.plan.plan.SceptrePlan.get_status">[docs]</a>    <span class="k">def</span> <span class="nf">get_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the Stack&#39;s status.</span>
+
+<span class="sd">        :returns: A dictionary of Stacks and their status.</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        :raises: sceptre.exceptions.StackDoesNotExistError</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resolve</span><span class="p">(</span><span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">get_status</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_execute</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SceptrePlan.wait_for_cs_completion"><a class="viewcode-back" href="../../../apidoc/sceptre.plan.html#sceptre.plan.plan.SceptrePlan.wait_for_cs_completion">[docs]</a>    <span class="k">def</span> <span class="nf">wait_for_cs_completion</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Waits while the Stack Change Set status is &quot;pending&quot;.</span>
+
+<span class="sd">        :param change_set_name: The name of the Change Set.</span>
+<span class="sd">        :type change_set_name: str</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        :rtype: sceptre.stack_status.StackChangeSetStatus</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resolve</span><span class="p">(</span><span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">wait_for_cs_completion</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_execute</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SceptrePlan.validate"><a class="viewcode-back" href="../../../apidoc/sceptre.plan.html#sceptre.plan.plan.SceptrePlan.validate">[docs]</a>    <span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Validates the Stack&#39;s CloudFormation template.</span>
+
+<span class="sd">        Raises an error if the Template is invalid.</span>
+
+<span class="sd">        :returns: A dictionary of Stacks and their template validation information.</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        :raises: botocore.exceptions.ClientError</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resolve</span><span class="p">(</span><span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">validate</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_execute</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SceptrePlan.estimate_cost"><a class="viewcode-back" href="../../../apidoc/sceptre.plan.html#sceptre.plan.plan.SceptrePlan.estimate_cost">[docs]</a>    <span class="k">def</span> <span class="nf">estimate_cost</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Estimates a Stack&#39;s cost.</span>
+
+<span class="sd">        :returns: A dictionary of Stacks and their estimated costs.</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        :raises: botocore.exceptions.ClientError</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resolve</span><span class="p">(</span><span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">estimate_cost</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_execute</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SceptrePlan.generate"><a class="viewcode-back" href="../../../apidoc/sceptre.plan.html#sceptre.plan.plan.SceptrePlan.generate">[docs]</a>    <span class="k">def</span> <span class="nf">generate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns a generated Template for a given Stack</span>
+
+<span class="sd">        :returns: A dictionary of Stacks and their template body.</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resolve</span><span class="p">(</span><span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">generate</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_execute</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_valid_stack_paths</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span>
+                <span class="n">path</span><span class="o">.</span><span class="n">relpath</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dirpath</span><span class="p">,</span> <span class="n">f</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">config_path</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">dirpath</span><span class="p">,</span> <span class="n">dirnames</span><span class="p">,</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">walk</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">config_path</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">files</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">f</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">config_file</span><span class="p">)</span>
+            <span class="p">]</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Cloudreach
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+    <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Read the Docs</span>
+      v: 98.2.1
+      <span class="fa fa-caret-down"></span>
+    </span>
+
+        <div class="rst-other-versions">
+            <dl id="other-versions">
+                <dt>Versions</dt>
+            </dl>
+            <dl>
+                <dt>Other Links</dt>
+                <dd>
+                    <a href="///projects//?fromdocs=">Project Home(TODO)</a>
+                </dd>
+                <dd>
+                    <a href="///builds//?fromdocs=">Builds(TODO)</a>
+                </dd>
+            </dl>
+            <hr/>
+            Free document hosting provided by <a href="http://www.readthedocs.org">Read the Docs</a>
+                .
+
+        </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                $.getScript("../../../../version-helper.js").done(
+                    function () {
+                        versions.forEach(function (item, index) {
+                            if (item !== "98.2.1") {
+                                $('#other-versions').append('<dd><a href="../' + item + '">' + item + "<a/></dd>");
+                            }
+                        })
+                    });
+            });
+        </script>
+    </div>
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

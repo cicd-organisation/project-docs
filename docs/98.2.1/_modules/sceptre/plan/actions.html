@@ -1,0 +1,1120 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>sceptre.plan.actions &mdash; Sceptre 2.0.3 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../../../',
+              VERSION:'2.0.3',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../../../about.html" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Sceptre
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                98.2.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/get_started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/terminology.html">Terminology</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/cli.html">Command Line Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/stack_group_config.html">StackGroup Config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/stack_config.html">Stack Config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/templates.html">Templates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/hooks.html">Hooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/resolvers.html">Resolvers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/architecture.html">Architecting Sceptre</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Support</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/faq.html">FAQ</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../apidoc/modules.html">sceptre</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Sceptre</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../../sceptre.html">sceptre</a> &raquo;</li>
+        
+          <li><a href="../plan.html">sceptre.plan</a> &raquo;</li>
+        
+      <li>sceptre.plan.actions</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for sceptre.plan.actions</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">sceptre.plan.actions</span>
+
+<span class="sd">This module implements the StackActions class which provides the functionality</span>
+<span class="sd">available to a Stack.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="kn">from</span> <span class="nn">os</span> <span class="k">import</span> <span class="n">path</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="k">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
+
+<span class="kn">import</span> <span class="nn">botocore</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">dateutil.tz</span> <span class="k">import</span> <span class="n">tzutc</span>
+
+<span class="kn">from</span> <span class="nn">sceptre.connection_manager</span> <span class="k">import</span> <span class="n">ConnectionManager</span>
+<span class="kn">from</span> <span class="nn">sceptre.hooks</span> <span class="k">import</span> <span class="n">add_stack_hooks</span>
+<span class="kn">from</span> <span class="nn">sceptre.stack_status</span> <span class="k">import</span> <span class="n">StackStatus</span>
+<span class="kn">from</span> <span class="nn">sceptre.stack_status</span> <span class="k">import</span> <span class="n">StackChangeSetStatus</span>
+
+<span class="kn">from</span> <span class="nn">sceptre.exceptions</span> <span class="k">import</span> <span class="n">CannotUpdateFailedStackError</span>
+<span class="kn">from</span> <span class="nn">sceptre.exceptions</span> <span class="k">import</span> <span class="n">UnknownStackStatusError</span>
+<span class="kn">from</span> <span class="nn">sceptre.exceptions</span> <span class="k">import</span> <span class="n">UnknownStackChangeSetStatusError</span>
+<span class="kn">from</span> <span class="nn">sceptre.exceptions</span> <span class="k">import</span> <span class="n">StackDoesNotExistError</span>
+<span class="kn">from</span> <span class="nn">sceptre.exceptions</span> <span class="k">import</span> <span class="n">ProtectedStackError</span>
+
+
+<div class="viewcode-block" id="StackActions"><a class="viewcode-back" href="../../../apidoc/sceptre.plan.html#sceptre.plan.actions.StackActions">[docs]</a><span class="k">class</span> <span class="nc">StackActions</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    StackActions stores the operations a Stack can take, such as creating or</span>
+<span class="sd">    deleting the Stack.</span>
+
+<span class="sd">    :param stack: A Stack object</span>
+<span class="sd">    :type stack: sceptre.stack.Stack</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stack</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stack</span> <span class="o">=</span> <span class="n">stack</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">connection_manager</span> <span class="o">=</span> <span class="n">ConnectionManager</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">region</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">profile</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">external_name</span>
+        <span class="p">)</span>
+
+<div class="viewcode-block" id="StackActions.create"><a class="viewcode-back" href="../../../apidoc/sceptre.plan.html#sceptre.plan.actions.StackActions.create">[docs]</a>    <span class="nd">@add_stack_hooks</span>
+    <span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Creates a Stack.</span>
+
+<span class="sd">        :returns: The Stack&#39;s status.</span>
+<span class="sd">        :rtype: sceptre.stack_status.StackStatus</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_protect_execution</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> - Creating Stack&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">create_stack_kwargs</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;StackName&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">external_name</span><span class="p">,</span>
+            <span class="s2">&quot;Parameters&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_format_parameters</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">parameters</span><span class="p">),</span>
+            <span class="s2">&quot;Capabilities&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;CAPABILITY_IAM&#39;</span><span class="p">,</span> <span class="s1">&#39;CAPABILITY_NAMED_IAM&#39;</span><span class="p">],</span>
+            <span class="s2">&quot;NotificationARNs&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">notifications</span><span class="p">,</span>
+            <span class="s2">&quot;Tags&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span><span class="s2">&quot;Key&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">k</span><span class="p">),</span> <span class="s2">&quot;Value&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">)}</span>
+                <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">tags</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+            <span class="p">]</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">on_failure</span><span class="p">:</span>
+            <span class="n">create_stack_kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">&quot;OnFailure&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">on_failure</span><span class="p">})</span>
+        <span class="n">create_stack_kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">template</span><span class="o">.</span><span class="n">get_boto_call_parameter</span><span class="p">())</span>
+        <span class="n">create_stack_kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_role_arn</span><span class="p">())</span>
+        <span class="n">create_stack_kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_stack_timeout</span><span class="p">())</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection_manager</span><span class="o">.</span><span class="n">call</span><span class="p">(</span>
+                <span class="n">service</span><span class="o">=</span><span class="s2">&quot;cloudformation&quot;</span><span class="p">,</span>
+                <span class="n">command</span><span class="o">=</span><span class="s2">&quot;create_stack&quot;</span><span class="p">,</span>
+                <span class="n">kwargs</span><span class="o">=</span><span class="n">create_stack_kwargs</span>
+            <span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+                <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> - Create stack response: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">response</span>
+            <span class="p">)</span>
+
+            <span class="n">status</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_wait_for_completion</span><span class="p">()</span>
+        <span class="k">except</span> <span class="n">botocore</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">ClientError</span> <span class="k">as</span> <span class="n">exp</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">exp</span><span class="o">.</span><span class="n">response</span><span class="p">[</span><span class="s2">&quot;Error&quot;</span><span class="p">][</span><span class="s2">&quot;Code&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;AlreadyExistsException&quot;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+                    <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> - Stack already exists&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">name</span>
+                <span class="p">)</span>
+
+                <span class="n">status</span> <span class="o">=</span> <span class="s2">&quot;COMPLETE&quot;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span>
+
+        <span class="k">return</span> <span class="n">status</span></div>
+
+<div class="viewcode-block" id="StackActions.update"><a class="viewcode-back" href="../../../apidoc/sceptre.plan.html#sceptre.plan.actions.StackActions.update">[docs]</a>    <span class="nd">@add_stack_hooks</span>
+    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Updates the Stack.</span>
+
+<span class="sd">        :returns: The Stack&#39;s status.</span>
+<span class="sd">        :rtype: sceptre.stack_status.StackStatus</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_protect_execution</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> - Updating Stack&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">update_stack_kwargs</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;StackName&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">external_name</span><span class="p">,</span>
+            <span class="s2">&quot;Parameters&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_format_parameters</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">parameters</span><span class="p">),</span>
+            <span class="s2">&quot;Capabilities&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;CAPABILITY_IAM&#39;</span><span class="p">,</span> <span class="s1">&#39;CAPABILITY_NAMED_IAM&#39;</span><span class="p">],</span>
+            <span class="s2">&quot;NotificationARNs&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">notifications</span><span class="p">,</span>
+            <span class="s2">&quot;Tags&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span><span class="s2">&quot;Key&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">k</span><span class="p">),</span> <span class="s2">&quot;Value&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">)}</span>
+                <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">tags</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+            <span class="p">]</span>
+        <span class="p">}</span>
+        <span class="n">update_stack_kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">template</span><span class="o">.</span><span class="n">get_boto_call_parameter</span><span class="p">())</span>
+        <span class="n">update_stack_kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_role_arn</span><span class="p">())</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection_manager</span><span class="o">.</span><span class="n">call</span><span class="p">(</span>
+            <span class="n">service</span><span class="o">=</span><span class="s2">&quot;cloudformation&quot;</span><span class="p">,</span>
+            <span class="n">command</span><span class="o">=</span><span class="s2">&quot;update_stack&quot;</span><span class="p">,</span>
+            <span class="n">kwargs</span><span class="o">=</span><span class="n">update_stack_kwargs</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+            <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> - Update Stack response: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">response</span>
+        <span class="p">)</span>
+
+        <span class="n">status</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_wait_for_completion</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">stack_timeout</span><span class="p">)</span>
+        <span class="c1"># Cancel update after timeout</span>
+        <span class="k">if</span> <span class="n">status</span> <span class="o">==</span> <span class="n">StackStatus</span><span class="o">.</span><span class="n">IN_PROGRESS</span><span class="p">:</span>
+            <span class="n">status</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cancel_stack_update</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="n">status</span></div>
+
+<div class="viewcode-block" id="StackActions.cancel_stack_update"><a class="viewcode-back" href="../../../apidoc/sceptre.plan.html#sceptre.plan.actions.StackActions.cancel_stack_update">[docs]</a>    <span class="k">def</span> <span class="nf">cancel_stack_update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Cancels a Stack update.</span>
+
+<span class="sd">        :returns: The cancelled Stack status.</span>
+<span class="sd">        :rtype: sceptre.stack_status.StackStatus</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+            <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> - Update Stack time exceeded the specified timeout&quot;</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">name</span>
+        <span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection_manager</span><span class="o">.</span><span class="n">call</span><span class="p">(</span>
+            <span class="n">service</span><span class="o">=</span><span class="s2">&quot;cloudformation&quot;</span><span class="p">,</span>
+            <span class="n">command</span><span class="o">=</span><span class="s2">&quot;cancel_update_stack&quot;</span><span class="p">,</span>
+            <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;StackName&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">external_name</span><span class="p">}</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+            <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> - Cancel update Stack response: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">response</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_wait_for_completion</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="StackActions.launch"><a class="viewcode-back" href="../../../apidoc/sceptre.plan.html#sceptre.plan.actions.StackActions.launch">[docs]</a>    <span class="k">def</span> <span class="nf">launch</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Launches the Stack.</span>
+
+<span class="sd">        If the Stack status is create_failed or rollback_complete, the</span>
+<span class="sd">        Stack is deleted. Launch then tries to create or update the Stack,</span>
+<span class="sd">        depending if it already exists. If there are no updates to be</span>
+<span class="sd">        performed, launch exits gracefully.</span>
+
+<span class="sd">        :returns: The Stack&#39;s status.</span>
+<span class="sd">        :rtype: sceptre.stack_status.StackStatus</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_protect_execution</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> - Launching Stack&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">existing_status</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_status</span><span class="p">()</span>
+        <span class="k">except</span> <span class="n">StackDoesNotExistError</span><span class="p">:</span>
+            <span class="n">existing_status</span> <span class="o">=</span> <span class="s2">&quot;PENDING&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+            <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> - Stack is in the </span><span class="si">%s</span><span class="s2"> state&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">existing_status</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">existing_status</span> <span class="o">==</span> <span class="s2">&quot;PENDING&quot;</span><span class="p">:</span>
+            <span class="n">status</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">existing_status</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;CREATE_FAILED&quot;</span><span class="p">,</span> <span class="s2">&quot;ROLLBACK_COMPLETE&quot;</span><span class="p">]:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+            <span class="n">status</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">existing_status</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;COMPLETE&quot;</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">status</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+            <span class="k">except</span> <span class="n">botocore</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">ClientError</span> <span class="k">as</span> <span class="n">exp</span><span class="p">:</span>
+                <span class="n">error_message</span> <span class="o">=</span> <span class="n">exp</span><span class="o">.</span><span class="n">response</span><span class="p">[</span><span class="s2">&quot;Error&quot;</span><span class="p">][</span><span class="s2">&quot;Message&quot;</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">error_message</span> <span class="o">==</span> <span class="s2">&quot;No updates are to be performed.&quot;</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+                        <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> - No updates to perform.&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">name</span>
+                    <span class="p">)</span>
+                    <span class="n">status</span> <span class="o">=</span> <span class="n">StackStatus</span><span class="o">.</span><span class="n">COMPLETE</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">raise</span>
+        <span class="k">elif</span> <span class="n">existing_status</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;IN_PROGRESS&quot;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+                <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> - Stack action is already in progress state and cannot &quot;</span>
+                <span class="s2">&quot;be updated&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">name</span>
+            <span class="p">)</span>
+            <span class="n">status</span> <span class="o">=</span> <span class="n">StackStatus</span><span class="o">.</span><span class="n">IN_PROGRESS</span>
+        <span class="k">elif</span> <span class="n">existing_status</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;FAILED&quot;</span><span class="p">):</span>
+            <span class="n">status</span> <span class="o">=</span> <span class="n">StackStatus</span><span class="o">.</span><span class="n">FAILED</span>
+            <span class="k">raise</span> <span class="n">CannotUpdateFailedStackError</span><span class="p">(</span>
+                <span class="s2">&quot;&#39;</span><span class="si">{0}</span><span class="s2">&#39; is in a the state &#39;</span><span class="si">{1}</span><span class="s2">&#39; and cannot be updated&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">existing_status</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">UnknownStackStatusError</span><span class="p">(</span>
+                <span class="s2">&quot;</span><span class="si">{0}</span><span class="s2"> is unknown&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">existing_status</span><span class="p">)</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">status</span></div>
+
+<div class="viewcode-block" id="StackActions.delete"><a class="viewcode-back" href="../../../apidoc/sceptre.plan.html#sceptre.plan.actions.StackActions.delete">[docs]</a>    <span class="nd">@add_stack_hooks</span>
+    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Deletes the Stack.</span>
+
+<span class="sd">        :returns: The Stack&#39;s status.</span>
+<span class="sd">        :rtype: sceptre.stack_status.StackStatus</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_protect_execution</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> - Deleting stack&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">status</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_status</span><span class="p">()</span>
+        <span class="k">except</span> <span class="n">StackDoesNotExistError</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> - Does not exist.&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+            <span class="n">status</span> <span class="o">=</span> <span class="n">StackStatus</span><span class="o">.</span><span class="n">COMPLETE</span>
+            <span class="k">return</span> <span class="n">status</span>
+
+        <span class="n">delete_stack_kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;StackName&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">external_name</span><span class="p">}</span>
+        <span class="n">delete_stack_kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_role_arn</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">connection_manager</span><span class="o">.</span><span class="n">call</span><span class="p">(</span>
+            <span class="n">service</span><span class="o">=</span><span class="s2">&quot;cloudformation&quot;</span><span class="p">,</span>
+            <span class="n">command</span><span class="o">=</span><span class="s2">&quot;delete_stack&quot;</span><span class="p">,</span>
+            <span class="n">kwargs</span><span class="o">=</span><span class="n">delete_stack_kwargs</span>
+        <span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">status</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_wait_for_completion</span><span class="p">()</span>
+        <span class="k">except</span> <span class="n">StackDoesNotExistError</span><span class="p">:</span>
+            <span class="n">status</span> <span class="o">=</span> <span class="n">StackStatus</span><span class="o">.</span><span class="n">COMPLETE</span>
+        <span class="k">except</span> <span class="n">botocore</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">ClientError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">error</span><span class="o">.</span><span class="n">response</span><span class="p">[</span><span class="s2">&quot;Error&quot;</span><span class="p">][</span><span class="s2">&quot;Message&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;does not exist&quot;</span><span class="p">):</span>
+                <span class="n">status</span> <span class="o">=</span> <span class="n">StackStatus</span><span class="o">.</span><span class="n">COMPLETE</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> - delete </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">status</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">status</span></div>
+
+<div class="viewcode-block" id="StackActions.lock"><a class="viewcode-back" href="../../../apidoc/sceptre.plan.html#sceptre.plan.actions.StackActions.lock">[docs]</a>    <span class="k">def</span> <span class="nf">lock</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Locks the Stack by applying a deny-all updates Stack Policy.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">policy_path</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+            <span class="c1"># need to get to the base install path. __file__ will take us into</span>
+            <span class="c1"># sceptre/actions so need to walk up the path.</span>
+            <span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="vm">__file__</span><span class="p">,</span> <span class="s2">&quot;../..&quot;</span><span class="p">)),</span>
+            <span class="s2">&quot;stack_policies/lock.json&quot;</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_policy</span><span class="p">(</span><span class="n">policy_path</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> - Successfully locked Stack&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">name</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="StackActions.unlock"><a class="viewcode-back" href="../../../apidoc/sceptre.plan.html#sceptre.plan.actions.StackActions.unlock">[docs]</a>    <span class="k">def</span> <span class="nf">unlock</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Unlocks the Stack by applying an allow-all updates Stack Policy.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">policy_path</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+            <span class="c1"># need to get to the base install path. __file__ will take us into</span>
+            <span class="c1"># sceptre/actions so need to walk up the path.</span>
+            <span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="vm">__file__</span><span class="p">,</span> <span class="s2">&quot;../..&quot;</span><span class="p">)),</span>
+            <span class="s2">&quot;stack_policies/unlock.json&quot;</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_policy</span><span class="p">(</span><span class="n">policy_path</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> - Successfully unlocked Stack&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">name</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="StackActions.describe"><a class="viewcode-back" href="../../../apidoc/sceptre.plan.html#sceptre.plan.actions.StackActions.describe">[docs]</a>    <span class="k">def</span> <span class="nf">describe</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the a description of the Stack.</span>
+
+<span class="sd">        :returns: A Stack description.</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection_manager</span><span class="o">.</span><span class="n">call</span><span class="p">(</span>
+                <span class="n">service</span><span class="o">=</span><span class="s2">&quot;cloudformation&quot;</span><span class="p">,</span>
+                <span class="n">command</span><span class="o">=</span><span class="s2">&quot;describe_stacks&quot;</span><span class="p">,</span>
+                <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;StackName&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">external_name</span><span class="p">}</span>
+            <span class="p">)</span>
+        <span class="k">except</span> <span class="n">botocore</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">ClientError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">e</span><span class="o">.</span><span class="n">response</span><span class="p">[</span><span class="s2">&quot;Error&quot;</span><span class="p">][</span><span class="s2">&quot;Message&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;does not exist&quot;</span><span class="p">):</span>
+                <span class="k">return</span>
+            <span class="k">raise</span></div>
+
+<div class="viewcode-block" id="StackActions.describe_events"><a class="viewcode-back" href="../../../apidoc/sceptre.plan.html#sceptre.plan.actions.StackActions.describe_events">[docs]</a>    <span class="k">def</span> <span class="nf">describe_events</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the CloudFormation events for a Stack.</span>
+
+<span class="sd">        :returns: CloudFormation events for a Stack.</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection_manager</span><span class="o">.</span><span class="n">call</span><span class="p">(</span>
+            <span class="n">service</span><span class="o">=</span><span class="s2">&quot;cloudformation&quot;</span><span class="p">,</span>
+            <span class="n">command</span><span class="o">=</span><span class="s2">&quot;describe_stack_events&quot;</span><span class="p">,</span>
+            <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;StackName&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">external_name</span><span class="p">}</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="StackActions.describe_resources"><a class="viewcode-back" href="../../../apidoc/sceptre.plan.html#sceptre.plan.actions.StackActions.describe_resources">[docs]</a>    <span class="k">def</span> <span class="nf">describe_resources</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the logical and physical resource IDs of the Stack&#39;s resources.</span>
+
+<span class="sd">        :returns: Information about the Stack&#39;s resources.</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> - Describing stack resources&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection_manager</span><span class="o">.</span><span class="n">call</span><span class="p">(</span>
+                <span class="n">service</span><span class="o">=</span><span class="s2">&quot;cloudformation&quot;</span><span class="p">,</span>
+                <span class="n">command</span><span class="o">=</span><span class="s2">&quot;describe_stack_resources&quot;</span><span class="p">,</span>
+                <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;StackName&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">external_name</span><span class="p">}</span>
+            <span class="p">)</span>
+        <span class="k">except</span> <span class="n">botocore</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">ClientError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">e</span><span class="o">.</span><span class="n">response</span><span class="p">[</span><span class="s2">&quot;Error&quot;</span><span class="p">][</span><span class="s2">&quot;Message&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;does not exist&quot;</span><span class="p">):</span>
+                <span class="k">return</span> <span class="p">{</span><span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="p">[]}</span>
+            <span class="k">raise</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+            <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> - Describe Stack resource response: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">response</span>
+        <span class="p">)</span>
+
+        <span class="n">desired_properties</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;LogicalResourceId&quot;</span><span class="p">,</span> <span class="s2">&quot;PhysicalResourceId&quot;</span><span class="p">]</span>
+
+        <span class="n">formatted_response</span> <span class="o">=</span> <span class="p">{</span><span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">item</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">desired_properties</span><span class="p">}</span>
+            <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">response</span><span class="p">[</span><span class="s2">&quot;StackResources&quot;</span><span class="p">]</span>
+        <span class="p">]}</span>
+        <span class="k">return</span> <span class="n">formatted_response</span></div>
+
+<div class="viewcode-block" id="StackActions.describe_outputs"><a class="viewcode-back" href="../../../apidoc/sceptre.plan.html#sceptre.plan.actions.StackActions.describe_outputs">[docs]</a>    <span class="k">def</span> <span class="nf">describe_outputs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the Stack&#39;s outputs.</span>
+
+<span class="sd">        :returns: The Stack&#39;s outputs.</span>
+<span class="sd">        :rtype: list</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> - Describing stack outputs&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_describe</span><span class="p">()</span>
+        <span class="k">except</span> <span class="n">botocore</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">ClientError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[]</span>
+
+        <span class="k">return</span> <span class="p">{</span><span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="n">response</span><span class="p">[</span><span class="s2">&quot;Stacks&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;Outputs&quot;</span><span class="p">,</span> <span class="p">[])}</span></div>
+
+<div class="viewcode-block" id="StackActions.continue_update_rollback"><a class="viewcode-back" href="../../../apidoc/sceptre.plan.html#sceptre.plan.actions.StackActions.continue_update_rollback">[docs]</a>    <span class="k">def</span> <span class="nf">continue_update_rollback</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Rolls back a Stack in the UPDATE_ROLLBACK_FAILED state to</span>
+<span class="sd">        UPDATE_ROLLBACK_COMPLETE.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> - Continuing update rollback&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">continue_update_rollback_kwargs</span> <span class="o">=</span> \
+            <span class="p">{</span>
+                <span class="s2">&quot;StackName&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">external_name</span>
+            <span class="p">}</span>
+        <span class="n">continue_update_rollback_kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_role_arn</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">connection_manager</span><span class="o">.</span><span class="n">call</span><span class="p">(</span>
+            <span class="n">service</span><span class="o">=</span><span class="s2">&quot;cloudformation&quot;</span><span class="p">,</span>
+            <span class="n">command</span><span class="o">=</span><span class="s2">&quot;continue_update_rollback&quot;</span><span class="p">,</span>
+            <span class="n">kwargs</span><span class="o">=</span><span class="n">continue_update_rollback_kwargs</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+            <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> - Successfully initiated continuation of update rollback&quot;</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">name</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="StackActions.set_policy"><a class="viewcode-back" href="../../../apidoc/sceptre.plan.html#sceptre.plan.actions.StackActions.set_policy">[docs]</a>    <span class="k">def</span> <span class="nf">set_policy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">policy_path</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Applies a Stack Policy.</span>
+
+<span class="sd">        :param policy_path: The relative path of JSON file containing\</span>
+<span class="sd">                the AWS Policy to apply.</span>
+<span class="sd">        :type policy_path: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">policy_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">policy</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+            <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> - Setting Stack policy: </span><span class="se">\n</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">policy</span>
+        <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">connection_manager</span><span class="o">.</span><span class="n">call</span><span class="p">(</span>
+            <span class="n">service</span><span class="o">=</span><span class="s2">&quot;cloudformation&quot;</span><span class="p">,</span>
+            <span class="n">command</span><span class="o">=</span><span class="s2">&quot;set_stack_policy&quot;</span><span class="p">,</span>
+            <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span>
+                <span class="s2">&quot;StackName&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">external_name</span><span class="p">,</span>
+                <span class="s2">&quot;StackPolicyBody&quot;</span><span class="p">:</span> <span class="n">policy</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> - Successfully set Stack Policy&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">name</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="StackActions.get_policy"><a class="viewcode-back" href="../../../apidoc/sceptre.plan.html#sceptre.plan.actions.StackActions.get_policy">[docs]</a>    <span class="k">def</span> <span class="nf">get_policy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns a Stack&#39;s Policy.</span>
+
+<span class="sd">        :returns: The Stack&#39;s Stack Policy.</span>
+<span class="sd">        :rtype: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> - Getting Stack Policy&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection_manager</span><span class="o">.</span><span class="n">call</span><span class="p">(</span>
+            <span class="n">service</span><span class="o">=</span><span class="s2">&quot;cloudformation&quot;</span><span class="p">,</span>
+            <span class="n">command</span><span class="o">=</span><span class="s2">&quot;get_stack_policy&quot;</span><span class="p">,</span>
+            <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span>
+                <span class="s2">&quot;StackName&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">external_name</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+        <span class="n">json_formatting</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+            <span class="s2">&quot;StackPolicyBody&quot;</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="s2">&quot;No Policy Information&quot;</span><span class="p">)))</span>
+        <span class="k">return</span> <span class="p">{</span><span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="n">json_formatting</span><span class="p">}</span></div>
+
+<div class="viewcode-block" id="StackActions.create_change_set"><a class="viewcode-back" href="../../../apidoc/sceptre.plan.html#sceptre.plan.actions.StackActions.create_change_set">[docs]</a>    <span class="k">def</span> <span class="nf">create_change_set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">change_set_name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Creates a Change Set with the name ``change_set_name``.</span>
+
+<span class="sd">        :param change_set_name: The name of the Change Set.</span>
+<span class="sd">        :type change_set_name: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">create_change_set_kwargs</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;StackName&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">external_name</span><span class="p">,</span>
+            <span class="s2">&quot;Parameters&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_format_parameters</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">parameters</span><span class="p">),</span>
+            <span class="s2">&quot;Capabilities&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;CAPABILITY_IAM&#39;</span><span class="p">,</span> <span class="s1">&#39;CAPABILITY_NAMED_IAM&#39;</span><span class="p">],</span>
+            <span class="s2">&quot;ChangeSetName&quot;</span><span class="p">:</span> <span class="n">change_set_name</span><span class="p">,</span>
+            <span class="s2">&quot;NotificationARNs&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">notifications</span><span class="p">,</span>
+            <span class="s2">&quot;Tags&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span><span class="s2">&quot;Key&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">k</span><span class="p">),</span> <span class="s2">&quot;Value&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">)}</span>
+                <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">tags</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+            <span class="p">]</span>
+        <span class="p">}</span>
+        <span class="n">create_change_set_kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">template</span><span class="o">.</span><span class="n">get_boto_call_parameter</span><span class="p">()</span>
+        <span class="p">)</span>
+        <span class="n">create_change_set_kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_role_arn</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+            <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> - Creating Change Set &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">change_set_name</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">connection_manager</span><span class="o">.</span><span class="n">call</span><span class="p">(</span>
+            <span class="n">service</span><span class="o">=</span><span class="s2">&quot;cloudformation&quot;</span><span class="p">,</span>
+            <span class="n">command</span><span class="o">=</span><span class="s2">&quot;create_change_set&quot;</span><span class="p">,</span>
+            <span class="n">kwargs</span><span class="o">=</span><span class="n">create_change_set_kwargs</span>
+        <span class="p">)</span>
+        <span class="c1"># After the call successfully completes, AWS CloudFormation</span>
+        <span class="c1"># starts creating the Change Set.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+            <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> - Successfully initiated creation of Change Set &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">change_set_name</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="StackActions.delete_change_set"><a class="viewcode-back" href="../../../apidoc/sceptre.plan.html#sceptre.plan.actions.StackActions.delete_change_set">[docs]</a>    <span class="k">def</span> <span class="nf">delete_change_set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">change_set_name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Deletes the Change Set ``change_set_name``.</span>
+
+<span class="sd">        :param change_set_name: The name of the Change Set.</span>
+<span class="sd">        :type change_set_name: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+            <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> - Deleting Change Set &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">change_set_name</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">connection_manager</span><span class="o">.</span><span class="n">call</span><span class="p">(</span>
+            <span class="n">service</span><span class="o">=</span><span class="s2">&quot;cloudformation&quot;</span><span class="p">,</span>
+            <span class="n">command</span><span class="o">=</span><span class="s2">&quot;delete_change_set&quot;</span><span class="p">,</span>
+            <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span>
+                <span class="s2">&quot;ChangeSetName&quot;</span><span class="p">:</span> <span class="n">change_set_name</span><span class="p">,</span>
+                <span class="s2">&quot;StackName&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">external_name</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+        <span class="c1"># If the call successfully completes, AWS CloudFormation</span>
+        <span class="c1"># successfully deleted the Change Set.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+            <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> - Successfully deleted Change Set &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">change_set_name</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="StackActions.describe_change_set"><a class="viewcode-back" href="../../../apidoc/sceptre.plan.html#sceptre.plan.actions.StackActions.describe_change_set">[docs]</a>    <span class="k">def</span> <span class="nf">describe_change_set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">change_set_name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Describes the Change Set ``change_set_name``.</span>
+
+<span class="sd">        :param change_set_name: The name of the Change Set.</span>
+<span class="sd">        :type change_set_name: str</span>
+<span class="sd">        :returns: The description of the Change Set.</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+            <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> - Describing Change Set &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">change_set_name</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection_manager</span><span class="o">.</span><span class="n">call</span><span class="p">(</span>
+            <span class="n">service</span><span class="o">=</span><span class="s2">&quot;cloudformation&quot;</span><span class="p">,</span>
+            <span class="n">command</span><span class="o">=</span><span class="s2">&quot;describe_change_set&quot;</span><span class="p">,</span>
+            <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span>
+                <span class="s2">&quot;ChangeSetName&quot;</span><span class="p">:</span> <span class="n">change_set_name</span><span class="p">,</span>
+                <span class="s2">&quot;StackName&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">external_name</span>
+            <span class="p">}</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="StackActions.execute_change_set"><a class="viewcode-back" href="../../../apidoc/sceptre.plan.html#sceptre.plan.actions.StackActions.execute_change_set">[docs]</a>    <span class="k">def</span> <span class="nf">execute_change_set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">change_set_name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Executes the Change Set ``change_set_name``.</span>
+
+<span class="sd">        :param change_set_name: The name of the Change Set.</span>
+<span class="sd">        :type change_set_name: str</span>
+<span class="sd">        :returns: The Stack status</span>
+<span class="sd">        :rtype: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_protect_execution</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+            <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> - Executing Change Set &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">change_set_name</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">connection_manager</span><span class="o">.</span><span class="n">call</span><span class="p">(</span>
+            <span class="n">service</span><span class="o">=</span><span class="s2">&quot;cloudformation&quot;</span><span class="p">,</span>
+            <span class="n">command</span><span class="o">=</span><span class="s2">&quot;execute_change_set&quot;</span><span class="p">,</span>
+            <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span>
+                <span class="s2">&quot;ChangeSetName&quot;</span><span class="p">:</span> <span class="n">change_set_name</span><span class="p">,</span>
+                <span class="s2">&quot;StackName&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">external_name</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+
+        <span class="n">status</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_wait_for_completion</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">status</span></div>
+
+<div class="viewcode-block" id="StackActions.list_change_sets"><a class="viewcode-back" href="../../../apidoc/sceptre.plan.html#sceptre.plan.actions.StackActions.list_change_sets">[docs]</a>    <span class="k">def</span> <span class="nf">list_change_sets</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Lists the Stack&#39;s Change Sets.</span>
+
+<span class="sd">        :returns: The Stack&#39;s Change Sets.</span>
+<span class="sd">        :rtype: dict or list</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> - Listing change sets&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection_manager</span><span class="o">.</span><span class="n">call</span><span class="p">(</span>
+                <span class="n">service</span><span class="o">=</span><span class="s2">&quot;cloudformation&quot;</span><span class="p">,</span>
+                <span class="n">command</span><span class="o">=</span><span class="s2">&quot;list_change_sets&quot;</span><span class="p">,</span>
+                <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span>
+                    <span class="s2">&quot;StackName&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">external_name</span>
+                <span class="p">}</span>
+            <span class="p">)</span>
+            <span class="k">return</span> <span class="p">{</span><span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="n">response</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;Summaries&quot;</span><span class="p">,</span> <span class="p">[])}</span>
+        <span class="k">except</span> <span class="n">botocore</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">ClientError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[]</span></div>
+
+<div class="viewcode-block" id="StackActions.generate"><a class="viewcode-back" href="../../../apidoc/sceptre.plan.html#sceptre.plan.actions.StackActions.generate">[docs]</a>    <span class="k">def</span> <span class="nf">generate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the Template for the Stack</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">template</span><span class="o">.</span><span class="n">body</span></div>
+
+<div class="viewcode-block" id="StackActions.validate"><a class="viewcode-back" href="../../../apidoc/sceptre.plan.html#sceptre.plan.actions.StackActions.validate">[docs]</a>    <span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Validates the Stack&#39;s CloudFormation Template.</span>
+
+<span class="sd">        Raises an error if the Template is invalid.</span>
+
+<span class="sd">        :returns: Validation information about the Template.</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        :raises: botocore.exceptions.ClientError</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> - Validating Template&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection_manager</span><span class="o">.</span><span class="n">call</span><span class="p">(</span>
+            <span class="n">service</span><span class="o">=</span><span class="s2">&quot;cloudformation&quot;</span><span class="p">,</span>
+            <span class="n">command</span><span class="o">=</span><span class="s2">&quot;validate_template&quot;</span><span class="p">,</span>
+            <span class="n">kwargs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">template</span><span class="o">.</span><span class="n">get_boto_call_parameter</span><span class="p">()</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+            <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> - Validate Template response: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">response</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span></div>
+
+<div class="viewcode-block" id="StackActions.estimate_cost"><a class="viewcode-back" href="../../../apidoc/sceptre.plan.html#sceptre.plan.actions.StackActions.estimate_cost">[docs]</a>    <span class="k">def</span> <span class="nf">estimate_cost</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Estimates a Stack&#39;s cost.</span>
+
+<span class="sd">        :returns: An estimate of the Stack&#39;s cost.</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        :raises: botocore.exceptions.ClientError</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> - Estimating template cost&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+        <span class="n">parameters</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">{</span><span class="s1">&#39;ParameterKey&#39;</span><span class="p">:</span> <span class="n">key</span><span class="p">,</span> <span class="s1">&#39;ParameterValue&#39;</span><span class="p">:</span> <span class="n">value</span><span class="p">}</span>
+            <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+        <span class="p">]</span>
+
+        <span class="n">kwargs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">template</span><span class="o">.</span><span class="n">get_boto_call_parameter</span><span class="p">()</span>
+        <span class="n">kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;Parameters&#39;</span><span class="p">:</span> <span class="n">parameters</span><span class="p">})</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection_manager</span><span class="o">.</span><span class="n">call</span><span class="p">(</span>
+            <span class="n">service</span><span class="o">=</span><span class="s2">&quot;cloudformation&quot;</span><span class="p">,</span>
+            <span class="n">command</span><span class="o">=</span><span class="s2">&quot;estimate_template_cost&quot;</span><span class="p">,</span>
+            <span class="n">kwargs</span><span class="o">=</span><span class="n">kwargs</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+            <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> - Estimate Stack cost response: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">response</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span></div>
+
+<div class="viewcode-block" id="StackActions.get_status"><a class="viewcode-back" href="../../../apidoc/sceptre.plan.html#sceptre.plan.actions.StackActions.get_status">[docs]</a>    <span class="k">def</span> <span class="nf">get_status</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the Stack&#39;s status.</span>
+
+<span class="sd">        :returns: The Stack&#39;s status.</span>
+<span class="sd">        :rtype: sceptre.stack_status.StackStatus</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_status</span><span class="p">()</span>
+        <span class="k">except</span> <span class="n">StackDoesNotExistError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;PENDING&quot;</span></div>
+
+    <span class="k">def</span> <span class="nf">_format_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameters</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Converts CloudFormation parameters to the format used by Boto3.</span>
+
+<span class="sd">        :param parameters: A dictionary of parameters.</span>
+<span class="sd">        :type parameters: dict</span>
+<span class="sd">        :returns: A list of the formatted parameters.</span>
+<span class="sd">        :rtype: list</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">formatted_parameters</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">parameters</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+            <span class="n">formatted_parameters</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                <span class="s2">&quot;ParameterKey&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span>
+                <span class="s2">&quot;ParameterValue&quot;</span><span class="p">:</span> <span class="n">value</span>
+            <span class="p">})</span>
+
+        <span class="k">return</span> <span class="n">formatted_parameters</span>
+
+    <span class="k">def</span> <span class="nf">_get_role_arn</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the Role ARN assumed by CloudFormation when building a Stack.</span>
+
+<span class="sd">        Returns an empty dict if no Role is to be assumed.</span>
+
+<span class="sd">        :returns: The a Role ARN</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">role_arn</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{</span>
+                <span class="s2">&quot;RoleARN&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">role_arn</span>
+            <span class="p">}</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{}</span>
+
+    <span class="k">def</span> <span class="nf">_get_stack_timeout</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the timeout before considering the Stack to be failing.</span>
+
+<span class="sd">        Returns an empty dict if no timeout is set.</span>
+<span class="sd">        :returns: the creation/update timeout</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">stack_timeout</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{</span>
+                <span class="s2">&quot;TimeoutInMinutes&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">stack_timeout</span>
+            <span class="p">}</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{}</span>
+
+    <span class="k">def</span> <span class="nf">_protect_execution</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Raises a ProtectedStackError if protect == True.</span>
+
+<span class="sd">        :raises: sceptre.exceptions.ProtectedStackError</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">protected</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ProtectedStackError</span><span class="p">(</span>
+                <span class="s2">&quot;Cannot perform action on &#39;</span><span class="si">{0}</span><span class="s2">&#39;: Stack protection is &quot;</span>
+                <span class="s2">&quot;currently enabled&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+            <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_wait_for_completion</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Waits for a Stack operation to finish. Prints CloudFormation events</span>
+<span class="sd">        while it waits.</span>
+
+<span class="sd">        :param timeout: Timeout before returning, in minutes.</span>
+
+<span class="sd">        :returns: The final Stack status.</span>
+<span class="sd">        :rtype: sceptre.stack_status.StackStatus</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">timeout</span> <span class="o">=</span> <span class="mi">60</span> <span class="o">*</span> <span class="n">timeout</span>
+
+        <span class="k">def</span> <span class="nf">timed_out</span><span class="p">(</span><span class="n">elapsed</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">elapsed</span> <span class="o">&gt;=</span> <span class="n">timeout</span> <span class="k">if</span> <span class="n">timeout</span> <span class="k">else</span> <span class="kc">False</span>
+
+        <span class="n">status</span> <span class="o">=</span> <span class="n">StackStatus</span><span class="o">.</span><span class="n">IN_PROGRESS</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">most_recent_event_datetime</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">(</span><span class="n">tzutc</span><span class="p">())</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">seconds</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">elapsed</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="n">status</span> <span class="o">==</span> <span class="n">StackStatus</span><span class="o">.</span><span class="n">IN_PROGRESS</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">timed_out</span><span class="p">(</span><span class="n">elapsed</span><span class="p">):</span>
+            <span class="n">status</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_simplified_status</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_status</span><span class="p">())</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_log_new_events</span><span class="p">()</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+            <span class="n">elapsed</span> <span class="o">+=</span> <span class="mi">4</span>
+
+        <span class="k">return</span> <span class="n">status</span>
+
+    <span class="k">def</span> <span class="nf">_describe</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection_manager</span><span class="o">.</span><span class="n">call</span><span class="p">(</span>
+            <span class="n">service</span><span class="o">=</span><span class="s2">&quot;cloudformation&quot;</span><span class="p">,</span>
+            <span class="n">command</span><span class="o">=</span><span class="s2">&quot;describe_stacks&quot;</span><span class="p">,</span>
+            <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;StackName&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">external_name</span><span class="p">}</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_get_status</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">status</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_describe</span><span class="p">()[</span><span class="s2">&quot;Stacks&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;StackStatus&quot;</span><span class="p">]</span>
+        <span class="k">except</span> <span class="n">botocore</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">ClientError</span> <span class="k">as</span> <span class="n">exp</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">exp</span><span class="o">.</span><span class="n">response</span><span class="p">[</span><span class="s2">&quot;Error&quot;</span><span class="p">][</span><span class="s2">&quot;Message&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;does not exist&quot;</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="n">StackDoesNotExistError</span><span class="p">(</span><span class="n">exp</span><span class="o">.</span><span class="n">response</span><span class="p">[</span><span class="s2">&quot;Error&quot;</span><span class="p">][</span><span class="s2">&quot;Message&quot;</span><span class="p">])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">exp</span>
+        <span class="k">return</span> <span class="n">status</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_get_simplified_status</span><span class="p">(</span><span class="n">status</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the simplified Stack Status.</span>
+
+<span class="sd">        The simplified Stack status is represented by the struct</span>
+<span class="sd">        ``sceptre.StackStatus()`` and can take one of the following options:</span>
+
+<span class="sd">        * complete</span>
+<span class="sd">        * in_progress</span>
+<span class="sd">        * failed</span>
+
+<span class="sd">        :param status: The CloudFormation Stack status to simplify.</span>
+<span class="sd">        :type status: str</span>
+<span class="sd">        :returns: The Stack&#39;s simplified status</span>
+<span class="sd">        :rtype: sceptre.stack_status.StackStatus</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">status</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;ROLLBACK_COMPLETE&quot;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">StackStatus</span><span class="o">.</span><span class="n">FAILED</span>
+        <span class="k">elif</span> <span class="n">status</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;_COMPLETE&quot;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">StackStatus</span><span class="o">.</span><span class="n">COMPLETE</span>
+        <span class="k">elif</span> <span class="n">status</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;_IN_PROGRESS&quot;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">StackStatus</span><span class="o">.</span><span class="n">IN_PROGRESS</span>
+        <span class="k">elif</span> <span class="n">status</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;_FAILED&quot;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">StackStatus</span><span class="o">.</span><span class="n">FAILED</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">UnknownStackStatusError</span><span class="p">(</span>
+                <span class="s2">&quot;</span><span class="si">{0}</span><span class="s2"> is unknown&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">status</span><span class="p">)</span>
+            <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_log_new_events</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Log the latest Stack events while the Stack is being built.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">events</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">describe_events</span><span class="p">()[</span><span class="s2">&quot;StackEvents&quot;</span><span class="p">]</span>
+        <span class="n">events</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
+        <span class="n">new_events</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">event</span> <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">events</span>
+            <span class="k">if</span> <span class="n">event</span><span class="p">[</span><span class="s2">&quot;Timestamp&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">most_recent_event_datetime</span>
+        <span class="p">]</span>
+        <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">new_events</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">stack</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                <span class="n">event</span><span class="p">[</span><span class="s2">&quot;LogicalResourceId&quot;</span><span class="p">],</span>
+                <span class="n">event</span><span class="p">[</span><span class="s2">&quot;ResourceType&quot;</span><span class="p">],</span>
+                <span class="n">event</span><span class="p">[</span><span class="s2">&quot;ResourceStatus&quot;</span><span class="p">],</span>
+                <span class="n">event</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;ResourceStatusReason&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+            <span class="p">]))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">most_recent_event_datetime</span> <span class="o">=</span> <span class="n">event</span><span class="p">[</span><span class="s2">&quot;Timestamp&quot;</span><span class="p">]</span>
+
+<div class="viewcode-block" id="StackActions.wait_for_cs_completion"><a class="viewcode-back" href="../../../apidoc/sceptre.plan.html#sceptre.plan.actions.StackActions.wait_for_cs_completion">[docs]</a>    <span class="k">def</span> <span class="nf">wait_for_cs_completion</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">change_set_name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Waits while the Stack Change Set status is &quot;pending&quot;.</span>
+
+<span class="sd">        :param change_set_name: The name of the Change Set.</span>
+<span class="sd">        :type change_set_name: str</span>
+<span class="sd">        :returns: The Change Set&#39;s status.</span>
+<span class="sd">        :rtype: sceptre.stack_status.StackChangeSetStatus</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">status</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_cs_status</span><span class="p">(</span><span class="n">change_set_name</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">status</span> <span class="o">!=</span> <span class="n">StackChangeSetStatus</span><span class="o">.</span><span class="n">PENDING</span><span class="p">:</span>
+                <span class="k">break</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">status</span></div>
+
+    <span class="k">def</span> <span class="nf">_get_cs_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">change_set_name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the status of a Change Set.</span>
+
+<span class="sd">        :param change_set_name: The name of the Change Set.</span>
+<span class="sd">        :type change_set_name: str</span>
+<span class="sd">        :returns: The Change Set&#39;s status.</span>
+<span class="sd">        :rtype: sceptre.stack_status.StackChangeSetStatus</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">cs_description</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">describe_change_set</span><span class="p">(</span><span class="n">change_set_name</span><span class="p">)</span>
+
+        <span class="n">cs_status</span> <span class="o">=</span> <span class="n">cs_description</span><span class="p">[</span><span class="s2">&quot;Status&quot;</span><span class="p">]</span>
+        <span class="n">cs_exec_status</span> <span class="o">=</span> <span class="n">cs_description</span><span class="p">[</span><span class="s2">&quot;ExecutionStatus&quot;</span><span class="p">]</span>
+        <span class="n">possible_statuses</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s2">&quot;CREATE_PENDING&quot;</span><span class="p">,</span> <span class="s2">&quot;CREATE_IN_PROGRESS&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;CREATE_COMPLETE&quot;</span><span class="p">,</span> <span class="s2">&quot;DELETE_COMPLETE&quot;</span><span class="p">,</span> <span class="s2">&quot;FAILED&quot;</span>
+        <span class="p">]</span>
+        <span class="n">possible_execution_statuses</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s2">&quot;UNAVAILABLE&quot;</span><span class="p">,</span> <span class="s2">&quot;AVAILABLE&quot;</span><span class="p">,</span> <span class="s2">&quot;EXECUTE_IN_PROGRESS&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;EXECUTE_COMPLETE&quot;</span><span class="p">,</span> <span class="s2">&quot;EXECUTE_FAILED&quot;</span><span class="p">,</span> <span class="s2">&quot;OBSOLETE&quot;</span>
+        <span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">cs_status</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">possible_statuses</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">UnknownStackChangeSetStatusError</span><span class="p">(</span>
+                <span class="s2">&quot;Status </span><span class="si">{0}</span><span class="s2"> is unknown&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">cs_status</span><span class="p">)</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="n">cs_exec_status</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">possible_execution_statuses</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">UnknownStackChangeSetStatusError</span><span class="p">(</span>
+                <span class="s2">&quot;ExecutionStatus </span><span class="si">{0}</span><span class="s2"> is unknown&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">cs_status</span><span class="p">)</span>
+            <span class="p">)</span>
+
+        <span class="k">if</span> <span class="p">(</span>
+                <span class="n">cs_status</span> <span class="o">==</span> <span class="s2">&quot;CREATE_COMPLETE&quot;</span> <span class="ow">and</span>
+                <span class="n">cs_exec_status</span> <span class="o">==</span> <span class="s2">&quot;AVAILABLE&quot;</span>
+        <span class="p">):</span>
+            <span class="k">return</span> <span class="n">StackChangeSetStatus</span><span class="o">.</span><span class="n">READY</span>
+        <span class="k">elif</span> <span class="p">(</span>
+                <span class="n">cs_status</span> <span class="ow">in</span> <span class="p">[</span>
+                    <span class="s2">&quot;CREATE_PENDING&quot;</span><span class="p">,</span> <span class="s2">&quot;CREATE_IN_PROGRESS&quot;</span><span class="p">,</span> <span class="s2">&quot;CREATE_COMPLETE&quot;</span>
+                <span class="p">]</span> <span class="ow">and</span>
+                <span class="n">cs_exec_status</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;UNAVAILABLE&quot;</span><span class="p">,</span> <span class="s2">&quot;AVAILABLE&quot;</span><span class="p">]</span>
+        <span class="p">):</span>
+            <span class="k">return</span> <span class="n">StackChangeSetStatus</span><span class="o">.</span><span class="n">PENDING</span>
+        <span class="k">elif</span> <span class="p">(</span>
+                <span class="n">cs_status</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;DELETE_COMPLETE&quot;</span><span class="p">,</span> <span class="s2">&quot;FAILED&quot;</span><span class="p">]</span> <span class="ow">or</span>
+                <span class="n">cs_exec_status</span> <span class="ow">in</span> <span class="p">[</span>
+                    <span class="s2">&quot;EXECUTE_IN_PROGRESS&quot;</span><span class="p">,</span> <span class="s2">&quot;EXECUTE_COMPLETE&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;EXECUTE_FAILED&quot;</span><span class="p">,</span> <span class="s2">&quot;OBSOLETE&quot;</span>
+                <span class="p">]</span>
+        <span class="p">):</span>
+            <span class="k">return</span> <span class="n">StackChangeSetStatus</span><span class="o">.</span><span class="n">DEFUNCT</span>
+        <span class="k">else</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;This else should not be reachable.&quot;</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Cloudreach
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+    <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Read the Docs</span>
+      v: 98.2.1
+      <span class="fa fa-caret-down"></span>
+    </span>
+
+        <div class="rst-other-versions">
+            <dl id="other-versions">
+                <dt>Versions</dt>
+            </dl>
+            <dl>
+                <dt>Other Links</dt>
+                <dd>
+                    <a href="///projects//?fromdocs=">Project Home(TODO)</a>
+                </dd>
+                <dd>
+                    <a href="///builds//?fromdocs=">Builds(TODO)</a>
+                </dd>
+            </dl>
+            <hr/>
+            Free document hosting provided by <a href="http://www.readthedocs.org">Read the Docs</a>
+                .
+
+        </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                $.getScript("../../../../version-helper.js").done(
+                    function () {
+                        versions.forEach(function (item, index) {
+                            if (item !== "98.2.1") {
+                                $('#other-versions').append('<dd><a href="../' + item + '">' + item + "<a/></dd>");
+                            }
+                        })
+                    });
+            });
+        </script>
+    </div>
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
