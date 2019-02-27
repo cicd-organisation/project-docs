@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sceptre.template &mdash; Sceptre 1.3.3 documentation</title>
+  <title>sceptre.template &mdash; Sceptre 2.0.3 documentation</title>
   
 
   
@@ -17,32 +17,44 @@
   
 
   
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../../',
+              VERSION:'2.0.3',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
   <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../../about.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
-
-  
-  <script src="../../_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -89,7 +101,7 @@
 <p class="caption"><span class="caption-text">Documentation</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../docs/cli.html">Command Line Interface</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../docs/environment_config.html">Environment Config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../docs/stack_group_config.html">StackGroup Config</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../docs/stack_config.html">Stack Config</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../docs/templates.html">Templates</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../docs/hooks.html">Hooks</a></li>
@@ -102,7 +114,7 @@
 </ul>
 <p class="caption"><span class="caption-text">API</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../api/modules.html">sceptre</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../apidoc/modules.html">sceptre</a></li>
 </ul>
 
             
@@ -189,17 +201,25 @@
 <span class="kn">from</span> <span class="nn">.exceptions</span> <span class="k">import</span> <span class="n">TemplateSceptreHandlerError</span>
 
 
-<div class="viewcode-block" id="Template"><a class="viewcode-back" href="../../api/sceptre.html#sceptre.template.Template">[docs]</a><span class="k">class</span> <span class="nc">Template</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="Template"><a class="viewcode-back" href="../../apidoc/sceptre.html#sceptre.template.Template">[docs]</a><span class="k">class</span> <span class="nc">Template</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Template represents an AWS CloudFormation template. It is responsible for</span>
-<span class="sd">    loading, storing, and optionally uploading, local templates for use by the</span>
-<span class="sd">    CloudFormation service.</span>
+<span class="sd">    loading, storing and optionally uploading local templates for use by</span>
+<span class="sd">    CloudFormation.</span>
 
-<span class="sd">    :param path: The absolute path to the file which stores the template.</span>
+<span class="sd">    :param path: The absolute path to the file which stores the CloudFormation\</span>
+<span class="sd">            template.</span>
 <span class="sd">    :type path: str</span>
-<span class="sd">    :param sceptre_user_data: A dictionary of arbitrary data to be passed to \</span>
-<span class="sd">        a handler function in an external Python script.</span>
+
+<span class="sd">    :param sceptre_user_data: A dictionary of arbitrary data to be passed to\</span>
+<span class="sd">            a handler function in an external Python script.</span>
 <span class="sd">    :type sceptre_user_data: dict</span>
+
+<span class="sd">    :param connection_manager:</span>
+<span class="sd">    :type connection_manager: sceptre.connection_manager.ConnectionManager</span>
+
+<span class="sd">    :param s3_details:</span>
+<span class="sd">    :type s3_details: dict</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">_boto_s3_lock</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Lock</span><span class="p">()</span>
@@ -301,13 +321,13 @@
             <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="n">directory</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">body</span>
 
-<div class="viewcode-block" id="Template.upload_to_s3"><a class="viewcode-back" href="../../api/sceptre.html#sceptre.template.Template.upload_to_s3">[docs]</a>    <span class="k">def</span> <span class="nf">upload_to_s3</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Template.upload_to_s3"><a class="viewcode-back" href="../../apidoc/sceptre.html#sceptre.template.Template.upload_to_s3">[docs]</a>    <span class="k">def</span> <span class="nf">upload_to_s3</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Uploads the template to ``bucket_name`` and returns its URL.</span>
 
-<span class="sd">        The template is uploaded with the ``bucket_key``.</span>
+<span class="sd">        The Template is uploaded with the ``bucket_key``.</span>
 
-<span class="sd">        :returns: The URL of the template object in S3.</span>
+<span class="sd">        :returns: The URL of the Template object in S3.</span>
 <span class="sd">        :rtype: str</span>
 <span class="sd">        :raises: botocore.exceptions.ClientError</span>
 
@@ -409,7 +429,7 @@
                 <span class="p">}</span>
             <span class="p">)</span>
 
-<div class="viewcode-block" id="Template.get_boto_call_parameter"><a class="viewcode-back" href="../../api/sceptre.html#sceptre.template.Template.get_boto_call_parameter">[docs]</a>    <span class="k">def</span> <span class="nf">get_boto_call_parameter</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Template.get_boto_call_parameter"><a class="viewcode-back" href="../../apidoc/sceptre.html#sceptre.template.Template.get_boto_call_parameter">[docs]</a>    <span class="k">def</span> <span class="nf">get_boto_call_parameter</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the CloudFormation template location.</span>
 
@@ -424,46 +444,6 @@
             <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;TemplateURL&quot;</span><span class="p">:</span> <span class="n">url</span><span class="p">}</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;TemplateBody&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">body</span><span class="p">}</span></div>
-
-<div class="viewcode-block" id="Template.validate"><a class="viewcode-back" href="../../api/sceptre.html#sceptre.template.Template.validate">[docs]</a>    <span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Validates the stack&#39;s CloudFormation template.</span>
-
-<span class="sd">        Raises an error if the template is invalid.</span>
-
-<span class="sd">        :returns: Information about the template.</span>
-<span class="sd">        :rtype: dict</span>
-<span class="sd">        :raises: botocore.exceptions.ClientError</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> - Validating template&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection_manager</span><span class="o">.</span><span class="n">call</span><span class="p">(</span>
-            <span class="n">service</span><span class="o">=</span><span class="s2">&quot;cloudformation&quot;</span><span class="p">,</span>
-            <span class="n">command</span><span class="o">=</span><span class="s2">&quot;validate_template&quot;</span><span class="p">,</span>
-            <span class="n">kwargs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">get_boto_call_parameter</span><span class="p">()</span>
-        <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
-            <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> - Validate template response: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">response</span>
-        <span class="p">)</span>
-        <span class="k">return</span> <span class="n">response</span></div>
-
-<div class="viewcode-block" id="Template.estimate_cost"><a class="viewcode-back" href="../../api/sceptre.html#sceptre.template.Template.estimate_cost">[docs]</a>    <span class="k">def</span> <span class="nf">estimate_cost</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Estimates a stack&#39;s cost.</span>
-
-<span class="sd">        :returns: An estimate of the stack&#39;s cost.</span>
-<span class="sd">        :rtype: dict</span>
-<span class="sd">        :raises: botocore.exceptions.ClientError</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> - Estimating template cost&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection_manager</span><span class="o">.</span><span class="n">call</span><span class="p">(</span>
-            <span class="n">service</span><span class="o">=</span><span class="s2">&quot;cloudformation&quot;</span><span class="p">,</span>
-            <span class="n">command</span><span class="o">=</span><span class="s2">&quot;estimate_template_cost&quot;</span><span class="p">,</span>
-            <span class="n">kwargs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">get_boto_call_parameter</span><span class="p">()</span>
-        <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
-            <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> - Estimate stack cost response: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">response</span>
-        <span class="p">)</span>
-        <span class="k">return</span> <span class="n">response</span></div>
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">_render_jinja_template</span><span class="p">(</span><span class="n">template_dir</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">jinja_vars</span><span class="p">):</span>
@@ -480,7 +460,7 @@
 <span class="sd">        :param jinja_vars: Dict of variables to render into the template.</span>
 <span class="sd">        :type jinja_vars: dict</span>
 <span class="sd">        :returns: The body of the CloudFormation template.</span>
-<span class="sd">        :rtype: string</span>
+<span class="sd">        :rtype: str</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> Rendering CloudFormation template&quot;</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
@@ -503,7 +483,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Cloudreach.
+        &copy; Copyright 2018, Cloudreach
 
     </p>
   </div>
@@ -551,7 +531,6 @@
                             if (item !== "dev") {
                                 $('#other-versions').append('<dd><a href="../' + item + '">' + item + "<a/></dd>");
                             }
-
                         })
                     });
             });
@@ -559,32 +538,16 @@
     </div>
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../../',
-            VERSION:'1.3.3',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../../_static/jquery.js"></script>
-      <script type="text/javascript" src="../../_static/underscore.js"></script>
-      <script type="text/javascript" src="../../_static/doctools.js"></script>
-
-  
-
-  <script type="text/javascript" src="../../_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

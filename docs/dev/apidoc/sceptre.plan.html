@@ -1,0 +1,1159 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>sceptre.plan package &mdash; Sceptre 2.0.3 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../',
+              VERSION:'2.0.3',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="sceptre.resolvers package" href="sceptre.resolvers.html" />
+    <link rel="prev" title="sceptre.hooks package" href="sceptre.hooks.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Sceptre
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                dev
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../docs/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/get_started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/terminology.html">Terminology</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../docs/cli.html">Command Line Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/stack_group_config.html">StackGroup Config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/stack_config.html">Stack Config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/templates.html">Templates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/hooks.html">Hooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/resolvers.html">Resolvers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/architecture.html">Architecting Sceptre</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Support</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../docs/faq.html">FAQ</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">sceptre</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="sceptre.html">sceptre package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="sceptre.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="sceptre.cli.html">sceptre.cli package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sceptre.config.html">sceptre.config package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sceptre.hooks.html">sceptre.hooks package</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">sceptre.plan package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sceptre.resolvers.html">sceptre.resolvers package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sceptre.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sceptre.html#module-sceptre.connection_manager">sceptre.connection_manager module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sceptre.html#module-sceptre.context">sceptre.context module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sceptre.html#module-sceptre.exceptions">sceptre.exceptions module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sceptre.html#module-sceptre.helpers">sceptre.helpers module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sceptre.html#module-sceptre.stack">sceptre.stack module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sceptre.html#module-sceptre.stack_status">sceptre.stack_status module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sceptre.html#module-sceptre.stack_status_colourer">sceptre.stack_status_colourer module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sceptre.html#module-sceptre.template">sceptre.template module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sceptre</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="modules.html">sceptre</a> &raquo;</li>
+        
+          <li><a href="sceptre.html">sceptre package</a> &raquo;</li>
+        
+      <li>sceptre.plan package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/apidoc/sceptre.plan.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-sceptre.plan">
+<span id="sceptre-plan-package"></span><h1>sceptre.plan package<a class="headerlink" href="#module-sceptre.plan" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="sceptre.plan.NullHandler">
+<em class="property">class </em><code class="descclassname">sceptre.plan.</code><code class="descname">NullHandler</code><span class="sig-paren">(</span><em>level=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/plan.html#NullHandler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.plan.NullHandler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/logging.html#logging.Handler" title="(in Python v3.7)"><code class="xref py py-class docutils literal"><span class="pre">logging.Handler</span></code></a></p>
+<dl class="method">
+<dt id="sceptre.plan.NullHandler.emit">
+<code class="descname">emit</code><span class="sig-paren">(</span><em>record</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/plan.html#NullHandler.emit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.plan.NullHandler.emit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-sceptre.plan.actions">
+<span id="sceptre-plan-actions-module"></span><h2>sceptre.plan.actions module<a class="headerlink" href="#module-sceptre.plan.actions" title="Permalink to this headline">¶</a></h2>
+<p>sceptre.plan.actions</p>
+<p>This module implements the StackActions class which provides the functionality
+available to a Stack.</p>
+<dl class="class">
+<dt id="sceptre.plan.actions.StackActions">
+<em class="property">class </em><code class="descclassname">sceptre.plan.actions.</code><code class="descname">StackActions</code><span class="sig-paren">(</span><em>stack</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/plan/actions.html#StackActions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.plan.actions.StackActions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
+<p>StackActions stores the operations a Stack can take, such as creating or
+deleting the Stack.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>stack</strong> (<a class="reference internal" href="sceptre.html#sceptre.stack.Stack" title="sceptre.stack.Stack"><em>sceptre.stack.Stack</em></a>) – A Stack object</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="sceptre.plan.actions.StackActions.cancel_stack_update">
+<code class="descname">cancel_stack_update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/plan/actions.html#StackActions.cancel_stack_update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.plan.actions.StackActions.cancel_stack_update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cancels a Stack update.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The cancelled Stack status.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="sceptre.html#sceptre.stack_status.StackStatus" title="sceptre.stack_status.StackStatus">sceptre.stack_status.StackStatus</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sceptre.plan.actions.StackActions.continue_update_rollback">
+<code class="descname">continue_update_rollback</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/plan/actions.html#StackActions.continue_update_rollback"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.plan.actions.StackActions.continue_update_rollback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rolls back a Stack in the UPDATE_ROLLBACK_FAILED state to
+UPDATE_ROLLBACK_COMPLETE.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sceptre.plan.actions.StackActions.create">
+<code class="descname">create</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/plan/actions.html#StackActions.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.plan.actions.StackActions.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a Stack.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The Stack’s status.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="sceptre.html#sceptre.stack_status.StackStatus" title="sceptre.stack_status.StackStatus">sceptre.stack_status.StackStatus</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sceptre.plan.actions.StackActions.create_change_set">
+<code class="descname">create_change_set</code><span class="sig-paren">(</span><em>change_set_name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/plan/actions.html#StackActions.create_change_set"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.plan.actions.StackActions.create_change_set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a Change Set with the name <code class="docutils literal"><span class="pre">change_set_name</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>change_set_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the Change Set.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sceptre.plan.actions.StackActions.delete">
+<code class="descname">delete</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/plan/actions.html#StackActions.delete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.plan.actions.StackActions.delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deletes the Stack.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The Stack’s status.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="sceptre.html#sceptre.stack_status.StackStatus" title="sceptre.stack_status.StackStatus">sceptre.stack_status.StackStatus</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sceptre.plan.actions.StackActions.delete_change_set">
+<code class="descname">delete_change_set</code><span class="sig-paren">(</span><em>change_set_name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/plan/actions.html#StackActions.delete_change_set"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.plan.actions.StackActions.delete_change_set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deletes the Change Set <code class="docutils literal"><span class="pre">change_set_name</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>change_set_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the Change Set.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sceptre.plan.actions.StackActions.describe">
+<code class="descname">describe</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/plan/actions.html#StackActions.describe"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.plan.actions.StackActions.describe" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the a description of the Stack.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A Stack description.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sceptre.plan.actions.StackActions.describe_change_set">
+<code class="descname">describe_change_set</code><span class="sig-paren">(</span><em>change_set_name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/plan/actions.html#StackActions.describe_change_set"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.plan.actions.StackActions.describe_change_set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Describes the Change Set <code class="docutils literal"><span class="pre">change_set_name</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>change_set_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the Change Set.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The description of the Change Set.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sceptre.plan.actions.StackActions.describe_events">
+<code class="descname">describe_events</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/plan/actions.html#StackActions.describe_events"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.plan.actions.StackActions.describe_events" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the CloudFormation events for a Stack.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">CloudFormation events for a Stack.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sceptre.plan.actions.StackActions.describe_outputs">
+<code class="descname">describe_outputs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/plan/actions.html#StackActions.describe_outputs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.plan.actions.StackActions.describe_outputs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the Stack’s outputs.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The Stack’s outputs.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="sceptre.cli.html#module-sceptre.cli.list" title="sceptre.cli.list">list</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sceptre.plan.actions.StackActions.describe_resources">
+<code class="descname">describe_resources</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/plan/actions.html#StackActions.describe_resources"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.plan.actions.StackActions.describe_resources" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the logical and physical resource IDs of the Stack’s resources.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Information about the Stack’s resources.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sceptre.plan.actions.StackActions.estimate_cost">
+<code class="descname">estimate_cost</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/plan/actions.html#StackActions.estimate_cost"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.plan.actions.StackActions.estimate_cost" title="Permalink to this definition">¶</a></dt>
+<dd><p>Estimates a Stack’s cost.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">An estimate of the Stack’s cost.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body">botocore.exceptions.ClientError</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sceptre.plan.actions.StackActions.execute_change_set">
+<code class="descname">execute_change_set</code><span class="sig-paren">(</span><em>change_set_name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/plan/actions.html#StackActions.execute_change_set"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.plan.actions.StackActions.execute_change_set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Executes the Change Set <code class="docutils literal"><span class="pre">change_set_name</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>change_set_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the Change Set.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The Stack status</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)">str</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sceptre.plan.actions.StackActions.generate">
+<code class="descname">generate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/plan/actions.html#StackActions.generate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.plan.actions.StackActions.generate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the Template for the Stack</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sceptre.plan.actions.StackActions.get_policy">
+<code class="descname">get_policy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/plan/actions.html#StackActions.get_policy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.plan.actions.StackActions.get_policy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a Stack’s Policy.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The Stack’s Stack Policy.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)">str</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sceptre.plan.actions.StackActions.get_status">
+<code class="descname">get_status</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/plan/actions.html#StackActions.get_status"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.plan.actions.StackActions.get_status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the Stack’s status.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The Stack’s status.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="sceptre.html#sceptre.stack_status.StackStatus" title="sceptre.stack_status.StackStatus">sceptre.stack_status.StackStatus</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sceptre.plan.actions.StackActions.launch">
+<code class="descname">launch</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/plan/actions.html#StackActions.launch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.plan.actions.StackActions.launch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Launches the Stack.</p>
+<p>If the Stack status is create_failed or rollback_complete, the
+Stack is deleted. Launch then tries to create or update the Stack,
+depending if it already exists. If there are no updates to be
+performed, launch exits gracefully.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The Stack’s status.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="sceptre.html#sceptre.stack_status.StackStatus" title="sceptre.stack_status.StackStatus">sceptre.stack_status.StackStatus</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sceptre.plan.actions.StackActions.list_change_sets">
+<code class="descname">list_change_sets</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/plan/actions.html#StackActions.list_change_sets"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.plan.actions.StackActions.list_change_sets" title="Permalink to this definition">¶</a></dt>
+<dd><p>Lists the Stack’s Change Sets.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The Stack’s Change Sets.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a> or <a class="reference internal" href="sceptre.cli.html#module-sceptre.cli.list" title="sceptre.cli.list">list</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sceptre.plan.actions.StackActions.lock">
+<code class="descname">lock</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/plan/actions.html#StackActions.lock"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.plan.actions.StackActions.lock" title="Permalink to this definition">¶</a></dt>
+<dd><p>Locks the Stack by applying a deny-all updates Stack Policy.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sceptre.plan.actions.StackActions.set_policy">
+<code class="descname">set_policy</code><span class="sig-paren">(</span><em>policy_path</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/plan/actions.html#StackActions.set_policy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.plan.actions.StackActions.set_policy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Applies a Stack Policy.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>policy_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The relative path of JSON file containing                the AWS Policy to apply.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sceptre.plan.actions.StackActions.unlock">
+<code class="descname">unlock</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/plan/actions.html#StackActions.unlock"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.plan.actions.StackActions.unlock" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unlocks the Stack by applying an allow-all updates Stack Policy.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sceptre.plan.actions.StackActions.update">
+<code class="descname">update</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/plan/actions.html#StackActions.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.plan.actions.StackActions.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates the Stack.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The Stack’s status.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="sceptre.html#sceptre.stack_status.StackStatus" title="sceptre.stack_status.StackStatus">sceptre.stack_status.StackStatus</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sceptre.plan.actions.StackActions.validate">
+<code class="descname">validate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/plan/actions.html#StackActions.validate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.plan.actions.StackActions.validate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validates the Stack’s CloudFormation Template.</p>
+<p>Raises an error if the Template is invalid.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Validation information about the Template.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body">botocore.exceptions.ClientError</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sceptre.plan.actions.StackActions.wait_for_cs_completion">
+<code class="descname">wait_for_cs_completion</code><span class="sig-paren">(</span><em>change_set_name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/plan/actions.html#StackActions.wait_for_cs_completion"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.plan.actions.StackActions.wait_for_cs_completion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Waits while the Stack Change Set status is “pending”.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>change_set_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the Change Set.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The Change Set’s status.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="sceptre.html#sceptre.stack_status.StackChangeSetStatus" title="sceptre.stack_status.StackChangeSetStatus">sceptre.stack_status.StackChangeSetStatus</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-sceptre.plan.executor">
+<span id="sceptre-plan-executor-module"></span><h2>sceptre.plan.executor module<a class="headerlink" href="#module-sceptre.plan.executor" title="Permalink to this headline">¶</a></h2>
+<p>sceptre.plan.executor</p>
+<p>This module implements a SceptrePlanExecutor, which is responsible for
+executing the command specified in a SceptrePlan.</p>
+<dl class="class">
+<dt id="sceptre.plan.executor.SceptrePlanExecutor">
+<em class="property">class </em><code class="descclassname">sceptre.plan.executor.</code><code class="descname">SceptrePlanExecutor</code><span class="sig-paren">(</span><em>command</em>, <em>launch_order</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/plan/executor.html#SceptrePlanExecutor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.plan.executor.SceptrePlanExecutor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
+<dl class="method">
+<dt id="sceptre.plan.executor.SceptrePlanExecutor.execute">
+<code class="descname">execute</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/plan/executor.html#SceptrePlanExecutor.execute"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.plan.executor.SceptrePlanExecutor.execute" title="Permalink to this definition">¶</a></dt>
+<dd><p>Execute is responsible executing the sets of Stacks in <cite>launch_order</cite>
+concurrently, in the correct order.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>*args</strong> – Any arguments that should be passed through to the                StackAction being called.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-sceptre.plan.plan">
+<span id="sceptre-plan-plan-module"></span><h2>sceptre.plan.plan module<a class="headerlink" href="#module-sceptre.plan.plan" title="Permalink to this headline">¶</a></h2>
+<p>sceptre.plan.plan</p>
+<p>This module implements a SceptrePlan, which is responsible for holding all
+nessessary information for a command to execute.</p>
+<dl class="class">
+<dt id="sceptre.plan.plan.SceptrePlan">
+<em class="property">class </em><code class="descclassname">sceptre.plan.plan.</code><code class="descname">SceptrePlan</code><span class="sig-paren">(</span><em>context</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/plan/plan.html#SceptrePlan"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.plan.plan.SceptrePlan" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
+<dl class="method">
+<dt id="sceptre.plan.plan.SceptrePlan.cancel_stack_update">
+<code class="descname">cancel_stack_update</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/plan/plan.html#SceptrePlan.cancel_stack_update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.plan.plan.SceptrePlan.cancel_stack_update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cancels a Stack update.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A dictionary of Stacks and their cancelled statuses.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sceptre.plan.plan.SceptrePlan.continue_update_rollback">
+<code class="descname">continue_update_rollback</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/plan/plan.html#SceptrePlan.continue_update_rollback"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.plan.plan.SceptrePlan.continue_update_rollback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rolls back a Stack in the UPDATE_ROLLBACK_FAILED state to
+UPDATE_ROLLBACK_COMPLETE.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A dictionary of Stacks</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sceptre.plan.plan.SceptrePlan.create">
+<code class="descname">create</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/plan/plan.html#SceptrePlan.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.plan.plan.SceptrePlan.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates the Stack.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A dictionary of Stacks and their status.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sceptre.plan.plan.SceptrePlan.create_change_set">
+<code class="descname">create_change_set</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/plan/plan.html#SceptrePlan.create_change_set"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.plan.plan.SceptrePlan.create_change_set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a Change Set with the name <code class="docutils literal"><span class="pre">change_set_name</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>change_set_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the Change Set.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A dictionary of Stacks</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sceptre.plan.plan.SceptrePlan.delete">
+<code class="descname">delete</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/plan/plan.html#SceptrePlan.delete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.plan.plan.SceptrePlan.delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deletes the Stack.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A dictionary of Stacks and their status.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sceptre.plan.plan.SceptrePlan.delete_change_set">
+<code class="descname">delete_change_set</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/plan/plan.html#SceptrePlan.delete_change_set"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.plan.plan.SceptrePlan.delete_change_set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deletes the Change Set <code class="docutils literal"><span class="pre">change_set_name</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>change_set_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the Change Set.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A dictionary of Stacks</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sceptre.plan.plan.SceptrePlan.describe">
+<code class="descname">describe</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/plan/plan.html#SceptrePlan.describe"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.plan.plan.SceptrePlan.describe" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the a description of the Stack.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A dictionary of Stacks and their description.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sceptre.plan.plan.SceptrePlan.describe_change_set">
+<code class="descname">describe_change_set</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/plan/plan.html#SceptrePlan.describe_change_set"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.plan.plan.SceptrePlan.describe_change_set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Describes the Change Set <code class="docutils literal"><span class="pre">change_set_name</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>change_set_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the Change Set.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A dictionary of Stacks and their Change Set description.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sceptre.plan.plan.SceptrePlan.describe_events">
+<code class="descname">describe_events</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/plan/plan.html#SceptrePlan.describe_events"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.plan.plan.SceptrePlan.describe_events" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a dictionary contianing the Stack events.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A dictionary of Stacks and their CloudFormation events.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sceptre.plan.plan.SceptrePlan.describe_outputs">
+<code class="descname">describe_outputs</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/plan/plan.html#SceptrePlan.describe_outputs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.plan.plan.SceptrePlan.describe_outputs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of Stack outputs.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A dictionary of Stacks and their outputs.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sceptre.plan.plan.SceptrePlan.describe_resources">
+<code class="descname">describe_resources</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/plan/plan.html#SceptrePlan.describe_resources"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.plan.plan.SceptrePlan.describe_resources" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the logical and physical resource IDs of the Stack’s resources.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A dictionary of Stacks and their resources.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sceptre.plan.plan.SceptrePlan.estimate_cost">
+<code class="descname">estimate_cost</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/plan/plan.html#SceptrePlan.estimate_cost"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.plan.plan.SceptrePlan.estimate_cost" title="Permalink to this definition">¶</a></dt>
+<dd><p>Estimates a Stack’s cost.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A dictionary of Stacks and their estimated costs.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body">botocore.exceptions.ClientError</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sceptre.plan.plan.SceptrePlan.execute_change_set">
+<code class="descname">execute_change_set</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/plan/plan.html#SceptrePlan.execute_change_set"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.plan.plan.SceptrePlan.execute_change_set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Executes the Change Set <code class="docutils literal"><span class="pre">change_set_name</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>change_set_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the Change Set.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A dictionary of Stacks and their status.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sceptre.plan.plan.SceptrePlan.generate">
+<code class="descname">generate</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/plan/plan.html#SceptrePlan.generate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.plan.plan.SceptrePlan.generate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a generated Template for a given Stack</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A dictionary of Stacks and their template body.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sceptre.plan.plan.SceptrePlan.get_policy">
+<code class="descname">get_policy</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/plan/plan.html#SceptrePlan.get_policy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.plan.plan.SceptrePlan.get_policy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a Stack’s policy.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A dictionary of Stacks and their Stack policy.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sceptre.plan.plan.SceptrePlan.get_status">
+<code class="descname">get_status</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/plan/plan.html#SceptrePlan.get_status"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.plan.plan.SceptrePlan.get_status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the Stack’s status.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A dictionary of Stacks and their status.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body">sceptre.exceptions.StackDoesNotExistError</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sceptre.plan.plan.SceptrePlan.launch">
+<code class="descname">launch</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/plan/plan.html#SceptrePlan.launch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.plan.plan.SceptrePlan.launch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Launches the Stack.</p>
+<p>If the Stack status is create_failed or rollback_complete, the
+Stack is deleted. Launch then tries to create or update the Stack,
+depending if it already exists. If there are no updates to be
+performed, launch exits gracefully.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A dictionary of Stacks and their status.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sceptre.plan.plan.SceptrePlan.list_change_sets">
+<code class="descname">list_change_sets</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/plan/plan.html#SceptrePlan.list_change_sets"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.plan.plan.SceptrePlan.list_change_sets" title="Permalink to this definition">¶</a></dt>
+<dd><p>Lists the Stack’s Change Sets.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">TA dictionary of Stacks and their Change Sets.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sceptre.plan.plan.SceptrePlan.lock">
+<code class="descname">lock</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/plan/plan.html#SceptrePlan.lock"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.plan.plan.SceptrePlan.lock" title="Permalink to this definition">¶</a></dt>
+<dd><p>Locks the Stack by applying a deny all updates Stack policy.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A dictionary of Stacks</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sceptre.plan.plan.SceptrePlan.resolve">
+<code class="descname">resolve</code><span class="sig-paren">(</span><em>command</em>, <em>reverse=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/plan/plan.html#SceptrePlan.resolve"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.plan.plan.SceptrePlan.resolve" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sceptre.plan.plan.SceptrePlan.set_policy">
+<code class="descname">set_policy</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/plan/plan.html#SceptrePlan.set_policy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.plan.plan.SceptrePlan.set_policy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Applies a Stack policy.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>policy_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – the path of json file containing a aws policy</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A dictionary of Stacks</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sceptre.plan.plan.SceptrePlan.template">
+<code class="descname">template</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/plan/plan.html#SceptrePlan.template"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.plan.plan.SceptrePlan.template" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the CloudFormation Template used to create the Stack.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A dictionary of Stacks and their templates.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sceptre.plan.plan.SceptrePlan.unlock">
+<code class="descname">unlock</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/plan/plan.html#SceptrePlan.unlock"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.plan.plan.SceptrePlan.unlock" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unlocks the Stack by applying an allow all updates Stack policy.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A dictionary of Stacks</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sceptre.plan.plan.SceptrePlan.update">
+<code class="descname">update</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/plan/plan.html#SceptrePlan.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.plan.plan.SceptrePlan.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates the Stack.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A dictionary of Stacks and their status.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sceptre.plan.plan.SceptrePlan.validate">
+<code class="descname">validate</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/plan/plan.html#SceptrePlan.validate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.plan.plan.SceptrePlan.validate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validates the Stack’s CloudFormation template.</p>
+<p>Raises an error if the Template is invalid.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A dictionary of Stacks and their template validation information.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body">botocore.exceptions.ClientError</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sceptre.plan.plan.SceptrePlan.wait_for_cs_completion">
+<code class="descname">wait_for_cs_completion</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sceptre/plan/plan.html#SceptrePlan.wait_for_cs_completion"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sceptre.plan.plan.SceptrePlan.wait_for_cs_completion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Waits while the Stack Change Set status is “pending”.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>change_set_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the Change Set.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="sceptre.html#sceptre.stack_status.StackChangeSetStatus" title="sceptre.stack_status.StackChangeSetStatus">sceptre.stack_status.StackChangeSetStatus</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="sceptre.resolvers.html" class="btn btn-neutral float-right" title="sceptre.resolvers package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="sceptre.hooks.html" class="btn btn-neutral float-left" title="sceptre.hooks package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Cloudreach
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+    <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Read the Docs</span>
+      v: dev
+      <span class="fa fa-caret-down"></span>
+    </span>
+
+        <div class="rst-other-versions">
+            <dl id="other-versions">
+                <dt>Versions</dt>
+            </dl>
+            <dl>
+                <dt>Other Links</dt>
+                <dd>
+                    <a href="///projects//?fromdocs=">Project Home(TODO)</a>
+                </dd>
+                <dd>
+                    <a href="///builds//?fromdocs=">Builds(TODO)</a>
+                </dd>
+            </dl>
+            <hr/>
+            Free document hosting provided by <a href="http://www.readthedocs.org">Read the Docs</a>
+                .
+
+        </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                $.getScript("../../version-helper.js").done(
+                    function () {
+                        versions.forEach(function (item, index) {
+                            if (item !== "dev") {
+                                $('#other-versions').append('<dd><a href="../' + item + '">' + item + "<a/></dd>");
+                            }
+                        })
+                    });
+            });
+        </script>
+    </div>
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

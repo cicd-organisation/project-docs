@@ -1,41 +1,48 @@
 Command Line Interface
 ======================
 
-Sceptre can be used as a command line tool. Sceptre commands take the
-format:
+Sceptre can be used as a command line tool.
+Running Sceptre without a sub-command will display help, showing a list of the
+available commands.
 
-.. code:: shell
+Running Sceptre without a subcommand will display help, showing a list of the
+available commands.
 
-    $ sceptre
+Autocomplete
+------------
 
-Running sceptre without a subcommand will display help, showing a list
-of the available commands.
-
-.. code:: shell
-
-    $ sceptre COMMAND --help
+If you are using Bash you can enable autocomplete by entering the following
+command ``eval "$(_SCEPTRE_COMPLETE=source sceptre)"``. Autocomplete will work
+for subcommands and parameters.
 
 Export Stack Outputs to Environment Variables
 ---------------------------------------------
 
 Stack outputs can be exported as environment variables with the command:
 
-.. code:: shell
-
-    $ eval $(sceptre describe-stack-outputs ENVIRONMENT STACK --export=envvar)
+``eval $(sceptre --ignore-dependencies list outputs STACKGROUP/STACK.yaml --export=envvar)``
 
 Note that Sceptre prepends the string ``SCEPTRE_`` to the name of the
 environment variable:
 
-.. code:: shell
+.. code-block:: text
 
-    $ env | grep SCEPTRE
-    SCEPTRE_<output_name>=<output_value>
+   env | grep SCEPTRE
+   SCEPTRE_<output_name>=<output_value>
 
+Command reference
+-----------------
 
-Commands
---------
+Command options differ depending on the command, and can be found by running:
+
+.. code-block:: text
+
+   sceptre
+   sceptre --help
+   sceptre COMMAND --help
+
 
 .. click:: sceptre.cli:cli
   :prog: sceptre
   :show-nested:
+

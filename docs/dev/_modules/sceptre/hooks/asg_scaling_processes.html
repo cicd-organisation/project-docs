@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sceptre.hooks.asg_scaling_processes &mdash; Sceptre 1.3.3 documentation</title>
+  <title>sceptre.hooks.asg_scaling_processes &mdash; Sceptre 2.0.3 documentation</title>
   
 
   
@@ -17,32 +17,44 @@
   
 
   
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../../../',
+              VERSION:'2.0.3',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
   <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../../../about.html" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
-
-  
-  <script src="../../../_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -89,7 +101,7 @@
 <p class="caption"><span class="caption-text">Documentation</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../docs/cli.html">Command Line Interface</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../docs/environment_config.html">Environment Config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/stack_group_config.html">StackGroup Config</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../docs/stack_config.html">Stack Config</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../docs/templates.html">Templates</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../docs/hooks.html">Hooks</a></li>
@@ -102,7 +114,7 @@
 </ul>
 <p class="caption"><span class="caption-text">API</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../api/modules.html">sceptre</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../apidoc/modules.html">sceptre</a></li>
 </ul>
 
             
@@ -179,7 +191,7 @@
 <span class="kn">from</span> <span class="nn">sceptre.exceptions</span> <span class="k">import</span> <span class="n">InvalidHookArgumentValueError</span>
 
 
-<div class="viewcode-block" id="ASGScalingProcesses"><a class="viewcode-back" href="../../../api/sceptre.hooks.html#sceptre.hooks.asg_scaling_processes.ASGScalingProcesses">[docs]</a><span class="k">class</span> <span class="nc">ASGScalingProcesses</span><span class="p">(</span><span class="n">Hook</span><span class="p">):</span>
+<div class="viewcode-block" id="ASGScalingProcesses"><a class="viewcode-back" href="../../../apidoc/sceptre.hooks.html#sceptre.hooks.asg_scaling_processes.ASGScalingProcesses">[docs]</a><span class="k">class</span> <span class="nc">ASGScalingProcesses</span><span class="p">(</span><span class="n">Hook</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Resumes or suspends autoscaling group scaling processes. This is</span>
 <span class="sd">    useful as scheduled actions must be suspended when updating stacks with</span>
@@ -189,7 +201,7 @@
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">ASGScalingProcesses</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-<div class="viewcode-block" id="ASGScalingProcesses.run"><a class="viewcode-back" href="../../../api/sceptre.hooks.html#sceptre.hooks.asg_scaling_processes.ASGScalingProcesses.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="ASGScalingProcesses.run"><a class="viewcode-back" href="../../../apidoc/sceptre.hooks.html#sceptre.hooks.asg_scaling_processes.ASGScalingProcesses.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Either suspends or resumes any scaling processes on all autoscaling</span>
 <span class="sd">        groups within the current stack.</span>
@@ -271,7 +283,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Cloudreach.
+        &copy; Copyright 2018, Cloudreach
 
     </p>
   </div>
@@ -319,7 +331,6 @@
                             if (item !== "dev") {
                                 $('#other-versions').append('<dd><a href="../' + item + '">' + item + "<a/></dd>");
                             }
-
                         })
                     });
             });
@@ -327,32 +338,16 @@
     </div>
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../../../',
-            VERSION:'1.3.3',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../../../_static/jquery.js"></script>
-      <script type="text/javascript" src="../../../_static/underscore.js"></script>
-      <script type="text/javascript" src="../../../_static/doctools.js"></script>
-
-  
-
-  <script type="text/javascript" src="../../../_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

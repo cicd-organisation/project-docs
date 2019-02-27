@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Terminology &mdash; Sceptre 1.3.3 documentation</title>
+  <title>Terminology &mdash; Sceptre 2.0.3 documentation</title>
   
 
   
@@ -17,34 +17,46 @@
   
 
   
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../',
+              VERSION:'2.0.3',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Command Line Interface" href="cli.html" />
     <link rel="prev" title="Get Started" href="get_started.html" /> 
-
-  
-  <script src="../_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -86,12 +98,19 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="get_started.html">Get Started</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Terminology</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Terminology</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#sceptre-project">Sceptre Project:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sceptre-context">Sceptre Context</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sceptre-plan">Sceptre Plan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#stackgraph">StackGraph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#stackactions">StackActions</a></li>
+</ul>
+</li>
 </ul>
 <p class="caption"><span class="caption-text">Documentation</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Command Line Interface</a></li>
-<li class="toctree-l1"><a class="reference internal" href="environment_config.html">Environment Config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stack_group_config.html">StackGroup Config</a></li>
 <li class="toctree-l1"><a class="reference internal" href="stack_config.html">Stack Config</a></li>
 <li class="toctree-l1"><a class="reference internal" href="templates.html">Templates</a></li>
 <li class="toctree-l1"><a class="reference internal" href="hooks.html">Hooks</a></li>
@@ -104,7 +123,7 @@
 </ul>
 <p class="caption"><span class="caption-text">API</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../api/modules.html">sceptre</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../apidoc/modules.html">sceptre</a></li>
 </ul>
 
             
@@ -171,23 +190,24 @@
             
   <div class="section" id="terminology">
 <h1>Terminology<a class="headerlink" href="#terminology" title="Permalink to this headline">¶</a></h1>
-<p>The following terms will be used though the rest of the Sceptre
-documentation:</p>
+<p>The following terms will be used though the rest of the Sceptre documentation:</p>
+<div class="section" id="sceptre-project">
+<h2>Sceptre Project:<a class="headerlink" href="#sceptre-project" title="Permalink to this headline">¶</a></h2>
+<p>The directory which stores the top level config directory.</p>
 <ul>
-<li><p class="first"><strong>Environment Path</strong>: A slash (‘/’) separated list of directory names
-which details how to move from the top level config directory to an
-environment directory. For example, with the following directory
-structure, the environment path would simply be <code class="docutils literal notranslate"><span class="pre">dev</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>.
+<li><p class="first"><strong>Command Path</strong> The Stack or StackGroup that you want to execute a Sceptre
+command against. For example, if you want to launch <code class="docutils literal"><span class="pre">vpc.yaml</span></code> in the
+example below the command path would be <code class="docutils literal"><span class="pre">dev/vpc.yaml</span></code>.</p>
+<div class="highlight-text"><div class="highlight"><pre><span></span>.
 └── config
     └── dev
         ├── config.yaml
         └── vpc.yaml
 </pre></div>
 </div>
-<p>In the following directory structure, the environment path would be
-<code class="docutils literal notranslate"><span class="pre">account-1/dev/eu-west-1</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>.
+<p>Where as if you wanted to <code class="docutils literal"><span class="pre">delete</span></code> <code class="docutils literal"><span class="pre">account-1</span></code> in the example below the
+command path would be <code class="docutils literal"><span class="pre">account-1</span></code>.</p>
+<div class="highlight-text"><div class="highlight"><pre><span></span>.
 └── config
     └── account-1
         └── dev
@@ -197,15 +217,59 @@ structure, the environment path would simply be <code class="docutils literal no
 </pre></div>
 </div>
 </li>
-<li><p class="first"><strong>Launch</strong>: In the context of Sceptre commands, <code class="docutils literal notranslate"><span class="pre">launch</span></code> means to
-try to <code class="docutils literal notranslate"><span class="pre">create</span></code> a stack. If the stack has already been created,
-Sceptre tries to <code class="docutils literal notranslate"><span class="pre">update</span></code> the stack. If there are no updates to be
-performed, <code class="docutils literal notranslate"><span class="pre">launch</span></code> returns a zero exit code.</p>
-</li>
-<li><p class="first"><strong>Sceptre Directory</strong>: The directory which stores the top level
-config directory.</p>
-</li>
 </ul>
+</div>
+<div class="section" id="sceptre-context">
+<h2>Sceptre Context<a class="headerlink" href="#sceptre-context" title="Permalink to this headline">¶</a></h2>
+<p>Unless you go looking in the code, or you use Sceptre as a python module, you
+won’t need to worry about <code class="docutils literal"><span class="pre">SceptreContext</span></code>.</p>
+<p><code class="docutils literal"><span class="pre">SceptreContext</span></code> is a place where we hold information that is relevant to the
+project, including references to the project paths such as the path to your
+Sceptre project, templates path, config path, and the default names for your
+configuration files.</p>
+<p>If you are adding functionality to the CLI or you want to use Sceptre as a
+module you will need to create a <code class="docutils literal"><span class="pre">SceptreContext</span></code> and pass it an absolute
+path to your Sceptre project directory and the “command_path” - the path you
+are going to execute commands on.</p>
+</div>
+<div class="section" id="sceptre-plan">
+<h2>Sceptre Plan<a class="headerlink" href="#sceptre-plan" title="Permalink to this headline">¶</a></h2>
+<p>As with <code class="docutils literal"><span class="pre">SceptreContext</span></code> you shouldn’t need to interact with <code class="docutils literal"><span class="pre">SceptrePlan</span></code>
+most of the time.</p>
+<p>A <code class="docutils literal"><span class="pre">SceptrePlan</span></code> takes a <code class="docutils literal"><span class="pre">SceptreContext</span></code> and constructs everything you will
+need to execute a command against your project. After creating a
+<code class="docutils literal"><span class="pre">SceptrePlan</span></code> you will be able to call all available methods for your stacks
+and access the results from each stack. For example,</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">plan</span> <span class="o">=</span> <span class="n">SceptrePlan</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
+
+<span class="n">responses</span> <span class="o">=</span> <span class="n">plan</span><span class="o">.</span><span class="n">launch</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>##&nbsp;SceptrePlanExecutor</p>
+<p>You won’t be able to interact with the <code class="docutils literal"><span class="pre">SceptrePlanExecutor</span></code> directly but
+this part of the code is responsible for taking a <code class="docutils literal"><span class="pre">SceptrePlan</span></code> and ensuring
+all commands on every stack, are executed in the correct order, concurrently.
+The executor algorithm focuses on correctness over maximal concurrency. It know
+what to execute and when based on a <code class="docutils literal"><span class="pre">StackGraph</span></code> which is created when a
+<code class="docutils literal"><span class="pre">SceptrePlan</span></code> is created.</p>
+</div>
+<div class="section" id="stackgraph">
+<h2>StackGraph<a class="headerlink" href="#stackgraph" title="Permalink to this headline">¶</a></h2>
+<p>A <code class="docutils literal"><span class="pre">StackGraph</span></code> is a Directed Acyclic Graph where the nodes hold <code class="docutils literal"><span class="pre">Stack</span></code>
+objects and the edges represent a “depends on” relationship. The graph is
+created when a <code class="docutils literal"><span class="pre">SceptrePlan</span></code> is instantiated and is then used during the
+execution phase to ensure that stack dependency relationships are complete and
+correct. Previously, in <code class="docutils literal"><span class="pre">v1</span></code> stack dependencies were available between
+<code class="docutils literal"><span class="pre">Environments</span></code> and even within <code class="docutils literal"><span class="pre">Environments</span></code> they could be temperamental,
+this concept resolves this issue.</p>
+</div>
+<div class="section" id="stackactions">
+<h2>StackActions<a class="headerlink" href="#stackactions" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal"><span class="pre">StackActions</span></code> class takes a <code class="docutils literal"><span class="pre">Stack</span></code> object and uses the data held on
+the <code class="docutils literal"><span class="pre">Stack</span></code> when calling AWS. StackActions is used by the
+<code class="docutils literal"><span class="pre">SceptrePlanExecutor</span></code>. To add new functionality you can add a method to
+<code class="docutils literal"><span class="pre">StackActions</span></code> and it will become available to all <code class="docutils literal"><span class="pre">Stacks</span></code> in Sceptre.</p>
+</div>
 </div>
 
 
@@ -219,7 +283,7 @@ config directory.</p>
         <a href="cli.html" class="btn btn-neutral float-right" title="Command Line Interface" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="get_started.html" class="btn btn-neutral" title="Get Started" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="get_started.html" class="btn btn-neutral float-left" title="Get Started" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -228,7 +292,7 @@ config directory.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Cloudreach.
+        &copy; Copyright 2018, Cloudreach
 
     </p>
   </div>
@@ -276,7 +340,6 @@ config directory.</p>
                             if (item !== "dev") {
                                 $('#other-versions').append('<dd><a href="../' + item + '">' + item + "<a/></dd>");
                             }
-
                         })
                     });
             });
@@ -284,32 +347,16 @@ config directory.</p>
     </div>
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../',
-            VERSION:'1.3.3',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../_static/jquery.js"></script>
-      <script type="text/javascript" src="../_static/underscore.js"></script>
-      <script type="text/javascript" src="../_static/doctools.js"></script>
-
-  
-
-  <script type="text/javascript" src="../_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

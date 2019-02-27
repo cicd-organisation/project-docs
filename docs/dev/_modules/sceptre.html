@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sceptre &mdash; Sceptre 1.3.3 documentation</title>
+  <title>sceptre &mdash; Sceptre 2.0.3 documentation</title>
   
 
   
@@ -17,32 +17,44 @@
   
 
   
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../',
+              VERSION:'2.0.3',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" /> 
-
-  
-  <script src="../_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -89,7 +101,7 @@
 <p class="caption"><span class="caption-text">Documentation</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../docs/cli.html">Command Line Interface</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../docs/environment_config.html">Environment Config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/stack_group_config.html">StackGroup Config</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../docs/stack_config.html">Stack Config</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../docs/templates.html">Templates</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../docs/hooks.html">Hooks</a></li>
@@ -102,7 +114,7 @@
 </ul>
 <p class="caption"><span class="caption-text">API</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../api/modules.html">sceptre</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../apidoc/modules.html">sceptre</a></li>
 </ul>
 
             
@@ -173,13 +185,13 @@
 
 <span class="n">__author__</span> <span class="o">=</span> <span class="s1">&#39;Cloudreach&#39;</span>
 <span class="n">__email__</span> <span class="o">=</span> <span class="s1">&#39;sceptre@cloudreach.com&#39;</span>
-<span class="n">__version__</span> <span class="o">=</span> <span class="s1">&#39;1.3.3&#39;</span>
+<span class="n">__version__</span> <span class="o">=</span> <span class="s1">&#39;2.0.3&#39;</span>
 
 
 <span class="c1"># Set up logging to ``/dev/null`` like a library is supposed to.</span>
 <span class="c1"># http://docs.python.org/3.3/howto/logging.html#configuring-logging-for-a-library</span>
-<div class="viewcode-block" id="NullHandler"><a class="viewcode-back" href="../api/sceptre.html#sceptre.NullHandler">[docs]</a><span class="k">class</span> <span class="nc">NullHandler</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">Handler</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
-<div class="viewcode-block" id="NullHandler.emit"><a class="viewcode-back" href="../api/sceptre.html#sceptre.NullHandler.emit">[docs]</a>    <span class="k">def</span> <span class="nf">emit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">):</span>
+<div class="viewcode-block" id="NullHandler"><a class="viewcode-back" href="../apidoc/sceptre.html#sceptre.NullHandler">[docs]</a><span class="k">class</span> <span class="nc">NullHandler</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">Handler</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+<div class="viewcode-block" id="NullHandler.emit"><a class="viewcode-back" href="../apidoc/sceptre.html#sceptre.NullHandler.emit">[docs]</a>    <span class="k">def</span> <span class="nf">emit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">):</span>
         <span class="k">pass</span></div></div>
 
 
@@ -196,7 +208,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Cloudreach.
+        &copy; Copyright 2018, Cloudreach
 
     </p>
   </div>
@@ -244,7 +256,6 @@
                             if (item !== "dev") {
                                 $('#other-versions').append('<dd><a href="../' + item + '">' + item + "<a/></dd>");
                             }
-
                         })
                     });
             });
@@ -252,32 +263,16 @@
     </div>
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../',
-            VERSION:'1.3.3',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../_static/jquery.js"></script>
-      <script type="text/javascript" src="../_static/underscore.js"></script>
-      <script type="text/javascript" src="../_static/doctools.js"></script>
-
-  
-
-  <script type="text/javascript" src="../_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

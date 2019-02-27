@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sceptre.connection_manager &mdash; Sceptre 1.3.3 documentation</title>
+  <title>sceptre.connection_manager &mdash; Sceptre 2.0.3 documentation</title>
   
 
   
@@ -17,32 +17,44 @@
   
 
   
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../../',
+              VERSION:'2.0.3',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
   <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../../about.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
-
-  
-  <script src="../../_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -89,7 +101,7 @@
 <p class="caption"><span class="caption-text">Documentation</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../docs/cli.html">Command Line Interface</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../docs/environment_config.html">Environment Config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../docs/stack_group_config.html">StackGroup Config</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../docs/stack_config.html">Stack Config</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../docs/templates.html">Templates</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../docs/hooks.html">Hooks</a></li>
@@ -102,7 +114,7 @@
 </ul>
 <p class="caption"><span class="caption-text">API</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../api/modules.html">sceptre</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../apidoc/modules.html">sceptre</a></li>
 </ul>
 
             
@@ -173,7 +185,7 @@
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">sceptre.connection_manager</span>
 
-<span class="sd">This module implements a ConnectionManager class, which simplifies and  manages</span>
+<span class="sd">This module implements a ConnectionManager class, which simplifies and manages</span>
 <span class="sd">Boto3 calls.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
@@ -198,7 +210,7 @@
 <span class="sd">    hit 30 times, _retry_boto_call raises a</span>
 <span class="sd">    sceptre.exceptions.RetryLimitExceededException.</span>
 
-<span class="sd">    :param func: a function that uses boto calls</span>
+<span class="sd">    :param func: A function that uses boto calls</span>
 <span class="sd">    :type func: function</span>
 <span class="sd">    :returns: The decorated function.</span>
 <span class="sd">    :rtype: function</span>
@@ -229,14 +241,14 @@
     <span class="k">return</span> <span class="n">decorated</span>
 
 
-<div class="viewcode-block" id="ConnectionManager"><a class="viewcode-back" href="../../api/sceptre.html#sceptre.connection_manager.ConnectionManager">[docs]</a><span class="k">class</span> <span class="nc">ConnectionManager</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="ConnectionManager"><a class="viewcode-back" href="../../apidoc/sceptre.html#sceptre.connection_manager.ConnectionManager">[docs]</a><span class="k">class</span> <span class="nc">ConnectionManager</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    The Connection Manager should be used to create boto3 clients for</span>
-<span class="sd">    the various AWS services that we need to interact with.</span>
+<span class="sd">    The Connection Manager is used to create boto3 clients for</span>
+<span class="sd">    the various AWS services that Sceptre needs to interact with.</span>
 
-<span class="sd">    :param profile: The aws credential profile that should be used.</span>
+<span class="sd">    :param profile: The AWS credentials profile that should be used.</span>
 <span class="sd">    :type profile: str</span>
-<span class="sd">    :param stack_name: The cloudformation stack name for this connection.</span>
+<span class="sd">    :param stack_name: The CloudFormation stack name for this connection.</span>
 <span class="sd">    :type stack_name: str</span>
 <span class="sd">    :param region: The region to use.</span>
 <span class="sd">    :type region: str</span>
@@ -272,7 +284,7 @@
 
 <span class="sd">        If a ``profile`` is specified in ConnectionManager&#39;s initialiser,</span>
 <span class="sd">        then the profile is used to generate temporary credentials to create</span>
-<span class="sd">        the boto session. If ``profile`` is not specified then the default</span>
+<span class="sd">        the Boto session. If ``profile`` is not specified then the default</span>
 <span class="sd">        profile is assumed to create the boto session.</span>
 
 <span class="sd">        :returns: The Boto3 session.</span>
@@ -289,10 +301,13 @@
 
                 <span class="c1"># Credentials from env take priority over profile</span>
                 <span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
-                  <span class="s2">&quot;profile_name&quot;</span><span class="p">:</span> <span class="n">profile</span><span class="p">,</span>
-                  <span class="s2">&quot;region_name&quot;</span><span class="p">:</span> <span class="n">region</span><span class="p">,</span>
-                  <span class="s2">&quot;aws_access_key_id&quot;</span><span class="p">:</span> <span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;AWS_ACCESS_KEY_ID&quot;</span><span class="p">),</span>
-                  <span class="s2">&quot;aws_secret_access_key&quot;</span><span class="p">:</span> <span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;AWS_SECRET_ACCESS_KEY&quot;</span><span class="p">)</span>
+                    <span class="s2">&quot;profile_name&quot;</span><span class="p">:</span> <span class="n">profile</span><span class="p">,</span>
+                    <span class="s2">&quot;region_name&quot;</span><span class="p">:</span> <span class="n">region</span><span class="p">,</span>
+                    <span class="s2">&quot;aws_access_key_id&quot;</span><span class="p">:</span> <span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;AWS_ACCESS_KEY_ID&quot;</span><span class="p">),</span>
+                    <span class="s2">&quot;aws_secret_access_key&quot;</span><span class="p">:</span> <span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+                        <span class="s2">&quot;AWS_SECRET_ACCESS_KEY&quot;</span>
+                    <span class="p">),</span>
+                    <span class="s2">&quot;aws_session_token&quot;</span><span class="p">:</span> <span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;AWS_SESSION_TOKEN&quot;</span><span class="p">)</span>
                 <span class="p">}</span>
 
                 <span class="n">session</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">Session</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">)</span>
@@ -339,13 +354,13 @@
                 <span class="p">)</span><span class="o">.</span><span class="n">client</span><span class="p">(</span><span class="n">service</span><span class="p">)</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_clients</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
 
-<div class="viewcode-block" id="ConnectionManager.call"><a class="viewcode-back" href="../../api/sceptre.html#sceptre.connection_manager.ConnectionManager.call">[docs]</a>    <span class="nd">@_retry_boto_call</span>
+<div class="viewcode-block" id="ConnectionManager.call"><a class="viewcode-back" href="../../apidoc/sceptre.html#sceptre.connection_manager.ConnectionManager.call">[docs]</a>    <span class="nd">@_retry_boto_call</span>
     <span class="k">def</span> <span class="nf">call</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">service</span><span class="p">,</span> <span class="n">command</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">profile</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">region</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">stack_name</span><span class="o">=</span><span class="kc">None</span>
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Makes a threadsafe Boto3 client call.</span>
+<span class="sd">        Makes a thread-safe Boto3 client call.</span>
 
 <span class="sd">        Equivalent to ``boto3.client(&lt;service&gt;).&lt;command&gt;(**kwargs)``.</span>
 
@@ -381,7 +396,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Cloudreach.
+        &copy; Copyright 2018, Cloudreach
 
     </p>
   </div>
@@ -429,7 +444,6 @@
                             if (item !== "dev") {
                                 $('#other-versions').append('<dd><a href="../' + item + '">' + item + "<a/></dd>");
                             }
-
                         })
                     });
             });
@@ -437,32 +451,16 @@
     </div>
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../../',
-            VERSION:'1.3.3',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../../_static/jquery.js"></script>
-      <script type="text/javascript" src="../../_static/underscore.js"></script>
-      <script type="text/javascript" src="../../_static/doctools.js"></script>
-
-  
-
-  <script type="text/javascript" src="../../_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

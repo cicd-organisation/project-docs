@@ -9,7 +9,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Index &mdash; Sceptre 1.3.3 documentation</title>
+  <title>Index &mdash; Sceptre 2.0.3 documentation</title>
   
 
   
@@ -18,32 +18,44 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'./',
+              VERSION:'2.0.3',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="#" />
     <link rel="search" title="Search" href="search.html" /> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -90,7 +102,7 @@
 <p class="caption"><span class="caption-text">Documentation</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="docs/cli.html">Command Line Interface</a></li>
-<li class="toctree-l1"><a class="reference internal" href="docs/environment_config.html">Environment Config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/stack_group_config.html">StackGroup Config</a></li>
 <li class="toctree-l1"><a class="reference internal" href="docs/stack_config.html">Stack Config</a></li>
 <li class="toctree-l1"><a class="reference internal" href="docs/templates.html">Templates</a></li>
 <li class="toctree-l1"><a class="reference internal" href="docs/hooks.html">Hooks</a></li>
@@ -103,7 +115,7 @@
 </ul>
 <p class="caption"><span class="caption-text">API</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="api/modules.html">sceptre</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apidoc/modules.html">sceptre</a></li>
 </ul>
 
             
@@ -210,6 +222,13 @@
 </li>
       </ul></li>
       <li>
+    --ignore-dependencies
+
+      <ul>
+        <li><a href="docs/cli.html#cmdoption-sceptre-ignore-dependencies">sceptre command line option</a>
+</li>
+      </ul></li>
+      <li>
     --no-colour
 
       <ul>
@@ -297,11 +316,11 @@
 <h2 id="A">A</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/sceptre.hooks.html#sceptre.hooks.add_stack_hooks">add_stack_hooks() (in module sceptre.hooks)</a>
+      <li><a href="apidoc/sceptre.hooks.html#sceptre.hooks.add_stack_hooks">add_stack_hooks() (in module sceptre.hooks)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/sceptre.hooks.html#sceptre.hooks.asg_scaling_processes.ASGScalingProcesses">ASGScalingProcesses (class in sceptre.hooks.asg_scaling_processes)</a>
+      <li><a href="apidoc/sceptre.hooks.html#sceptre.hooks.asg_scaling_processes.ASGScalingProcesses">ASGScalingProcesses (class in sceptre.hooks.asg_scaling_processes)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -309,7 +328,7 @@
 <h2 id="B">B</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/sceptre.html#sceptre.template.Template.body">body (sceptre.template.Template attribute)</a>
+      <li><a href="apidoc/sceptre.html#sceptre.template.Template.body">body (sceptre.template.Template attribute)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -317,15 +336,17 @@
 <h2 id="C">C</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/sceptre.html#sceptre.connection_manager.ConnectionManager.call">call() (sceptre.connection_manager.ConnectionManager method)</a>
+      <li><a href="apidoc/sceptre.html#sceptre.connection_manager.ConnectionManager.call">call() (sceptre.connection_manager.ConnectionManager method)</a>
 </li>
-      <li><a href="api/sceptre.html#sceptre.helpers.camel_to_snake_case">camel_to_snake_case() (in module sceptre.helpers)</a>
+      <li><a href="apidoc/sceptre.plan.html#sceptre.plan.actions.StackActions.cancel_stack_update">cancel_stack_update() (sceptre.plan.actions.StackActions method)</a>
+
+      <ul>
+        <li><a href="apidoc/sceptre.plan.html#sceptre.plan.plan.SceptrePlan.cancel_stack_update">(sceptre.plan.plan.SceptrePlan method)</a>
 </li>
-      <li><a href="api/sceptre.html#sceptre.stack.Stack.cancel_stack_update">cancel_stack_update() (sceptre.stack.Stack method)</a>
+      </ul></li>
+      <li><a href="apidoc/sceptre.html#sceptre.exceptions.CannotUpdateFailedStackError">CannotUpdateFailedStackError</a>
 </li>
-      <li><a href="api/sceptre.html#sceptre.exceptions.CannotUpdateFailedStackError">CannotUpdateFailedStackError</a>
-</li>
-      <li><a href="api/sceptre.cli.html#sceptre.cli.helpers.catch_exceptions">catch_exceptions() (in module sceptre.cli.helpers)</a>
+      <li><a href="apidoc/sceptre.cli.html#sceptre.cli.helpers.catch_exceptions">catch_exceptions() (in module sceptre.cli.helpers)</a>
 </li>
       <li>
     CHANGE_SET_NAME
@@ -340,41 +361,55 @@
         <li><a href="docs/cli.html#cmdoption-sceptre-execute-arg-change-set-name">sceptre-execute command line option</a>
 </li>
       </ul></li>
-      <li><a href="api/sceptre.html#sceptre.exceptions.CircularDependenciesError">CircularDependenciesError</a>
+      <li><a href="apidoc/sceptre.config.html#sceptre.config.strategies.child_wins">child_wins() (in module sceptre.config.strategies)</a>
 </li>
-      <li><a href="api/sceptre.hooks.html#sceptre.hooks.cmd.Cmd">Cmd (class in sceptre.hooks.cmd)</a>
+      <li><a href="apidoc/sceptre.html#sceptre.exceptions.CircularDependenciesError">CircularDependenciesError</a>
 </li>
-      <li><a href="api/sceptre.html#sceptre.stack_status_colourer.StackStatusColourer.colour">colour() (sceptre.stack_status_colourer.StackStatusColourer method)</a>
+      <li><a href="apidoc/sceptre.hooks.html#sceptre.hooks.cmd.Cmd">Cmd (class in sceptre.hooks.cmd)</a>
+</li>
+      <li><a href="apidoc/sceptre.html#sceptre.stack_status_colourer.StackStatusColourer.colour">colour() (sceptre.stack_status_colourer.StackStatusColourer method)</a>
+</li>
+      <li><a href="apidoc/sceptre.cli.html#sceptre.cli.helpers.ColouredFormatter">ColouredFormatter (class in sceptre.cli.helpers)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/sceptre.cli.html#sceptre.cli.helpers.ColouredFormatter">ColouredFormatter (class in sceptre.cli.helpers)</a>
+      <li><a href="apidoc/sceptre.html#sceptre.context.SceptreContext.command_path_is_stack">command_path_is_stack() (sceptre.context.SceptreContext method)</a>
 </li>
-      <li><a href="api/sceptre.html#sceptre.stack_status.StackStatus.COMPLETE">COMPLETE (sceptre.stack_status.StackStatus attribute)</a>
+      <li><a href="apidoc/sceptre.html#sceptre.stack_status.StackStatus.COMPLETE">COMPLETE (sceptre.stack_status.StackStatus attribute)</a>
 </li>
-      <li><a href="api/sceptre.html#sceptre.config_reader.ConfigAttributes">ConfigAttributes (in module sceptre.config_reader)</a>
+      <li><a href="apidoc/sceptre.config.html#sceptre.config.reader.ConfigAttributes">ConfigAttributes (in module sceptre.config.reader)</a>
 </li>
-      <li><a href="api/sceptre.html#sceptre.exceptions.ConfigFileNotFoundError">ConfigFileNotFoundError</a>
+      <li><a href="apidoc/sceptre.html#sceptre.exceptions.ConfigFileNotFoundError">ConfigFileNotFoundError</a>
 </li>
-      <li><a href="api/sceptre.html#sceptre.exceptions.ConfigItemNotFoundError">ConfigItemNotFoundError</a>
+      <li><a href="apidoc/sceptre.config.html#sceptre.config.reader.ConfigReader">ConfigReader (class in sceptre.config.reader)</a>
 </li>
-      <li><a href="api/sceptre.html#sceptre.config_reader.ConfigReader">ConfigReader (class in sceptre.config_reader)</a>
+      <li><a href="apidoc/sceptre.cli.html#sceptre.cli.helpers.confirmation">confirmation() (in module sceptre.cli.helpers)</a>
 </li>
-      <li><a href="api/sceptre.cli.html#sceptre.cli.helpers.confirmation">confirmation() (in module sceptre.cli.helpers)</a>
+      <li><a href="apidoc/sceptre.html#sceptre.connection_manager.ConnectionManager">ConnectionManager (class in sceptre.connection_manager)</a>
 </li>
-      <li><a href="api/sceptre.html#sceptre.connection_manager.ConnectionManager">ConnectionManager (class in sceptre.connection_manager)</a>
+      <li><a href="apidoc/sceptre.config.html#sceptre.config.reader.ConfigReader.construct_stacks">construct_stacks() (sceptre.config.reader.ConfigReader method)</a>
 </li>
-      <li><a href="api/sceptre.html#sceptre.config_reader.ConfigReader.construct_environment">construct_environment() (sceptre.config_reader.ConfigReader method)</a>
+      <li><a href="apidoc/sceptre.plan.html#sceptre.plan.actions.StackActions.continue_update_rollback">continue_update_rollback() (sceptre.plan.actions.StackActions method)</a>
+
+      <ul>
+        <li><a href="apidoc/sceptre.plan.html#sceptre.plan.plan.SceptrePlan.continue_update_rollback">(sceptre.plan.plan.SceptrePlan method)</a>
 </li>
-      <li><a href="api/sceptre.html#sceptre.config_reader.ConfigReader.construct_stack">construct_stack() (sceptre.config_reader.ConfigReader method)</a>
+      </ul></li>
+      <li><a href="apidoc/sceptre.config.html#sceptre.config.graph.StackGraph.count_dependencies">count_dependencies() (sceptre.config.graph.StackGraph method)</a>
 </li>
-      <li><a href="api/sceptre.html#sceptre.stack.Stack.continue_update_rollback">continue_update_rollback() (sceptre.stack.Stack method)</a>
+      <li><a href="apidoc/sceptre.plan.html#sceptre.plan.actions.StackActions.create">create() (sceptre.plan.actions.StackActions method)</a>
+
+      <ul>
+        <li><a href="apidoc/sceptre.plan.html#sceptre.plan.plan.SceptrePlan.create">(sceptre.plan.plan.SceptrePlan method)</a>
 </li>
-      <li><a href="api/sceptre.html#sceptre.stack.Stack.create">create() (sceptre.stack.Stack method)</a>
+      </ul></li>
+      <li><a href="apidoc/sceptre.plan.html#sceptre.plan.actions.StackActions.create_change_set">create_change_set() (sceptre.plan.actions.StackActions method)</a>
+
+      <ul>
+        <li><a href="apidoc/sceptre.plan.html#sceptre.plan.plan.SceptrePlan.create_change_set">(sceptre.plan.plan.SceptrePlan method)</a>
 </li>
-      <li><a href="api/sceptre.html#sceptre.stack.Stack.create_change_set">create_change_set() (sceptre.stack.Stack method)</a>
-</li>
-      <li><a href="api/sceptre.cli.html#sceptre.cli.helpers.CustomJsonEncoder">CustomJsonEncoder (class in sceptre.cli.helpers)</a>
+      </ul></li>
+      <li><a href="apidoc/sceptre.cli.html#sceptre.cli.helpers.CustomJsonEncoder">CustomJsonEncoder (class in sceptre.cli.helpers)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -382,70 +417,93 @@
 <h2 id="D">D</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/sceptre.cli.html#sceptre.cli.helpers.CustomJsonEncoder.default">default() (sceptre.cli.helpers.CustomJsonEncoder method)</a>
+      <li><a href="apidoc/sceptre.cli.html#sceptre.cli.helpers.CustomJsonEncoder.default">default() (sceptre.cli.helpers.CustomJsonEncoder method)</a>
 </li>
-      <li><a href="api/sceptre.html#sceptre.stack_status.StackChangeSetStatus.DEFUNCT">DEFUNCT (sceptre.stack_status.StackChangeSetStatus attribute)</a>
+      <li><a href="apidoc/sceptre.html#sceptre.stack_status.StackChangeSetStatus.DEFUNCT">DEFUNCT (sceptre.stack_status.StackChangeSetStatus attribute)</a>
 </li>
-      <li><a href="api/sceptre.html#sceptre.environment.Environment.delete">delete() (sceptre.environment.Environment method)</a>
+      <li><a href="apidoc/sceptre.plan.html#sceptre.plan.actions.StackActions.delete">delete() (sceptre.plan.actions.StackActions method)</a>
 
       <ul>
-        <li><a href="api/sceptre.html#sceptre.stack.Stack.delete">(sceptre.stack.Stack method)</a>
+        <li><a href="apidoc/sceptre.plan.html#sceptre.plan.plan.SceptrePlan.delete">(sceptre.plan.plan.SceptrePlan method)</a>
 </li>
       </ul></li>
-      <li><a href="api/sceptre.html#sceptre.stack.Stack.delete_change_set">delete_change_set() (sceptre.stack.Stack method)</a>
+      <li><a href="apidoc/sceptre.plan.html#sceptre.plan.actions.StackActions.delete_change_set">delete_change_set() (sceptre.plan.actions.StackActions method)</a>
+
+      <ul>
+        <li><a href="apidoc/sceptre.plan.html#sceptre.plan.plan.SceptrePlan.delete_change_set">(sceptre.plan.plan.SceptrePlan method)</a>
 </li>
-      <li><a href="api/sceptre.html#sceptre.exceptions.DependencyStackMissingOutputError">DependencyStackMissingOutputError</a>
+      </ul></li>
+      <li><a href="apidoc/sceptre.html#sceptre.exceptions.DependencyStackMissingOutputError">DependencyStackMissingOutputError</a>
 </li>
-      <li><a href="api/sceptre.html#sceptre.exceptions.DependencyStackNotLaunchedError">DependencyStackNotLaunchedError</a>
+      <li><a href="apidoc/sceptre.html#sceptre.exceptions.DependencyStackNotLaunchedError">DependencyStackNotLaunchedError</a>
 </li>
+      <li><a href="apidoc/sceptre.plan.html#sceptre.plan.actions.StackActions.describe">describe() (sceptre.plan.actions.StackActions method)</a>
+
+      <ul>
+        <li><a href="apidoc/sceptre.plan.html#sceptre.plan.plan.SceptrePlan.describe">(sceptre.plan.plan.SceptrePlan method)</a>
+</li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/sceptre.html#sceptre.environment.Environment.describe">describe() (sceptre.environment.Environment method)</a>
+      <li><a href="apidoc/sceptre.plan.html#sceptre.plan.actions.StackActions.describe_change_set">describe_change_set() (sceptre.plan.actions.StackActions method)</a>
 
       <ul>
-        <li><a href="api/sceptre.html#sceptre.stack.Stack.describe">(sceptre.stack.Stack method)</a>
+        <li><a href="apidoc/sceptre.plan.html#sceptre.plan.plan.SceptrePlan.describe_change_set">(sceptre.plan.plan.SceptrePlan method)</a>
 </li>
       </ul></li>
-      <li><a href="api/sceptre.html#sceptre.stack.Stack.describe_change_set">describe_change_set() (sceptre.stack.Stack method)</a>
-</li>
-      <li><a href="api/sceptre.html#sceptre.stack.Stack.describe_events">describe_events() (sceptre.stack.Stack method)</a>
-</li>
-      <li><a href="api/sceptre.html#sceptre.stack.Stack.describe_outputs">describe_outputs() (sceptre.stack.Stack method)</a>
-</li>
-      <li><a href="api/sceptre.html#sceptre.environment.Environment.describe_resources">describe_resources() (sceptre.environment.Environment method)</a>
+      <li><a href="apidoc/sceptre.plan.html#sceptre.plan.actions.StackActions.describe_events">describe_events() (sceptre.plan.actions.StackActions method)</a>
 
       <ul>
-        <li><a href="api/sceptre.html#sceptre.stack.Stack.describe_resources">(sceptre.stack.Stack method)</a>
+        <li><a href="apidoc/sceptre.plan.html#sceptre.plan.plan.SceptrePlan.describe_events">(sceptre.plan.plan.SceptrePlan method)</a>
 </li>
       </ul></li>
+      <li><a href="apidoc/sceptre.plan.html#sceptre.plan.actions.StackActions.describe_outputs">describe_outputs() (sceptre.plan.actions.StackActions method)</a>
+
+      <ul>
+        <li><a href="apidoc/sceptre.plan.html#sceptre.plan.plan.SceptrePlan.describe_outputs">(sceptre.plan.plan.SceptrePlan method)</a>
+</li>
+      </ul></li>
+      <li><a href="apidoc/sceptre.plan.html#sceptre.plan.actions.StackActions.describe_resources">describe_resources() (sceptre.plan.actions.StackActions method)</a>
+
+      <ul>
+        <li><a href="apidoc/sceptre.plan.html#sceptre.plan.plan.SceptrePlan.describe_resources">(sceptre.plan.plan.SceptrePlan method)</a>
+</li>
+      </ul></li>
+      <li><a href="apidoc/sceptre.config.html#sceptre.config.strategies.dict_merge">dict_merge() (in module sceptre.config.strategies)</a>
+</li>
   </ul></td>
 </tr></table>
 
 <h2 id="E">E</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/sceptre.html#sceptre.NullHandler.emit">emit() (sceptre.NullHandler method)</a>
-</li>
-      <li>
-    ENVIRONMENT
+      <li><a href="apidoc/sceptre.config.html#sceptre.config.NullHandler.emit">emit() (sceptre.config.NullHandler method)</a>
 
       <ul>
-        <li><a href="docs/cli.html#cmdoption-sceptre-init-env-arg-environment">sceptre-init-env command line option</a>
+        <li><a href="apidoc/sceptre.html#sceptre.NullHandler.emit">(sceptre.NullHandler method)</a>
+</li>
+        <li><a href="apidoc/sceptre.plan.html#sceptre.plan.NullHandler.emit">(sceptre.plan.NullHandler method)</a>
 </li>
       </ul></li>
-      <li><a href="api/sceptre.html#sceptre.environment.Environment">Environment (class in sceptre.environment)</a>
+      <li><a href="apidoc/sceptre.resolvers.html#sceptre.resolvers.environment_variable.EnvironmentVariable">EnvironmentVariable (class in sceptre.resolvers.environment_variable)</a>
 </li>
+      <li><a href="apidoc/sceptre.plan.html#sceptre.plan.actions.StackActions.estimate_cost">estimate_cost() (sceptre.plan.actions.StackActions method)</a>
+
+      <ul>
+        <li><a href="apidoc/sceptre.plan.html#sceptre.plan.plan.SceptrePlan.estimate_cost">(sceptre.plan.plan.SceptrePlan method)</a>
+</li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/sceptre.html#sceptre.exceptions.EnvironmentNotFoundError">EnvironmentNotFoundError</a>
+      <li><a href="apidoc/sceptre.plan.html#sceptre.plan.executor.SceptrePlanExecutor.execute">execute() (sceptre.plan.executor.SceptrePlanExecutor method)</a>
 </li>
-      <li><a href="api/sceptre.resolvers.html#sceptre.resolvers.environment_variable.EnvironmentVariable">EnvironmentVariable (class in sceptre.resolvers.environment_variable)</a>
+      <li><a href="apidoc/sceptre.plan.html#sceptre.plan.actions.StackActions.execute_change_set">execute_change_set() (sceptre.plan.actions.StackActions method)</a>
+
+      <ul>
+        <li><a href="apidoc/sceptre.plan.html#sceptre.plan.plan.SceptrePlan.execute_change_set">(sceptre.plan.plan.SceptrePlan method)</a>
 </li>
-      <li><a href="api/sceptre.html#sceptre.template.Template.estimate_cost">estimate_cost() (sceptre.template.Template method)</a>
-</li>
-      <li><a href="api/sceptre.html#sceptre.stack.Stack.execute_change_set">execute_change_set() (sceptre.stack.Stack method)</a>
-</li>
-      <li><a href="api/sceptre.hooks.html#sceptre.hooks.execute_hooks">execute_hooks() (in module sceptre.hooks)</a>
+      </ul></li>
+      <li><a href="apidoc/sceptre.hooks.html#sceptre.hooks.execute_hooks">execute_hooks() (in module sceptre.hooks)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -453,13 +511,21 @@
 <h2 id="F">F</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/sceptre.html#sceptre.stack_status.StackStatus.FAILED">FAILED (sceptre.stack_status.StackStatus attribute)</a>
+      <li><a href="apidoc/sceptre.html#sceptre.stack_status.StackStatus.FAILED">FAILED (sceptre.stack_status.StackStatus attribute)</a>
+</li>
+      <li><a href="apidoc/sceptre.resolvers.html#sceptre.resolvers.file_contents.FileContents">FileContents (class in sceptre.resolvers.file_contents)</a>
+</li>
+      <li><a href="apidoc/sceptre.config.html#sceptre.config.graph.StackGraph.filtered">filtered() (sceptre.config.graph.StackGraph method)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/sceptre.resolvers.html#sceptre.resolvers.file_contents.FileContents">FileContents (class in sceptre.resolvers.file_contents)</a>
+      <li><a href="apidoc/sceptre.cli.html#sceptre.cli.helpers.ColouredFormatter.format">format() (sceptre.cli.helpers.ColouredFormatter method)</a>
 </li>
-      <li><a href="api/sceptre.cli.html#sceptre.cli.helpers.ColouredFormatter.format">format() (sceptre.cli.helpers.ColouredFormatter method)</a>
+      <li><a href="apidoc/sceptre.html#sceptre.context.SceptreContext.full_command_path">full_command_path() (sceptre.context.SceptreContext method)</a>
+</li>
+      <li><a href="apidoc/sceptre.html#sceptre.context.SceptreContext.full_config_path">full_config_path() (sceptre.context.SceptreContext method)</a>
+</li>
+      <li><a href="apidoc/sceptre.html#sceptre.context.SceptreContext.full_templates_path">full_templates_path() (sceptre.context.SceptreContext method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -467,35 +533,43 @@
 <h2 id="G">G</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/sceptre.html#sceptre.template.Template.get_boto_call_parameter">get_boto_call_parameter() (sceptre.template.Template method)</a>
+      <li><a href="apidoc/sceptre.plan.html#sceptre.plan.actions.StackActions.generate">generate() (sceptre.plan.actions.StackActions method)</a>
+
+      <ul>
+        <li><a href="apidoc/sceptre.plan.html#sceptre.plan.plan.SceptrePlan.generate">(sceptre.plan.plan.SceptrePlan method)</a>
 </li>
-      <li><a href="api/sceptre.html#sceptre.helpers.get_external_stack_name">get_external_stack_name() (in module sceptre.helpers)</a>
+      </ul></li>
+      <li><a href="apidoc/sceptre.html#sceptre.template.Template.get_boto_call_parameter">get_boto_call_parameter() (sceptre.template.Template method)</a>
 </li>
-      <li><a href="api/sceptre.html#sceptre.helpers.get_name_tuple">get_name_tuple() (in module sceptre.helpers)</a>
+      <li><a href="apidoc/sceptre.html#sceptre.helpers.get_external_stack_name">get_external_stack_name() (in module sceptre.helpers)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/sceptre.html#sceptre.stack.Stack.get_policy">get_policy() (sceptre.stack.Stack method)</a>
+      <li><a href="apidoc/sceptre.plan.html#sceptre.plan.actions.StackActions.get_policy">get_policy() (sceptre.plan.actions.StackActions method)</a>
+
+      <ul>
+        <li><a href="apidoc/sceptre.plan.html#sceptre.plan.plan.SceptrePlan.get_policy">(sceptre.plan.plan.SceptrePlan method)</a>
 </li>
-      <li><a href="api/sceptre.cli.html#sceptre.cli.helpers.get_stack_or_env">get_stack_or_env() (in module sceptre.cli.helpers)</a>
+      </ul></li>
+      <li><a href="apidoc/sceptre.plan.html#sceptre.plan.actions.StackActions.get_status">get_status() (sceptre.plan.actions.StackActions method)</a>
+
+      <ul>
+        <li><a href="apidoc/sceptre.plan.html#sceptre.plan.plan.SceptrePlan.get_status">(sceptre.plan.plan.SceptrePlan method)</a>
 </li>
-      <li><a href="api/sceptre.html#sceptre.stack.Stack.get_status">get_status() (sceptre.stack.Stack method)</a>
-</li>
-      <li><a href="api/sceptre.html#sceptre.helpers.get_subclasses">get_subclasses() (in module sceptre.helpers)</a>
-</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
 <h2 id="H">H</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/sceptre.hooks.html#sceptre.hooks.Hook">Hook (class in sceptre.hooks)</a>
+      <li><a href="apidoc/sceptre.hooks.html#sceptre.hooks.Hook">Hook (class in sceptre.hooks)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/sceptre.hooks.html#sceptre.hooks.HookProperty">HookProperty (class in sceptre.hooks)</a>
+      <li><a href="apidoc/sceptre.hooks.html#sceptre.hooks.HookProperty">HookProperty (class in sceptre.hooks)</a>
 </li>
-      <li><a href="api/sceptre.html#sceptre.stack.Stack.hooks">hooks (sceptre.stack.Stack attribute)</a>
+      <li><a href="apidoc/sceptre.html#sceptre.stack.Stack.hooks">hooks (sceptre.stack.Stack attribute)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -503,19 +577,17 @@
 <h2 id="I">I</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/sceptre.html#sceptre.stack_status.StackStatus.IN_PROGRESS">IN_PROGRESS (sceptre.stack_status.StackStatus attribute)</a>
+      <li><a href="apidoc/sceptre.html#sceptre.stack_status.StackStatus.IN_PROGRESS">IN_PROGRESS (sceptre.stack_status.StackStatus attribute)</a>
 </li>
-      <li><a href="api/sceptre.html#sceptre.exceptions.InvalidEnvironmentPathError">InvalidEnvironmentPathError</a>
-</li>
-      <li><a href="api/sceptre.html#sceptre.exceptions.InvalidHookArgumentSyntaxError">InvalidHookArgumentSyntaxError</a>
+      <li><a href="apidoc/sceptre.html#sceptre.exceptions.InvalidHookArgumentSyntaxError">InvalidHookArgumentSyntaxError</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/sceptre.html#sceptre.exceptions.InvalidHookArgumentTypeError">InvalidHookArgumentTypeError</a>
+      <li><a href="apidoc/sceptre.html#sceptre.exceptions.InvalidHookArgumentTypeError">InvalidHookArgumentTypeError</a>
 </li>
-      <li><a href="api/sceptre.html#sceptre.exceptions.InvalidHookArgumentValueError">InvalidHookArgumentValueError</a>
+      <li><a href="apidoc/sceptre.html#sceptre.exceptions.InvalidHookArgumentValueError">InvalidHookArgumentValueError</a>
 </li>
-      <li><a href="api/sceptre.html#sceptre.exceptions.InvalidSceptreDirectoryError">InvalidSceptreDirectoryError</a>
+      <li><a href="apidoc/sceptre.html#sceptre.exceptions.InvalidSceptreDirectoryError">InvalidSceptreDirectoryError</a>
 </li>
   </ul></td>
 </tr></table>
@@ -523,25 +595,35 @@
 <h2 id="L">L</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/sceptre.html#sceptre.environment.Environment.launch">launch() (sceptre.environment.Environment method)</a>
+      <li><a href="apidoc/sceptre.plan.html#sceptre.plan.actions.StackActions.launch">launch() (sceptre.plan.actions.StackActions method)</a>
 
       <ul>
-        <li><a href="api/sceptre.html#sceptre.stack.Stack.launch">(sceptre.stack.Stack method)</a>
+        <li><a href="apidoc/sceptre.plan.html#sceptre.plan.plan.SceptrePlan.launch">(sceptre.plan.plan.SceptrePlan method)</a>
+</li>
+      </ul></li>
+      <li><a href="apidoc/sceptre.plan.html#sceptre.plan.actions.StackActions.list_change_sets">list_change_sets() (sceptre.plan.actions.StackActions method)</a>
+
+      <ul>
+        <li><a href="apidoc/sceptre.plan.html#sceptre.plan.plan.SceptrePlan.list_change_sets">(sceptre.plan.plan.SceptrePlan method)</a>
 </li>
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/sceptre.html#sceptre.stack.Stack.list_change_sets">list_change_sets() (sceptre.stack.Stack method)</a>
+      <li><a href="apidoc/sceptre.config.html#sceptre.config.strategies.list_join">list_join() (in module sceptre.config.strategies)</a>
 </li>
-      <li><a href="api/sceptre.html#sceptre.stack.Stack.lock">lock() (sceptre.stack.Stack method)</a>
+      <li><a href="apidoc/sceptre.plan.html#sceptre.plan.actions.StackActions.lock">lock() (sceptre.plan.actions.StackActions method)</a>
+
+      <ul>
+        <li><a href="apidoc/sceptre.plan.html#sceptre.plan.plan.SceptrePlan.lock">(sceptre.plan.plan.SceptrePlan method)</a>
 </li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
 <h2 id="M">M</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/sceptre.html#sceptre.helpers.mask_key">mask_key() (in module sceptre.helpers)</a>
+      <li><a href="apidoc/sceptre.html#sceptre.helpers.mask_key">mask_key() (in module sceptre.helpers)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -549,19 +631,23 @@
 <h2 id="N">N</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/sceptre.html#sceptre.stack.Stack.notifications">notifications (sceptre.stack.Stack attribute)</a>
+      <li><a href="apidoc/sceptre.html#sceptre.stack.Stack.notifications">notifications (sceptre.stack.Stack attribute)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/sceptre.html#sceptre.NullHandler">NullHandler (class in sceptre)</a>
+      <li><a href="apidoc/sceptre.html#sceptre.NullHandler">NullHandler (class in sceptre)</a>
+
+      <ul>
+        <li><a href="apidoc/sceptre.config.html#sceptre.config.NullHandler">(class in sceptre.config)</a>
 </li>
+        <li><a href="apidoc/sceptre.plan.html#sceptre.plan.NullHandler">(class in sceptre.plan)</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
 <h2 id="P">P</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/sceptre.html#sceptre.stack.Stack.parameters">parameters (sceptre.stack.Stack attribute)</a>
+      <li><a href="apidoc/sceptre.html#sceptre.stack.Stack.parameters">parameters (sceptre.stack.Stack attribute)</a>
 </li>
       <li>
     PATH
@@ -600,10 +686,10 @@
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/sceptre.html#sceptre.stack_status.StackChangeSetStatus.PENDING">PENDING (sceptre.stack_status.StackChangeSetStatus attribute)</a>
+      <li><a href="apidoc/sceptre.html#sceptre.stack_status.StackChangeSetStatus.PENDING">PENDING (sceptre.stack_status.StackChangeSetStatus attribute)</a>
 
       <ul>
-        <li><a href="api/sceptre.html#sceptre.stack_status.StackStatus.PENDING">(sceptre.stack_status.StackStatus attribute)</a>
+        <li><a href="apidoc/sceptre.html#sceptre.stack_status.StackStatus.PENDING">(sceptre.stack_status.StackStatus attribute)</a>
 </li>
       </ul></li>
       <li>
@@ -617,12 +703,12 @@
     PROJECT_NAME
 
       <ul>
-        <li><a href="docs/cli.html#cmdoption-sceptre-init-project-arg-project-name">sceptre-init-project command line option</a>
+        <li><a href="docs/cli.html#cmdoption-sceptre-new-project-arg-project-name">sceptre-new-project command line option</a>
 </li>
       </ul></li>
-      <li><a href="api/sceptre.html#sceptre.exceptions.ProjectAlreadyExistsError">ProjectAlreadyExistsError</a>
+      <li><a href="apidoc/sceptre.html#sceptre.exceptions.ProjectAlreadyExistsError">ProjectAlreadyExistsError</a>
 </li>
-      <li><a href="api/sceptre.html#sceptre.exceptions.ProtectedStackError">ProtectedStackError</a>
+      <li><a href="apidoc/sceptre.html#sceptre.exceptions.ProtectedStackError">ProtectedStackError</a>
 </li>
   </ul></td>
 </tr></table>
@@ -630,40 +716,40 @@
 <h2 id="R">R</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/sceptre.html#sceptre.config_reader.ConfigReader.read">read() (sceptre.config_reader.ConfigReader method)</a>
+      <li><a href="apidoc/sceptre.config.html#sceptre.config.reader.ConfigReader.read">read() (sceptre.config.reader.ConfigReader method)</a>
 </li>
-      <li><a href="api/sceptre.html#sceptre.stack_status.StackChangeSetStatus.READY">READY (sceptre.stack_status.StackChangeSetStatus attribute)</a>
+      <li><a href="apidoc/sceptre.html#sceptre.stack_status.StackChangeSetStatus.READY">READY (sceptre.stack_status.StackChangeSetStatus attribute)</a>
 </li>
-      <li><a href="api/sceptre.html#sceptre.helpers.recurse_into_sub_environments">recurse_into_sub_environments() (in module sceptre.helpers)</a>
+      <li><a href="apidoc/sceptre.config.html#sceptre.config.graph.StackGraph.remove_stack">remove_stack() (sceptre.config.graph.StackGraph method)</a>
 </li>
-      <li><a href="api/sceptre.resolvers.html#sceptre.resolvers.ResolvableProperty">ResolvableProperty (class in sceptre.resolvers)</a>
+      <li><a href="apidoc/sceptre.resolvers.html#sceptre.resolvers.ResolvableProperty">ResolvableProperty (class in sceptre.resolvers)</a>
 </li>
-      <li><a href="api/sceptre.resolvers.html#sceptre.resolvers.environment_variable.EnvironmentVariable.resolve">resolve() (sceptre.resolvers.environment_variable.EnvironmentVariable method)</a>
+      <li><a href="apidoc/sceptre.plan.html#sceptre.plan.plan.SceptrePlan.resolve">resolve() (sceptre.plan.plan.SceptrePlan method)</a>
 
       <ul>
-        <li><a href="api/sceptre.resolvers.html#sceptre.resolvers.Resolver.resolve">(sceptre.resolvers.Resolver method)</a>
+        <li><a href="apidoc/sceptre.resolvers.html#sceptre.resolvers.Resolver.resolve">(sceptre.resolvers.Resolver method)</a>
 </li>
-        <li><a href="api/sceptre.resolvers.html#sceptre.resolvers.file_contents.FileContents.resolve">(sceptre.resolvers.file_contents.FileContents method)</a>
+        <li><a href="apidoc/sceptre.resolvers.html#sceptre.resolvers.environment_variable.EnvironmentVariable.resolve">(sceptre.resolvers.environment_variable.EnvironmentVariable method)</a>
 </li>
-        <li><a href="api/sceptre.resolvers.html#sceptre.resolvers.stack_output.StackOutput.resolve">(sceptre.resolvers.stack_output.StackOutput method)</a>
+        <li><a href="apidoc/sceptre.resolvers.html#sceptre.resolvers.file_contents.FileContents.resolve">(sceptre.resolvers.file_contents.FileContents method)</a>
 </li>
-        <li><a href="api/sceptre.resolvers.html#sceptre.resolvers.stack_output.StackOutputExternal.resolve">(sceptre.resolvers.stack_output.StackOutputExternal method)</a>
+        <li><a href="apidoc/sceptre.resolvers.html#sceptre.resolvers.stack_output.StackOutput.resolve">(sceptre.resolvers.stack_output.StackOutput method)</a>
+</li>
+        <li><a href="apidoc/sceptre.resolvers.html#sceptre.resolvers.stack_output.StackOutputExternal.resolve">(sceptre.resolvers.stack_output.StackOutputExternal method)</a>
 </li>
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/sceptre.html#sceptre.helpers.resolve_stack_name">resolve_stack_name() (in module sceptre.helpers)</a>
+      <li><a href="apidoc/sceptre.resolvers.html#sceptre.resolvers.Resolver">Resolver (class in sceptre.resolvers)</a>
 </li>
-      <li><a href="api/sceptre.resolvers.html#sceptre.resolvers.Resolver">Resolver (class in sceptre.resolvers)</a>
+      <li><a href="apidoc/sceptre.html#sceptre.exceptions.RetryLimitExceededError">RetryLimitExceededError</a>
 </li>
-      <li><a href="api/sceptre.html#sceptre.exceptions.RetryLimitExceededError">RetryLimitExceededError</a>
-</li>
-      <li><a href="api/sceptre.hooks.html#sceptre.hooks.asg_scaling_processes.ASGScalingProcesses.run">run() (sceptre.hooks.asg_scaling_processes.ASGScalingProcesses method)</a>
+      <li><a href="apidoc/sceptre.hooks.html#sceptre.hooks.asg_scaling_processes.ASGScalingProcesses.run">run() (sceptre.hooks.asg_scaling_processes.ASGScalingProcesses method)</a>
 
       <ul>
-        <li><a href="api/sceptre.hooks.html#sceptre.hooks.Hook.run">(sceptre.hooks.Hook method)</a>
+        <li><a href="apidoc/sceptre.hooks.html#sceptre.hooks.Hook.run">(sceptre.hooks.Hook method)</a>
 </li>
-        <li><a href="api/sceptre.hooks.html#sceptre.hooks.cmd.Cmd.run">(sceptre.hooks.cmd.Cmd method)</a>
+        <li><a href="apidoc/sceptre.hooks.html#sceptre.hooks.cmd.Cmd.run">(sceptre.hooks.cmd.Cmd method)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -672,7 +758,7 @@
 <h2 id="S">S</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/sceptre.html#module-sceptre">sceptre (module)</a>
+      <li><a href="apidoc/sceptre.html#module-sceptre">sceptre (module)</a>
 </li>
       <li>
     sceptre command line option
@@ -681,6 +767,8 @@
         <li><a href="docs/cli.html#cmdoption-sceptre-debug">--debug</a>
 </li>
         <li><a href="docs/cli.html#cmdoption-sceptre-dir">--dir &lt;directory&gt;</a>
+</li>
+        <li><a href="docs/cli.html#cmdoption-sceptre-ignore-dependencies">--ignore-dependencies</a>
 </li>
         <li><a href="docs/cli.html#cmdoption-sceptre-no-colour">--no-colour</a>
 </li>
@@ -759,20 +847,6 @@
 </li>
       </ul></li>
       <li>
-    sceptre-init-env command line option
-
-      <ul>
-        <li><a href="docs/cli.html#cmdoption-sceptre-init-env-arg-environment">ENVIRONMENT</a>
-</li>
-      </ul></li>
-      <li>
-    sceptre-init-project command line option
-
-      <ul>
-        <li><a href="docs/cli.html#cmdoption-sceptre-init-project-arg-project-name">PROJECT_NAME</a>
-</li>
-      </ul></li>
-      <li>
     sceptre-launch command line option
 
       <ul>
@@ -802,6 +876,20 @@
 
       <ul>
         <li><a href="docs/cli.html#cmdoption-sceptre-list-resources-arg-path">PATH</a>
+</li>
+      </ul></li>
+      <li>
+    sceptre-new-group command line option
+
+      <ul>
+        <li><a href="docs/cli.html#cmdoption-sceptre-new-group-arg-stack-group">STACK_GROUP</a>
+</li>
+      </ul></li>
+      <li>
+    sceptre-new-project command line option
+
+      <ul>
+        <li><a href="docs/cli.html#cmdoption-sceptre-new-project-arg-project-name">PROJECT_NAME</a>
 </li>
       </ul></li>
       <li>
@@ -835,8 +923,6 @@
         <li><a href="docs/cli.html#cmdoption-sceptre-update-arg-path">PATH</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     sceptre-validate command line option
 
@@ -844,103 +930,142 @@
         <li><a href="docs/cli.html#cmdoption-sceptre-validate-arg-path">PATH</a>
 </li>
       </ul></li>
-      <li><a href="api/sceptre.cli.html#module-sceptre.cli">sceptre.cli (module)</a>
+      <li><a href="apidoc/sceptre.cli.html#module-sceptre.cli">sceptre.cli (module)</a>
 </li>
-      <li><a href="api/sceptre.cli.html#module-sceptre.cli.create">sceptre.cli.create (module)</a>
+      <li><a href="apidoc/sceptre.cli.html#module-sceptre.cli.create">sceptre.cli.create (module)</a>
 </li>
-      <li><a href="api/sceptre.cli.html#module-sceptre.cli.delete">sceptre.cli.delete (module)</a>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="apidoc/sceptre.cli.html#module-sceptre.cli.delete">sceptre.cli.delete (module)</a>
 </li>
-      <li><a href="api/sceptre.cli.html#module-sceptre.cli.describe">sceptre.cli.describe (module)</a>
+      <li><a href="apidoc/sceptre.cli.html#module-sceptre.cli.describe">sceptre.cli.describe (module)</a>
 </li>
-      <li><a href="api/sceptre.cli.html#module-sceptre.cli.execute">sceptre.cli.execute (module)</a>
+      <li><a href="apidoc/sceptre.cli.html#module-sceptre.cli.execute">sceptre.cli.execute (module)</a>
 </li>
-      <li><a href="api/sceptre.cli.html#module-sceptre.cli.helpers">sceptre.cli.helpers (module)</a>
+      <li><a href="apidoc/sceptre.cli.html#module-sceptre.cli.helpers">sceptre.cli.helpers (module)</a>
 </li>
-      <li><a href="api/sceptre.cli.html#module-sceptre.cli.init">sceptre.cli.init (module)</a>
+      <li><a href="apidoc/sceptre.cli.html#module-sceptre.cli.launch">sceptre.cli.launch (module)</a>
 </li>
-      <li><a href="api/sceptre.cli.html#module-sceptre.cli.launch">sceptre.cli.launch (module)</a>
+      <li><a href="apidoc/sceptre.cli.html#module-sceptre.cli.list">sceptre.cli.list (module)</a>
 </li>
-      <li><a href="api/sceptre.cli.html#module-sceptre.cli.list">sceptre.cli.list (module)</a>
+      <li><a href="apidoc/sceptre.cli.html#module-sceptre.cli.new">sceptre.cli.new (module)</a>
 </li>
-      <li><a href="api/sceptre.cli.html#module-sceptre.cli.policy">sceptre.cli.policy (module)</a>
+      <li><a href="apidoc/sceptre.cli.html#module-sceptre.cli.policy">sceptre.cli.policy (module)</a>
 </li>
-      <li><a href="api/sceptre.cli.html#module-sceptre.cli.status">sceptre.cli.status (module)</a>
+      <li><a href="apidoc/sceptre.cli.html#module-sceptre.cli.status">sceptre.cli.status (module)</a>
 </li>
-      <li><a href="api/sceptre.cli.html#module-sceptre.cli.template">sceptre.cli.template (module)</a>
+      <li><a href="apidoc/sceptre.cli.html#module-sceptre.cli.template">sceptre.cli.template (module)</a>
 </li>
-      <li><a href="api/sceptre.cli.html#module-sceptre.cli.update">sceptre.cli.update (module)</a>
+      <li><a href="apidoc/sceptre.cli.html#module-sceptre.cli.update">sceptre.cli.update (module)</a>
 </li>
-      <li><a href="api/sceptre.html#module-sceptre.config_reader">sceptre.config_reader (module)</a>
+      <li><a href="apidoc/sceptre.config.html#module-sceptre.config">sceptre.config (module)</a>
 </li>
-      <li><a href="api/sceptre.html#module-sceptre.connection_manager">sceptre.connection_manager (module)</a>
+      <li><a href="apidoc/sceptre.config.html#module-sceptre.config.graph">sceptre.config.graph (module)</a>
 </li>
-      <li><a href="api/sceptre.html#module-sceptre.environment">sceptre.environment (module)</a>
+      <li><a href="apidoc/sceptre.config.html#module-sceptre.config.reader">sceptre.config.reader (module)</a>
 </li>
-      <li><a href="api/sceptre.html#module-sceptre.exceptions">sceptre.exceptions (module)</a>
+      <li><a href="apidoc/sceptre.config.html#module-sceptre.config.strategies">sceptre.config.strategies (module)</a>
 </li>
-      <li><a href="api/sceptre.html#module-sceptre.helpers">sceptre.helpers (module)</a>
+      <li><a href="apidoc/sceptre.html#module-sceptre.connection_manager">sceptre.connection_manager (module)</a>
 </li>
-      <li><a href="api/sceptre.hooks.html#module-sceptre.hooks">sceptre.hooks (module)</a>
+      <li><a href="apidoc/sceptre.html#module-sceptre.context">sceptre.context (module)</a>
 </li>
-      <li><a href="api/sceptre.hooks.html#module-sceptre.hooks.asg_scaling_processes">sceptre.hooks.asg_scaling_processes (module)</a>
+      <li><a href="apidoc/sceptre.html#module-sceptre.exceptions">sceptre.exceptions (module)</a>
 </li>
-      <li><a href="api/sceptre.hooks.html#module-sceptre.hooks.cmd">sceptre.hooks.cmd (module)</a>
+      <li><a href="apidoc/sceptre.html#module-sceptre.helpers">sceptre.helpers (module)</a>
 </li>
-      <li><a href="api/sceptre.resolvers.html#module-sceptre.resolvers">sceptre.resolvers (module)</a>
+      <li><a href="apidoc/sceptre.hooks.html#module-sceptre.hooks">sceptre.hooks (module)</a>
 </li>
-      <li><a href="api/sceptre.resolvers.html#module-sceptre.resolvers.environment_variable">sceptre.resolvers.environment_variable (module)</a>
+      <li><a href="apidoc/sceptre.hooks.html#module-sceptre.hooks.asg_scaling_processes">sceptre.hooks.asg_scaling_processes (module)</a>
 </li>
-      <li><a href="api/sceptre.resolvers.html#module-sceptre.resolvers.file_contents">sceptre.resolvers.file_contents (module)</a>
+      <li><a href="apidoc/sceptre.hooks.html#module-sceptre.hooks.cmd">sceptre.hooks.cmd (module)</a>
 </li>
-      <li><a href="api/sceptre.resolvers.html#module-sceptre.resolvers.stack_output">sceptre.resolvers.stack_output (module)</a>
+      <li><a href="apidoc/sceptre.plan.html#module-sceptre.plan">sceptre.plan (module)</a>
 </li>
-      <li><a href="api/sceptre.html#module-sceptre.stack">sceptre.stack (module)</a>
+      <li><a href="apidoc/sceptre.plan.html#module-sceptre.plan.actions">sceptre.plan.actions (module)</a>
 </li>
-      <li><a href="api/sceptre.html#module-sceptre.stack_status">sceptre.stack_status (module)</a>
+      <li><a href="apidoc/sceptre.plan.html#module-sceptre.plan.executor">sceptre.plan.executor (module)</a>
 </li>
-      <li><a href="api/sceptre.html#module-sceptre.stack_status_colourer">sceptre.stack_status_colourer (module)</a>
+      <li><a href="apidoc/sceptre.plan.html#module-sceptre.plan.plan">sceptre.plan.plan (module)</a>
 </li>
-      <li><a href="api/sceptre.html#module-sceptre.template">sceptre.template (module)</a>
+      <li><a href="apidoc/sceptre.resolvers.html#module-sceptre.resolvers">sceptre.resolvers (module)</a>
 </li>
-      <li><a href="api/sceptre.html#sceptre.stack.Stack.sceptre_user_data">sceptre_user_data (sceptre.stack.Stack attribute)</a>
+      <li><a href="apidoc/sceptre.resolvers.html#module-sceptre.resolvers.environment_variable">sceptre.resolvers.environment_variable (module)</a>
 </li>
-      <li><a href="api/sceptre.html#sceptre.exceptions.SceptreException">SceptreException</a>
+      <li><a href="apidoc/sceptre.resolvers.html#module-sceptre.resolvers.file_contents">sceptre.resolvers.file_contents (module)</a>
 </li>
-      <li><a href="api/sceptre.html#sceptre.stack.Stack.set_policy">set_policy() (sceptre.stack.Stack method)</a>
+      <li><a href="apidoc/sceptre.resolvers.html#module-sceptre.resolvers.stack_output">sceptre.resolvers.stack_output (module)</a>
 </li>
-      <li><a href="api/sceptre.hooks.html#sceptre.hooks.Hook.setup">setup() (sceptre.hooks.Hook method)</a>
+      <li><a href="apidoc/sceptre.html#module-sceptre.stack">sceptre.stack (module)</a>
+</li>
+      <li><a href="apidoc/sceptre.html#module-sceptre.stack_status">sceptre.stack_status (module)</a>
+</li>
+      <li><a href="apidoc/sceptre.html#module-sceptre.stack_status_colourer">sceptre.stack_status_colourer (module)</a>
+</li>
+      <li><a href="apidoc/sceptre.html#module-sceptre.template">sceptre.template (module)</a>
+</li>
+      <li><a href="apidoc/sceptre.html#sceptre.stack.Stack.sceptre_user_data">sceptre_user_data (sceptre.stack.Stack attribute)</a>
+</li>
+      <li><a href="apidoc/sceptre.html#sceptre.context.SceptreContext">SceptreContext (class in sceptre.context)</a>
+</li>
+      <li><a href="apidoc/sceptre.html#sceptre.exceptions.SceptreException">SceptreException</a>
+</li>
+      <li><a href="apidoc/sceptre.plan.html#sceptre.plan.plan.SceptrePlan">SceptrePlan (class in sceptre.plan.plan)</a>
+</li>
+      <li><a href="apidoc/sceptre.plan.html#sceptre.plan.executor.SceptrePlanExecutor">SceptrePlanExecutor (class in sceptre.plan.executor)</a>
+</li>
+      <li><a href="apidoc/sceptre.plan.html#sceptre.plan.actions.StackActions.set_policy">set_policy() (sceptre.plan.actions.StackActions method)</a>
 
       <ul>
-        <li><a href="api/sceptre.resolvers.html#sceptre.resolvers.Resolver.setup">(sceptre.resolvers.Resolver method)</a>
-</li>
-        <li><a href="api/sceptre.resolvers.html#sceptre.resolvers.stack_output.StackOutput.setup">(sceptre.resolvers.stack_output.StackOutput method)</a>
+        <li><a href="apidoc/sceptre.plan.html#sceptre.plan.plan.SceptrePlan.set_policy">(sceptre.plan.plan.SceptrePlan method)</a>
 </li>
       </ul></li>
-      <li><a href="api/sceptre.cli.html#sceptre.cli.helpers.setup_logging">setup_logging() (in module sceptre.cli.helpers)</a>
+      <li><a href="apidoc/sceptre.hooks.html#sceptre.hooks.Hook.setup">setup() (sceptre.hooks.Hook method)</a>
+
+      <ul>
+        <li><a href="apidoc/sceptre.resolvers.html#sceptre.resolvers.Resolver.setup">(sceptre.resolvers.Resolver method)</a>
 </li>
-      <li><a href="api/sceptre.cli.html#sceptre.cli.helpers.simplify_change_set_description">simplify_change_set_description() (in module sceptre.cli.helpers)</a>
+        <li><a href="apidoc/sceptre.resolvers.html#sceptre.resolvers.stack_output.StackOutput.setup">(sceptre.resolvers.stack_output.StackOutput method)</a>
 </li>
-      <li><a href="api/sceptre.html#sceptre.stack.Stack">Stack (class in sceptre.stack)</a>
+      </ul></li>
+      <li><a href="apidoc/sceptre.cli.html#sceptre.cli.helpers.setup_logging">setup_logging() (in module sceptre.cli.helpers)</a>
 </li>
-      <li><a href="api/sceptre.html#sceptre.stack_status_colourer.StackStatusColourer.STACK_STATUS_CODES">STACK_STATUS_CODES (sceptre.stack_status_colourer.StackStatusColourer attribute)</a>
+      <li><a href="apidoc/sceptre.cli.html#sceptre.cli.helpers.simplify_change_set_description">simplify_change_set_description() (in module sceptre.cli.helpers)</a>
 </li>
-      <li><a href="api/sceptre.cli.html#sceptre.cli.helpers.ColouredFormatter.stack_status_colourer">stack_status_colourer (sceptre.cli.helpers.ColouredFormatter attribute)</a>
+      <li><a href="apidoc/sceptre.html#sceptre.stack.Stack">Stack (class in sceptre.stack)</a>
 </li>
-      <li><a href="api/sceptre.html#sceptre.stack_status_colourer.StackStatusColourer.STACK_STATUS_PATTERN">STACK_STATUS_PATTERN (sceptre.stack_status_colourer.StackStatusColourer attribute)</a>
+      <li>
+    STACK_GROUP
+
+      <ul>
+        <li><a href="docs/cli.html#cmdoption-sceptre-new-group-arg-stack-group">sceptre-new-group command line option</a>
 </li>
-      <li><a href="api/sceptre.html#sceptre.stack_status.StackChangeSetStatus">StackChangeSetStatus (class in sceptre.stack_status)</a>
+      </ul></li>
+      <li><a href="apidoc/sceptre.html#sceptre.stack_status_colourer.StackStatusColourer.STACK_STATUS_CODES">STACK_STATUS_CODES (sceptre.stack_status_colourer.StackStatusColourer attribute)</a>
 </li>
-      <li><a href="api/sceptre.html#sceptre.exceptions.StackDoesNotExistError">StackDoesNotExistError</a>
+      <li><a href="apidoc/sceptre.cli.html#sceptre.cli.helpers.ColouredFormatter.stack_status_colourer">stack_status_colourer (sceptre.cli.helpers.ColouredFormatter attribute)</a>
 </li>
-      <li><a href="api/sceptre.resolvers.html#sceptre.resolvers.stack_output.StackOutput">StackOutput (class in sceptre.resolvers.stack_output)</a>
+      <li><a href="apidoc/sceptre.cli.html#sceptre.cli.helpers.stack_status_exit_code">stack_status_exit_code() (in module sceptre.cli.helpers)</a>
 </li>
-      <li><a href="api/sceptre.resolvers.html#sceptre.resolvers.stack_output.StackOutputBase">StackOutputBase (class in sceptre.resolvers.stack_output)</a>
+      <li><a href="apidoc/sceptre.html#sceptre.stack_status_colourer.StackStatusColourer.STACK_STATUS_PATTERN">STACK_STATUS_PATTERN (sceptre.stack_status_colourer.StackStatusColourer attribute)</a>
 </li>
-      <li><a href="api/sceptre.resolvers.html#sceptre.resolvers.stack_output.StackOutputExternal">StackOutputExternal (class in sceptre.resolvers.stack_output)</a>
+      <li><a href="apidoc/sceptre.plan.html#sceptre.plan.actions.StackActions">StackActions (class in sceptre.plan.actions)</a>
 </li>
-      <li><a href="api/sceptre.html#sceptre.stack_status.StackStatus">StackStatus (class in sceptre.stack_status)</a>
+      <li><a href="apidoc/sceptre.html#sceptre.stack_status.StackChangeSetStatus">StackChangeSetStatus (class in sceptre.stack_status)</a>
 </li>
-      <li><a href="api/sceptre.html#sceptre.stack_status_colourer.StackStatusColourer">StackStatusColourer (class in sceptre.stack_status_colourer)</a>
+      <li><a href="apidoc/sceptre.html#sceptre.exceptions.StackDoesNotExistError">StackDoesNotExistError</a>
+</li>
+      <li><a href="apidoc/sceptre.config.html#sceptre.config.graph.StackGraph">StackGraph (class in sceptre.config.graph)</a>
+</li>
+      <li><a href="apidoc/sceptre.resolvers.html#sceptre.resolvers.stack_output.StackOutput">StackOutput (class in sceptre.resolvers.stack_output)</a>
+</li>
+      <li><a href="apidoc/sceptre.resolvers.html#sceptre.resolvers.stack_output.StackOutputBase">StackOutputBase (class in sceptre.resolvers.stack_output)</a>
+</li>
+      <li><a href="apidoc/sceptre.resolvers.html#sceptre.resolvers.stack_output.StackOutputExternal">StackOutputExternal (class in sceptre.resolvers.stack_output)</a>
+</li>
+      <li><a href="apidoc/sceptre.html#sceptre.stack_status.StackStatus">StackStatus (class in sceptre.stack_status)</a>
+</li>
+      <li><a href="apidoc/sceptre.html#sceptre.stack_status_colourer.StackStatusColourer">StackStatusColourer (class in sceptre.stack_status_colourer)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -948,13 +1073,15 @@
 <h2 id="T">T</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/sceptre.html#sceptre.template.Template">Template (class in sceptre.template)</a>
+      <li><a href="apidoc/sceptre.html#sceptre.template.Template">Template (class in sceptre.template)</a>
+</li>
+      <li><a href="apidoc/sceptre.html#sceptre.stack.Stack.template">template (sceptre.stack.Stack attribute)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/sceptre.html#sceptre.stack.Stack.template">template (sceptre.stack.Stack attribute)</a>
+      <li><a href="apidoc/sceptre.plan.html#sceptre.plan.plan.SceptrePlan.template">template() (sceptre.plan.plan.SceptrePlan method)</a>
 </li>
-      <li><a href="api/sceptre.html#sceptre.exceptions.TemplateSceptreHandlerError">TemplateSceptreHandlerError</a>
+      <li><a href="apidoc/sceptre.html#sceptre.exceptions.TemplateSceptreHandlerError">TemplateSceptreHandlerError</a>
 </li>
   </ul></td>
 </tr></table>
@@ -962,21 +1089,29 @@
 <h2 id="U">U</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/sceptre.html#sceptre.exceptions.UnknownHookTypeError">UnknownHookTypeError</a>
+      <li><a href="apidoc/sceptre.html#sceptre.exceptions.UnknownHookTypeError">UnknownHookTypeError</a>
 </li>
-      <li><a href="api/sceptre.html#sceptre.exceptions.UnknownStackChangeSetStatusError">UnknownStackChangeSetStatusError</a>
+      <li><a href="apidoc/sceptre.html#sceptre.exceptions.UnknownStackChangeSetStatusError">UnknownStackChangeSetStatusError</a>
 </li>
-      <li><a href="api/sceptre.html#sceptre.exceptions.UnknownStackStatusError">UnknownStackStatusError</a>
+      <li><a href="apidoc/sceptre.html#sceptre.exceptions.UnknownStackStatusError">UnknownStackStatusError</a>
 </li>
+      <li><a href="apidoc/sceptre.plan.html#sceptre.plan.actions.StackActions.unlock">unlock() (sceptre.plan.actions.StackActions method)</a>
+
+      <ul>
+        <li><a href="apidoc/sceptre.plan.html#sceptre.plan.plan.SceptrePlan.unlock">(sceptre.plan.plan.SceptrePlan method)</a>
+</li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/sceptre.html#sceptre.stack.Stack.unlock">unlock() (sceptre.stack.Stack method)</a>
+      <li><a href="apidoc/sceptre.html#sceptre.exceptions.UnsupportedTemplateFileTypeError">UnsupportedTemplateFileTypeError</a>
 </li>
-      <li><a href="api/sceptre.html#sceptre.exceptions.UnsupportedTemplateFileTypeError">UnsupportedTemplateFileTypeError</a>
+      <li><a href="apidoc/sceptre.plan.html#sceptre.plan.actions.StackActions.update">update() (sceptre.plan.actions.StackActions method)</a>
+
+      <ul>
+        <li><a href="apidoc/sceptre.plan.html#sceptre.plan.plan.SceptrePlan.update">(sceptre.plan.plan.SceptrePlan method)</a>
 </li>
-      <li><a href="api/sceptre.html#sceptre.stack.Stack.update">update() (sceptre.stack.Stack method)</a>
-</li>
-      <li><a href="api/sceptre.html#sceptre.template.Template.upload_to_s3">upload_to_s3() (sceptre.template.Template method)</a>
+      </ul></li>
+      <li><a href="apidoc/sceptre.html#sceptre.template.Template.upload_to_s3">upload_to_s3() (sceptre.template.Template method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -984,11 +1119,15 @@
 <h2 id="V">V</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/sceptre.html#sceptre.template.Template.validate">validate() (sceptre.template.Template method)</a>
+      <li><a href="apidoc/sceptre.plan.html#sceptre.plan.actions.StackActions.validate">validate() (sceptre.plan.actions.StackActions method)</a>
+
+      <ul>
+        <li><a href="apidoc/sceptre.plan.html#sceptre.plan.plan.SceptrePlan.validate">(sceptre.plan.plan.SceptrePlan method)</a>
 </li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/sceptre.html#sceptre.exceptions.VersionIncompatibleError">VersionIncompatibleError</a>
+      <li><a href="apidoc/sceptre.html#sceptre.exceptions.VersionIncompatibleError">VersionIncompatibleError</a>
 </li>
   </ul></td>
 </tr></table>
@@ -996,11 +1135,15 @@
 <h2 id="W">W</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/sceptre.html#sceptre.stack.Stack.wait_for_cs_completion">wait_for_cs_completion() (sceptre.stack.Stack method)</a>
+      <li><a href="apidoc/sceptre.plan.html#sceptre.plan.actions.StackActions.wait_for_cs_completion">wait_for_cs_completion() (sceptre.plan.actions.StackActions method)</a>
+
+      <ul>
+        <li><a href="apidoc/sceptre.plan.html#sceptre.plan.plan.SceptrePlan.wait_for_cs_completion">(sceptre.plan.plan.SceptrePlan method)</a>
 </li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/sceptre.cli.html#sceptre.cli.helpers.write">write() (in module sceptre.cli.helpers)</a>
+      <li><a href="apidoc/sceptre.cli.html#sceptre.cli.helpers.write">write() (in module sceptre.cli.helpers)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -1017,7 +1160,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Cloudreach.
+        &copy; Copyright 2018, Cloudreach
 
     </p>
   </div>
@@ -1065,7 +1208,6 @@
                             if (item !== "dev") {
                                 $('#other-versions').append('<dd><a href="../' + item + '">' + item + "<a/></dd>");
                             }
-
                         })
                     });
             });
@@ -1073,32 +1215,16 @@
     </div>
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'1.3.3',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-
-  
-
-  <script type="text/javascript" src="_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>
