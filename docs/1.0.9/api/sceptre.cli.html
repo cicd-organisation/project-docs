@@ -475,7 +475,7 @@ write <code class="docutils literal notranslate"><span class="pre">var</span></c
                     function () {
                         versions.forEach(function (item, index) {
                             if (item !== "1.0.9") {
-                                $('#other-versions').append('<dd><a href="../' + item + '">' + item + "<a/></dd>");
+                                $('#other-versions').append('<dd><a href="'+ window.location.origin + '/' + item +'">' + item + "<a/></dd>");
                             }
 
                         })

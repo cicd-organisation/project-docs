@@ -240,7 +240,7 @@
                     function () {
                         versions.forEach(function (item, index) {
                             if (item !== "1.0.6") {
-                                $('#other-versions').append('<dd><a href="../' + item + '">' + item + "<a/></dd>");
+                                $('#other-versions').append('<dd><a href="'+ window.location.origin + '/' + item +'">' + item + "<a/></dd>");
                             }
 
                         })

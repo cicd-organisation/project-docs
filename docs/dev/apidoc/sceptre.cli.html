@@ -469,7 +469,7 @@ write <code class="docutils literal"><span class="pre">var</span></code> as a JS
                     function () {
                         versions.forEach(function (item, index) {
                             if (item !== "dev") {
-                                $('#other-versions').append('<dd><a href="../' + item + '">' + item + "<a/></dd>");
+                                $('#other-versions').append('<dd><a href="'+ window.location.origin + '/' + item +'">' + item + "<a/></dd>");
                             }
                         })
                     });

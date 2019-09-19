@@ -312,7 +312,7 @@
                     function () {
                         versions.forEach(function (item, index) {
                             if (item !== "98.2.1") {
-                                $('#other-versions').append('<dd><a href="../' + item + '">' + item + "<a/></dd>");
+                                $('#other-versions').append('<dd><a href="'+ window.location.origin + '/' + item +'">' + item + "<a/></dd>");
                             }
                         })
                     });
